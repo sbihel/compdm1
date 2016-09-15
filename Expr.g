@@ -15,7 +15,11 @@ expr:   multExpr (('+'^|'-'^) multExpr)*
     ;
 
 multExpr
-    :   atom ('*'^ atom)*
+    :   powExpr (('*'^|'/'^) powExpr)*
+    ;
+
+powExpr
+    :   atom ('^'^ powExpr)?
     ;
 
 atom:   INT

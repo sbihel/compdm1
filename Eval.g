@@ -7,6 +7,7 @@ options {
 
 @header {
 import java.util.HashMap;
+import java.lang.Math;
 }
 
 @members {
@@ -24,9 +25,11 @@ stat:   expr
 
 expr returns [int value]
     :   ^('+' a=expr b=expr)  {$value = a+b;}
-    |   ^('-' a=expr b=expr)  {$value = a-b;}   
+    |   ^('-' a=expr b=expr)  {$value = a-b;}
     |   ^('*' a=expr b=expr)  {$value = a*b;}
-    |   ID 
+    |   ^('/' a=expr b=expr)  {$value = a/b;}
+    |   ^('^' a=expr b=expr)  {$value = (int) Math.pow(a,b);}
+    |   ID
         {
         Integer v = (Integer)memory.get($ID.text);
         if ( v!=null ) $value = v.intValue();
