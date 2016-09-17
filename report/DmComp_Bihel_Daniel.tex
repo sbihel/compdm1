@@ -26,6 +26,25 @@
 \usepackage[french]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{lstlinebgrd}
+
+\usepackage{expl3,xparse}
+
+\ExplSyntaxOn
+\NewDocumentCommand \lstcolorlines { O{green} m }
+{
+ \clist_if_in:nVT { #2 } { \the\value{lstnumber} }{ \color{#1} }
+}
+\ExplSyntaxOff
+
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
 \usepackage{sectsty} % Allows customizing section commands
 \allsectionsfont{\centering \normalfont \scshape} % Make all sections centered, the default font and small caps
 
@@ -71,7 +90,7 @@
 %------------------------------------------------
 
 \section*{Introduction}
-\textsc{Antlr} est un outil permettant de générer des analyseurs lexicaux ou syntaxiques dans un langage cible, notemment en Java. Il peut être utilisé entre autre, pour construire un traducteur, un interpréteur ou un compilateur à partir de règles de grammaire définies par l'utilisateur. Il permet aussi de générer des arbres 
+\textsc{Antlr} est un outil permettant de générer des analyseurs lexicaux ou syntaxiques dans un langage cible, notamment en Java. Il peut être utilisé entre autre, pour construire un traducteur, un interpréteur ou un compilateur à partir de règles de grammaire définies par l'utilisateur. Il permet aussi de générer facilement des arbres syntaxiques, de gérer les erreurs et d'associer des actions aux règles de grammaire.
 
 
 
@@ -79,9 +98,15 @@
 
 \section{Fonctionnement de l'outil \textsc{antlr}}
 
-Lecture d'une grammaire en notation EBNF et production d'un analyseur syntaxique en Java.
+L'outil \textsc{Antlr} lit une grammaire en notation EBNF, qui a une syntaxe proche des expressions régulières, et permet notamment l'utilisation des symboles {*,?,+} pour la définition des littéraux. Il produit ensuite un analyseur syntaxique en Java que l'on peut utiliser dans un programme principal pour analyser des données.
 
-Méthode d'analyse syntaxique : à détailler. Analyse LL(*)
+Méthode d'analyse syntaxique : à détailler. Analyse LL(*) -> pas de récursivité à gauche.
+
+On peut différencier les règles de grammaire en deux types :
+\begin{itemize}
+ \item Les règles lexicales ne contiennent que des littéraux (qui peuvent contenir des symboles EBNF) ou d'autres règles lexicales. Par convention dans \textsc{Antlr} ces règles commencent par une majuscule.
+ \item les règles syntaxiques peuvent contenir des littéraux, des règles lexicales ou des règles syntaxiques. Par convention dans \textsc{Antlr} ces règles commencent par une minuscule.
+\end{itemize}
 
 % Section de remplissage si on a pas assez de contenu !
 
@@ -89,7 +114,59 @@ Méthode d'analyse syntaxique : à détailler. Analyse LL(*)
 
 \section{Exemple : évaluateur d'expression}
 
-Explacation de l'exemple fourni + les 4 lignes de code ajoutées.
+L'exemple fourni permet d'évaluer des expressions mathématiques utilisant des identificateurs, les opérateurs =, +, -, *, ainsi que le parenthésage. Il permet aussi de construire un arbre de syntaxe abstraite pour chaque ligne de l'entrée.
+[
+- expressions
+- identificateurs : stockage dans une hashmap
+]
+
+
+Comme illustré dans le listing \ref{expr_file}, on peut ajouter la division dans la règle de la multiplication, les deux opérations ayant la même priorité. L'associativité à gauche est respectée naturellement par \textsc{Antlr} puisqu'il utilise une analyse LL - de gauche à droite.
+
+Dans le cas de la puissance, il est nécessaire d'ajouter une règle pour respecter la priorité. Il faut aussi prendre en compte l'associativité à droite en forçant l'analyseur à évaluer la partie à droite de l'opérateur. On peut faire cela en utilisant l'opérateur '?' au lieu de '*' qu'on a utilisé précédemment, comme on peut le voir dans le listing \ref{expr_file}.
+
+    
+\begin{lstlisting}[label=expr_file,caption=Fichier Expr.g,
+linebackgroundcolor={\lstcolorlines[red!30]{8,9,10}\lstcolorlines[green!30]{5}}]
+expr:   multExpr (('+'^|'-'^) multExpr)*
+    ;
+
+multExpr
+    :   powExpr (('*'^|'/'^) powExpr)*
+    ;
+
+powExpr
+    :   atom ('^'^ powExpr)?
+    ;
+
+atom:   INT
+    |   ID
+    |   '(' expr ')'
+    ;
+\end{lstlisting}
+
+Il faut ensuite ajouter les actions correspondantes pour la construction de l'arbre. Comme on peut le voir dans le listing \ref{eval_file}, chacun des opérateurs ajoute un nœud à l'arbre qui a pour valeur l'opération appliquée aux deux sous-arbres. Si l'expression est un identifiant, on récupère sa valeur dans la table de hachage et s'il n'est pas défini, on renvoie un message d'erreur. S'il s'agit d'un entier, on transforme la chaîne de caractère en l'entier correspondant. 
+
+\begin{lstlisting}[label=eval_file,caption=Fichier Eval.g,
+linebackgroundcolor={\lstcolorlines[red!30]{6}\lstcolorlines[green!30]{5}}]
+expr returns [int value]
+    : ^('+' a=expr b=expr)  { $value = a+b; }
+    | ^('-' a=expr b=expr)  { $value = a-b; }
+    | ^('*' a=expr b=expr)  { $value = a*b; }
+    | ^('/' a=expr b=expr)  { $value = a/b; }
+    | ^('^' a=expr b=expr)  { $value = (int) Math.pow(a,b); }
+    | ID
+      {
+        Integer v = (Integer) memory.get($ID.text);
+        if ( v != null ) $value = v.intValue();
+	else System.err.println("undefined variable "+$ID.text);
+      }
+    | INT { $value = Integer.parseInt($INT.text); }
+    ;
+\end{lstlisting}
+
+
+\end{document}
 
 
 %------------------------------------------------
