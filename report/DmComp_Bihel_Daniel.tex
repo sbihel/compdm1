@@ -123,7 +123,15 @@ L'exemple fourni permet d'évaluer des expressions mathématiques utilisant des 
 
 Comme illustré dans le listing \ref{expr_file}, on peut ajouter la division dans la règle de la multiplication, les deux opérations ayant la même priorité. L'associativité à gauche est respectée naturellement par \textsc{Antlr} puisqu'il utilise une analyse LL - de gauche à droite.
 
-Dans le cas de la puissance, il est nécessaire d'ajouter une règle pour respecter la priorité. Il faut aussi prendre en compte l'associativité à droite en forçant l'analyseur à évaluer la partie à droite de l'opérateur. On peut faire cela en utilisant l'opérateur '?' au lieu de '*' qu'on a utilisé précédemment, comme on peut le voir dans le listing \ref{expr_file}.
+Dans le cas de la puissance, il est nécessaire d'ajouter une règle pour
+respecter la priorité. Il faut aussi prendre en compte l'associativité à droite
+en forçant l'analyseur à évaluer la partie à droite de l'opérateur. On peut
+faire cela en utilisant l'opérateur '?' au lieu de '*' qu'on a utilisé
+précédemment, comme on peut le voir dans le listing \ref{expr_file}. Cet
+opérateur permet de n'avoir au maximum qu'une seule sous-règle, ce qui permet
+donc de forcer par de la récursivité la création de l'arbre de la racine aux
+feuilles.
+% c'est pas clair
 
     
 \begin{lstlisting}[label=expr_file,caption=Fichier Expr.g,
@@ -164,6 +172,29 @@ expr returns [int value]
     | INT { $value = Integer.parseInt($INT.text); }
     ;
 \end{lstlisting}
+
+
+
+%------------------------------------------------
+
+\section{Tests}
+
+Le fichier d'exécution fournit permet la visualisation de l'arbre syntaxique de
+d'une expression fournie. On peut donc évaluer notre grammaire sur la
+concordance des opérateurs lors de l'évaluation, la priorité des opérations et
+leurs associativités. Étant donné le faible nombre d'opérateurs on peut juste
+vérifier à la main leur validité sans passer par un générateur qui rajouterait
+une couche potentielle d'erreurs. Pour la priorité des opérations il suffit de
+prendre une expression avec tous les opérateurs et vérifier que l'arbre est
+correct. Il faut ensuite permuter les opérations pour être sûr que l'ordre de
+lecture n'a aucun impact, puis vérifier que les parenthèses sont bien prises en
+compte. L'associativité se vérifie en regardant l'encapsulation des parenthèses.
+Pour finir quelque tests aléatoires peuvent être effectués en faisant attention
+aux problèmes d'overflow.
+%je liste juste les problèmes/bugs qui pourraient arriver car je pense que
+%faire un générateur de tests pour des opérateurs atomiques ça rajoute juste
+%une couche d'incertitude (?)
+
 
 
 \end{document}
