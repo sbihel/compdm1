@@ -98,14 +98,27 @@
 
 \section{Fonctionnement de l'outil \textsc{antlr}}
 
-L'outil \textsc{Antlr} lit une grammaire en notation EBNF, qui a une syntaxe proche des expressions régulières, et permet notamment l'utilisation des symboles {*,?,+} pour la définition des littéraux. Il produit ensuite un analyseur syntaxique en Java que l'on peut utiliser dans un programme principal pour analyser des données.
+L'outil \textsc{Antlr} lit une grammaire en notation EBNF, qui a une syntaxe
+proche des expressions régulières, et permet notamment l'utilisation des
+symboles `*', `?' et `+' pour la définition des littéraux. Il produit ensuite un
+analyseur syntaxique en Java que l'on peut utiliser dans un programme principal
+pour analyser des données.
 
-Méthode d'analyse syntaxique : à détailler. Analyse LL(*) -> pas de récursivité à gauche.
+%Méthode d'analyse syntaxique : à détailler. Analyse LL(*) -> pas de 
+%récursivité à gauche.
+%http://www.antlr.org/papers/LL-star-PLDI11.pdf paper about the parser generator
+\textsc{Antlr} utilise une stratégie d'analyse syntaxique \textit{top-down} 
+appelée LL(*). Cette stratégie permet d'accepter tout type de grammaire mise à 
+part la récursivité à gauche.
 
-On peut différencier les règles de grammaire en deux types :
+On peut différencier les règles de grammaire en deux types.
 \begin{itemize}
- \item Les règles lexicales ne contiennent que des littéraux (qui peuvent contenir des symboles EBNF) ou d'autres règles lexicales. Par convention dans \textsc{Antlr} ces règles commencent par une majuscule.
- \item les règles syntaxiques peuvent contenir des littéraux, des règles lexicales ou des règles syntaxiques. Par convention dans \textsc{Antlr} ces règles commencent par une minuscule.
+ \item Les règles lexicales ne contiennent que des littéraux (qui peuvent 
+ contenir des symboles EBNF) ou d'autres règles lexicales. Par convention dans 
+ \textsc{Antlr} ces règles commencent par une majuscule.
+ \item Les règles syntaxiques peuvent contenir des littéraux, des règles 
+ lexicales ou des règles syntaxiques. Par convention dans \textsc{Antlr} ces 
+ règles commencent par une minuscule.
 \end{itemize}
 
 % Section de remplissage si on a pas assez de contenu !
@@ -114,7 +127,10 @@ On peut différencier les règles de grammaire en deux types :
 
 \section{Exemple : évaluateur d'expression}
 
-L'exemple fourni permet d'évaluer des expressions mathématiques utilisant des identificateurs, les opérateurs =, +, -, *, ainsi que le parenthésage. Il permet aussi de construire un arbre de syntaxe abstraite pour chaque ligne de l'entrée.
+L'exemple fourni permet d'évaluer des expressions mathématiques utilisant des 
+identificateurs, les opérateurs `=', `+', `-', `*', ainsi que le parenthésage. 
+Il permet aussi de construire un arbre de syntaxe abstraite pour chaque ligne 
+de l'entrée.
 [
 - expressions
 - identificateurs : stockage dans une hashmap
@@ -126,7 +142,7 @@ Comme illustré dans le listing \ref{expr_file}, on peut ajouter la division dan
 Dans le cas de la puissance, il est nécessaire d'ajouter une règle pour
 respecter la priorité. Il faut aussi prendre en compte l'associativité à droite
 en forçant l'analyseur à évaluer la partie à droite de l'opérateur. On peut
-faire cela en utilisant l'opérateur '?' au lieu de '*' qu'on a utilisé
+faire cela en utilisant l'opérateur `?' au lieu de `*' qu'on a utilisé
 précédemment, comme on peut le voir dans le listing \ref{expr_file}. Cet
 opérateur permet de n'avoir au maximum qu'une seule sous-règle, ce qui permet
 donc de forcer par de la récursivité la création de l'arbre de la racine aux
@@ -135,7 +151,7 @@ feuilles.
 
     
 \begin{lstlisting}[label=expr_file,caption=Fichier Expr.g,
-linebackgroundcolor={\lstcolorlines[red!30]{8,9,10}\lstcolorlines[green!30]{5}}]
+linebackgroundcolor={\lstcolorlines[orange!30]{8,9,10}\lstcolorlines[blue!30]{5}}]
 expr:   multExpr (('+'^|'-'^) multExpr)*
     ;
 
@@ -156,7 +172,7 @@ atom:   INT
 Il faut ensuite ajouter les actions correspondantes pour la construction de l'arbre. Comme on peut le voir dans le listing \ref{eval_file}, chacun des opérateurs ajoute un nœud à l'arbre qui a pour valeur l'opération appliquée aux deux sous-arbres. Si l'expression est un identifiant, on récupère sa valeur dans la table de hachage et s'il n'est pas défini, on renvoie un message d'erreur. S'il s'agit d'un entier, on transforme la chaîne de caractère en l'entier correspondant. 
 
 \begin{lstlisting}[label=eval_file,caption=Fichier Eval.g,
-linebackgroundcolor={\lstcolorlines[red!30]{6}\lstcolorlines[green!30]{5}}]
+linebackgroundcolor={\lstcolorlines[orange!30]{6}\lstcolorlines[blue!30]{5}}]
 expr returns [int value]
     : ^('+' a=expr b=expr)  { $value = a+b; }
     | ^('-' a=expr b=expr)  { $value = a-b; }
