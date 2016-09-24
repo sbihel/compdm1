@@ -97,21 +97,17 @@
 %------------------------------------------------
 
 \section{Fonctionnement de l'outil \textsc{antlr}}
-
-L'outil \textsc{Antlr} lit une grammaire en notation EBNF, qui a une syntaxe
-proche des expressions régulières, et permet notamment l'utilisation des
-symboles `*', `?' et `+' pour la définition des littéraux. Il produit ensuite un
-analyseur syntaxique en Java que l'on peut utiliser dans un programme principal
-pour analyser des données.
-
 %Méthode d'analyse syntaxique : à détailler. Analyse LL(*) -> pas de 
 %récursivité à gauche.
 %http://www.antlr.org/papers/LL-star-PLDI11.pdf paper about the parser generator
-\textsc{Antlr} utilise une stratégie d'analyse syntaxique \textit{top-down} 
-appelée LL(*). Cette stratégie permet d'accepter tout type de grammaire mise à 
-part la récursivité à gauche.
+\paragraph{}\textsc{Antlr} utilise une stratégie d'analyse syntaxique \textit{top-down} 
+appelée LL(*), qui analyse le flot de données de gauche à droite . Cette stratégie permet d'accepter toutes les grammaires LL, qui sont un type de grammaire hors-contexte. Lors de l'analyse LL(*) un nombre arbitraire d'unités lexicales peuvent être lues afin de déterminer la bonne production. Cette méthode offre un bon compromis entre efficacité et expressivité. Cependant, elle ne permet pas d'analyser les grammaires présentant des règles récursives à gauche. Néanmoins, la récursivité à gauche peut être facilement éliminée, de plus la notation EBNF proposée par \textsc{Antlr} permet de contourner ce problème.
 
-On peut différencier les règles de grammaire en deux types.
+
+\paragraph{}En effet, l'outil \textsc{Antlr} lit une grammaire en notation EBNF, qui a une syntaxe
+proche des expressions régulières, et introduit notamment l'utilisation des symboles `*', `?' et `+' pour la définition règles. Cette notation permet de définir facilement des règles récursives à droite et d'éviter ainsi la récursivité à gauche.
+
+\paragraph{}Les règles de grammaire peuvent être différenciées en deux types.
 \begin{itemize}
  \item Les règles lexicales ne contiennent que des littéraux (qui peuvent 
  contenir des symboles EBNF) ou d'autres règles lexicales. Par convention dans 
@@ -121,34 +117,32 @@ On peut différencier les règles de grammaire en deux types.
  règles commencent par une minuscule.
 \end{itemize}
 
-% Section de remplissage si on a pas assez de contenu !
+\paragraph{}\textsc{Antlr} permet d'associer des options aux règles de grammaire. L'action, définie entre accolades, est une instruction ou une suite d'instructions, écrite dans le langage cible et qui sera exécutée quand la règle sera rencontrée. Elles permettent entre autre, comme dans l'exemple fourni, d'affecter une valeur à un attribut en fonction d'attributs déjà évalués, à la manière d'une grammaire attribuée.
+
+\paragraph{}L'outil offre aussi la possibilité de construire des arbres de syntaxe abstraite à l'aide de règles de réécriture. Dans un AST, les feuilles représentent les tokens et les branches représentent les constructions syntaxiques. Les règles de réécriture permettent , pour une règle donnée, de définir comment générer la sortie. On peut aussi utiliser simplement des opérateurs '!' pour ne pas inclure le nœud ou le sous-arbre et '\textbf{\^}' pour utiliser le nœud pour la règle englobante.
+% peut-on traduire mieux : make node root of subtree created for entire enclosing rule even if nested in a subrule
 
 %------------------------------------------------
 
 \section{Exemple : évaluateur d'expression}
 
-L'exemple fourni permet d'évaluer des expressions mathématiques utilisant des 
+\paragraph{}L'exemple fourni permet d'évaluer des expressions mathématiques utilisant des 
 identificateurs, les opérateurs `=', `+', `-', `*', ainsi que le parenthésage. 
 Il permet aussi de construire un arbre de syntaxe abstraite pour chaque ligne 
-de l'entrée.
-[
-- expressions
-- identificateurs : stockage dans une hashmap
-]
+de l'entrée. Les expressions sont évaluées ligne par ligne et les identificateurs sont stockés dans une table de hachage.
 
 
-Comme illustré dans le listing \ref{expr_file}, on peut ajouter la division dans la règle de la multiplication, les deux opérations ayant la même priorité. L'associativité à gauche est respectée naturellement par \textsc{Antlr} puisqu'il utilise une analyse LL - de gauche à droite.
+\paragraph{}Comme illustré dans le listing \ref{expr_file}, on peut ajouter la division dans la règle de la multiplication, les deux opérations ayant la même priorité. L'associativité à gauche est respectée naturellement par \textsc{Antlr} puisqu'il utilise une analyse LL, de gauche à droite.
 
-Dans le cas de la puissance, il est nécessaire d'ajouter une règle pour
+\paragraph{}Dans le cas de la puissance, il est nécessaire d'ajouter une règle pour
 respecter la priorité. Il faut aussi prendre en compte l'associativité à droite
 en forçant l'analyseur à évaluer la partie à droite de l'opérateur. On peut
 faire cela en utilisant l'opérateur `?' au lieu de `*' qu'on a utilisé
 précédemment, comme on peut le voir dans le listing \ref{expr_file}. Cet
-opérateur permet de n'avoir au maximum qu'une seule sous-règle, ce qui permet
-donc de forcer par de la récursivité la création de l'arbre de la racine aux
-feuilles.
-% c'est pas clair
+opérateur permet de n'avoir au maximum qu'une seule sous-règle et force ainsi la règle à être récursive, ce qui permet la création de l'arbre de la racine aux feuilles.
+% c'est pas clair <= En effet ^^, du coup j'ai reformulé
 
+\newpage
     
 \begin{lstlisting}[label=expr_file,caption=Fichier Expr.g,
 linebackgroundcolor={\lstcolorlines[orange!30]{8,9,10}\lstcolorlines[blue!30]{5}}]
@@ -169,7 +163,7 @@ atom:   INT
     ;
 \end{lstlisting}
 
-Il faut ensuite ajouter les actions correspondantes pour la construction de l'arbre. Comme on peut le voir dans le listing \ref{eval_file}, chacun des opérateurs ajoute un nœud à l'arbre qui a pour valeur l'opération appliquée aux deux sous-arbres. Si l'expression est un identifiant, on récupère sa valeur dans la table de hachage et s'il n'est pas défini, on renvoie un message d'erreur. S'il s'agit d'un entier, on transforme la chaîne de caractère en l'entier correspondant. 
+\paragraph{}Il faut ensuite ajouter les actions correspondantes pour la construction de l'arbre. Comme on peut le voir dans le listing \ref{eval_file}, chacun des opérateurs ajoute un nœud à l'arbre qui a pour valeur l'opération appliquée aux deux sous-arbres. Si l'expression est un identifiant, on récupère sa valeur dans la table de hachage et s'il n'est pas défini, on renvoie un message d'erreur. S'il s'agit d'un entier, on transforme la chaîne de caractère en l'entier correspondant. 
 
 \begin{lstlisting}[label=eval_file,caption=Fichier Eval.g,
 linebackgroundcolor={\lstcolorlines[orange!30]{6}\lstcolorlines[blue!30]{5}}]
@@ -193,10 +187,11 @@ expr returns [int value]
 
 %------------------------------------------------
 
-\section{Tests}
+\section{Tests} % Il faudrait trouver un meilleur nom, je pense qu'on ne sera noté que là dessus !
+% Evaluation de la qualité de la grammaire ?
 
-Le fichier d'exécution fournit permet la visualisation de l'arbre syntaxique de
-d'une expression fournie. On peut donc évaluer notre grammaire sur la
+\paragraph{}Le fichier d'exécution fourni permet la visualisation de l'arbre syntaxique
+d'une expression en entrée. On peut donc évaluer notre grammaire sur la
 concordance des opérateurs lors de l'évaluation, la priorité des opérations et
 leurs associativités. Étant donné le faible nombre d'opérateurs on peut juste
 vérifier à la main leur validité sans passer par un générateur qui rajouterait
@@ -211,14 +206,18 @@ aux problèmes d'overflow.
 %faire un générateur de tests pour des opérateurs atomiques ça rajoute juste
 %une couche d'incertitude (?)
 
+%------------------------------------------------
 
-
-\end{document}
-
+\section*{Conclusion} % Je sais que c'est bidon alors si tu veux l'enlever, je ne t'en voudrai pas x)
+\textsc{Antlr} permet de générer facilement des analyseurs dans des langages très utilisés comme le Java, que l'on peut ensuite utiliser dans une application. Il a pour spécificité d'utiliser une analyse LL(*) qui allie expressivité et efficacité, et contribue à la recherche dans l'analyse syntaxique.
 
 %------------------------------------------------
 
-\section*{Conclusion}
+\section*{Bibliographie} % Est-ce vraiment utile ?
+\setlength\parindent{0pt}
+Documentation du logiciel \textsc{Antlr} : \textit{https://theantlrguy.atlassian.net/wiki/\\display/ANTLR3/ANTLR+v3+documentation}\\
+Grammaires LL(*) : \textit{http://www.antlr.org/papers/LL-star-PLDI11.pdf}
+
 
 %------------------------------------------------
 
