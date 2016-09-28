@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Short Sectioned Assignment
 % LaTeX Template
 % Version 1.0 (5/5/12)
@@ -119,7 +119,13 @@ proche des expressions régulières, et introduit notamment l'utilisation des sy
 
 \paragraph{}\textsc{Antlr} permet d'associer des options aux règles de grammaire. L'action, définie entre accolades, est une instruction ou une suite d'instructions, écrite dans le langage cible et qui sera exécutée quand la règle sera rencontrée. Elles permettent entre autre, comme dans l'exemple fourni, d'affecter une valeur à un attribut en fonction d'attributs déjà évalués, à la manière d'une grammaire attribuée.
 
-\paragraph{}L'outil offre aussi la possibilité de construire des arbres de syntaxe abstraite à l'aide de règles de réécriture. Dans un AST, les feuilles représentent les tokens et les branches représentent les constructions syntaxiques. Les règles de réécriture permettent , pour une règle donnée, de définir comment générer la sortie. On peut aussi utiliser simplement des opérateurs '!' pour ne pas inclure le nœud ou le sous-arbre et '\textbf{\^}' pour utiliser le nœud pour la règle englobante.
+\paragraph{}L'outil offre aussi la possibilité de construire des arbres de 
+syntaxe abstraite à l'aide de règles de réécriture. Dans un AST, les feuilles 
+représentent les tokens et les branches représentent les constructions 
+syntaxiques. Les règles de réécriture permettent , pour une règle donnée, de 
+définir comment générer la sortie. On peut aussi utiliser simplement des 
+opérateurs '!' pour ne pas inclure le nœud ou le sous-arbre et '\textbf{\^}' 
+pour créer un nœud racine d'AST. % utiliser le nœud pour la règle englobante.
 % peut-on traduire mieux : make node root of subtree created for entire enclosing rule even if nested in a subrule
 
 %------------------------------------------------
@@ -187,7 +193,8 @@ expr returns [int value]
 
 %------------------------------------------------
 
-\section{Tests} % Il faudrait trouver un meilleur nom, je pense qu'on ne sera noté que là dessus !
+\section{Évaluation} % Il faudrait trouver un meilleur nom, je pense qu'on ne 
+%sera noté que là dessus !
 % Evaluation de la qualité de la grammaire ?
 
 \paragraph{}Le fichier d'exécution fourni permet la visualisation de l'arbre syntaxique
@@ -213,10 +220,11 @@ aux problèmes d'overflow.
 
 %------------------------------------------------
 
-\section*{Bibliographie} % Est-ce vraiment utile ?
-\setlength\parindent{0pt}
-Documentation du logiciel \textsc{Antlr} : \textit{https://theantlrguy.atlassian.net/wiki/\\display/ANTLR3/ANTLR+v3+documentation}\\
-Grammaires LL(*) : \textit{http://www.antlr.org/papers/LL-star-PLDI11.pdf}
+%\section*{Bibliographie} % Est-ce vraiment utile ?
+%\setlength\parindent{0pt}
+%Documentation du logiciel \textsc{Antlr} : 
+%\textit{https://theantlrguy.atlassian.net/wiki/\\display/ANTLR3/ANTLR+v3+documentation}\\
+%Grammaires LL(*) : \textit{http://www.antlr.org/papers/LL-star-PLDI11.pdf}
 
 
 %------------------------------------------------
