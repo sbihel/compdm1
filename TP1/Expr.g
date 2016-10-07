@@ -5,9 +5,10 @@ grammar Expr;
 //}
 
 //prog:   ( stat {System.out.println($stat.tree.toStringTree());} )+ ;
-prog: stat+ ;
 
-stat:   document NEWLINE {System.out.println($document.s);};// -> document;
+prog: stat ;
+
+stat:   document EOF {System.out.println($document.s);};// -> document;
 
 document returns [String s]:
       list_sujet {$s = $list_sujet.s;};
@@ -40,19 +41,19 @@ liste_obj [String h] returns [String s]:
 
 liste_objp [String h] returns [String s]:
       /* epsilon */ {$s = "";}
-    | ',' objet[$h] liste_objpDA[$h] {$s = $objet.s + "\n" + $liste_objpDA.s;};
+    | ',' objet[$h] liste_objpDA[$h] {$s = $objet.s + $liste_objpDA.s;};
 
 liste_objpDA [String h] returns [String s]:
       liste_objp[$h] {$s = $liste_objp.s;};
 
 objet [String h] returns [String s]:
-      Entite {$s = $h + " " + $Entite.text + " .";}
-    | Texte {$s = $h + " " + $Texte.text + " .";}
+      Entite {$s = $h + " " + $Entite.text + " .\n";}
+    | Texte {$s = $h + " " + $Texte.text + " .\n";}
     ;
 
 Entite: '<'~('>')*'>';
 
 Texte: '\"'~('\"')*'\"';
 
-NEWLINE:'\r'? '\n' ;
-WS  :   (' '|'\t'|'\n')+ {skip();} ;
+NEWLINE: ('\r'? '\n') { $channel=HIDDEN; };
+WS  :   (' '|'\t')+ {skip();} ;
