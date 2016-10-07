@@ -1,37 +1,34 @@
-tree grammar Eval;
+//tree grammar Eval;
 
-options {
-    tokenVocab=Expr;
-    ASTLabelType=CommonTree;
-}
+//options {
+//    tokenVocab=Expr;
+//    ASTLabelType=CommonTree;
+//}
 
-@header {
-import java.util.HashMap;
-import java.lang.Math;
-}
+//@header {
+//}
 
-@members {
-/** Map variable name to Integer object holding value */
-HashMap memory = new HashMap();
-}
+//@members {
+//}
 
-prog:   stat+ ;
+//prog:   stat+ EOF ;
 
-stat:   expr
-        {System.out.println($expr.value);}
-    |   ^('=' ID expr)
-        {memory.put($ID.text, new Integer($expr.value));}
-    ;
+//stat:   expr
+//        {System.out.println($expr.s);}
+//    ;
 
-expr [string s] returns [string value]
-    : ^('document' a=list_sujet)           {$value = a;}
-    | ^('list_sujet' a=sujet b=list_sujet) {$value = a + "\n" + b;}
-    | ^('list_sujet')                      {$value = "";}
-    | ^('sujet' )                           {$value = ;}
+//expr returns [string s]
+//    //: ^('document' a=list_sujet)           {$value = a;}
+//    //| ^('list_sujet' a=sujet b=list_sujet) {$value = a + "\n" + b;}
+//    //| ^('list_sujet')                      {$value = "";}
+//    //| ^('sujet' )                           {$value = ;}
 
-    | ^('liste_obj')
-    | ^('liste_objp' a=objet b=liste_objp)  {$value = a + ", " + b;}
-    | ^('liste_objp')  {$value = "";}
-    | ^('objet' a=entite) {$value = a;}
-    | ^('objet' a=texte)  {$value = a;}
-    ;
+//    //| ^('liste_obj')
+//    //| ^('liste_objp' a=objet b=liste_objp)  {$value = a + ", " + b;}
+//    //| ^('liste_objp')  {$value = "";}
+//    //| ^('objet' a=entite) {$value = a;}
+//    //| ^('objet' a=texte)  {$value = a;}
+//    :
+//    //| Entite {$s = $Entite.text;}
+//    //| Texte {$s = $Texte.text;}
+//    ;
