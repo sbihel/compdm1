@@ -23,8 +23,7 @@ sujet returns [String s]:
       Entite list_predicat[$Entite.text] '.' {$s = $list_predicat.s;};
 
 list_predicat [String h] returns [String s]:
-      predicat[$h] {$s = $predicat.s;}
-    | list_predicatp[$h] {$s = $list_predicatp.s;};
+      predicat[$h] list_predicatp[$h] {$s = $predicat.s + $list_predicatp.s;};
 
 list_predicatp [String h] returns [String s]:
       /* epsilon */ {$s = "";}
@@ -37,7 +36,7 @@ predicat [String h] returns [String s]:
       Entite liste_obj[$h + " " + $Entite.text] {$s = $liste_obj.s;};
 
 liste_obj [String h] returns [String s]:
-      objet[$h] liste_objp[$h] {$s = $objet.s + "\n" + $liste_objp.s;};
+      objet[$h] liste_objp[$h] {$s = $objet.s + $liste_objp.s;};
 
 liste_objp [String h] returns [String s]:
       /* epsilon */ {$s = "";}
@@ -47,8 +46,8 @@ liste_objpDA [String h] returns [String s]:
       liste_objp[$h] {$s = $liste_objp.s;};
 
 objet [String h] returns [String s]:
-      Entite {$s = $h + $Entite.text + ".";}
-    | Texte {$s = $h + $Texte.text + ".";}
+      Entite {$s = $h + " " + $Entite.text + " .";}
+    | Texte {$s = $h + " " + $Texte.text + " .";}
     ;
 
 Entite: '<'~('>')*'>';
@@ -56,4 +55,4 @@ Entite: '<'~('>')*'>';
 Texte: '\"'~('\"')*'\"';
 
 NEWLINE:'\r'? '\n' ;
-WS  :   (' '|'\t')+ {skip();} ;
+WS  :   (' '|'\t'|'\n')+ {skip();} ;

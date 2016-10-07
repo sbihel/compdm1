@@ -10,4 +10,4 @@ Test.class: Test.java ExprLexer.java ExprParser.java #Eval.java
 	javac $^ -cp ".:../antlr-3.5.2-complete.jar:../antlr-3.5.2-runtime.jar"
 
 run: Test.class
-	java -cp ".:antlr-3.5.2-complete.jar:antlr-3.5.2-runtime.jar" Test
+	java -cp ".:../antlr-3.5.2-complete.jar:../antlr-3.5.2-runtime.jar" Test
