@@ -1,54 +1,58 @@
 grammar Expr;
-//options {
-//    output=AST;
-//    ASTLabelType=CommonTree; // type of $stat.tree ref etc...
-//}
+options {
+    output=AST;
+    ASTLabelType=CommonTree; // type of $stat.tree ref etc...
+}
 
-//prog:   ( stat {System.out.println($stat.tree.toStringTree());} )+ ;
+tokens {
+    DOCUMENT;
+    SUJET;
+    PREDICAT;
+    EMPTY;
+}
 
-prog: stat ;
+prog:       ( stat {System.out.println($stat.tree.toStringTree());} );
 
-stat:   document EOF {System.out.println($document.s);};// -> document;
+stat:       document EOF -> document;
 
-document returns [String s]:
-      list_sujet {$s = $list_sujet.s;};
+document:   list_sujet -> ^(DOCUMENT list_sujet);
 
-list_sujet returns [String s]:
-      /* espilon */ {$s = "";}
-    | sujet list_sujetDA {$s = $sujet.s + $list_sujetDA.s;};
+list_sujet:
+      /* espilon */ -> EMPTY
+    | sujet list_sujetDA -> sujet list_sujetDA;
 
-list_sujetDA returns [String s]:
-      list_sujet {$s = $list_sujet.s;};
+list_sujetDA:
+      list_sujet -> list_sujet;
 
-sujet returns [String s]:
-      Entite list_predicat[$Entite.text] '.' {$s = $list_predicat.s;};
+sujet:
+      Entite list_predicat '.' -> ^(SUJET Entite list_predicat);
 
-list_predicat [String h] returns [String s]:
-      predicat[$h] list_predicatp[$h] {$s = $predicat.s + $list_predicatp.s;};
+list_predicat:
+      predicat list_predicatp -> predicat list_predicatp;
 
-list_predicatp [String h] returns [String s]:
-      /* epsilon */ {$s = "";}
-    | ';' predicat[$h] list_predicatpDA[$h] {$s = $predicat.s + $list_predicatpDA.s;};
+list_predicatp:
+      /* epsilon */ -> EMPTY
+    | ';' predicat list_predicatpDA -> predicat list_predicatpDA;
 
-list_predicatpDA [String h] returns [String s]:
-      list_predicatp[$h] {$s = $list_predicatp.s;};
+list_predicatpDA:
+      list_predicatp -> list_predicatp;
 
-predicat [String h] returns [String s]:
-      Entite liste_obj[$h + " " + $Entite.text] {$s = $liste_obj.s;};
+predicat:
+      Entite liste_obj -> ^(PREDICAT Entite liste_obj);
 
-liste_obj [String h] returns [String s]:
-      objet[$h] liste_objp[$h] {$s = $objet.s + $liste_objp.s;};
+liste_obj:
+      objet liste_objp -> objet liste_objp;
 
-liste_objp [String h] returns [String s]:
-      /* epsilon */ {$s = "";}
-    | ',' objet[$h] liste_objpDA[$h] {$s = $objet.s + $liste_objpDA.s;};
+liste_objp:
+      /* epsilon */ -> EMPTY
+    | ',' objet liste_objpDA -> objet liste_objpDA;
 
-liste_objpDA [String h] returns [String s]:
-      liste_objp[$h] {$s = $liste_objp.s;};
+liste_objpDA:
+      liste_objp -> liste_objp;
 
-objet [String h] returns [String s]:
-      Entite {$s = $h + " " + $Entite.text + " .\n";}
-    | Texte {$s = $h + " " + $Texte.text + " .\n";}
+objet
+    : Entite -> Entite
+    | Texte -> Texte
     ;
 
 Entite: '<'~('>')*'>';
