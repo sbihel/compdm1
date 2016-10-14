@@ -8,10 +8,11 @@ tokens {
     DOCUMENT;
     SUJET;
     PREDICAT;
+    OBJET;
     EMPTY;
 }
 
-prog:       ( stat {System.out.println($stat.tree.toStringTree());} );
+prog:       stat {System.out.println($stat.tree.toStringTree());};
 
 stat:       document EOF -> document;
 
@@ -51,8 +52,8 @@ liste_objpDA:
       liste_objp -> liste_objp;
 
 objet
-    : Entite -> Entite
-    | Texte -> Texte
+    : Entite -> ^(OBJET Entite)
+    | Texte -> ^(OBJET Texte)
     ;
 
 Entite: '<'~('>')*'>';
