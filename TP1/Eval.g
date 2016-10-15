@@ -10,13 +10,15 @@ prog returns [String s]:
     document {$s = $document.s;};
 
 document returns [String s]:
-    ^(DOCUMENT {$s = "";} (sujet {$s += $sujet.s;})*);
+    ^(DOCUMENT {$s = "";} (sujet {$s += $sujet.s;})* EMPTY);
 
 sujet returns [String s]:
-    ^(SUJET {$s = "";} Entite (predicat[$Entite.text] {$s += $predicat.s;})*);
+    ^(SUJET {$s = "";} Entite (predicat[$Entite.text] {$s += $predicat.s;})* EMPTY);
 
 predicat [String h] returns [String s]:
-    ^(PREDICAT {$s = "";} Entite (objet[$h + " " + $Entite.text] {$s += $objet.s;})*);
+    ^(PREDICAT {$s = "";} Entite (objet[$h + " " + $Entite.text] {$s += $objet.s;})* EMPTY);
+
+empty: EMPTY;
 
 objet [String h] returns [String s]:
     ^(OBJET a=(Entite|Texte)) {$s = $h + " " + $a.text + " .\n";};
