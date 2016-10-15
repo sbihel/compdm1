@@ -18,7 +18,5 @@ sujet returns [String s]:
 predicat [String h] returns [String s]:
     ^(PREDICAT {$s = "";} Entite (objet[$h + " " + $Entite.text] {$s += $objet.s;})* EMPTY);
 
-empty: EMPTY;
-
 objet [String h] returns [String s]:
     ^(OBJET a=(Entite|Texte)) {$s = $h + " " + $a.text + " .\n";};
