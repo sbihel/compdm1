@@ -4,8 +4,18 @@
 	<formation>	<m1info> .
 <poly117>	<type>		<poly> ;
 		<auteur>	<Ridoux>, <Ferre> ;
-		<titre>		"Cours de compilation" .
+		<titre>		"Cours de compilation" ;
+		<version> [ <annee> "2007" ;
+					<nbpages> "147" ],
+				[ <annee> "2011" ;
+				<nbpages> "163" ] .
 <Ferre>		<type>		<enseignant-chercheur> ;
 		<prenom>	"Sebastien" ;
 		<nom>		"Ferre" ;
 		<affiliation>	<UnivRennes1>, <IRISA>, <ISTIC> .
+[ <prenom> "Simon";
+<nom> "Bihel";
+<cursus> [ <annee> "2014";
+<affiliation> <Unicaen> ],
+[ <annee> "2016";
+<affiliation> <ENSRennes> ] .

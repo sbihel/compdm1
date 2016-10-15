@@ -23,7 +23,8 @@ list_sujet:
     | sujet list_sujet -> sujet list_sujet;
 
 sujet:
-      Entite list_predicat '.' -> ^(SUJET Entite list_predicat);
+      Entite list_predicat '.' -> ^(SUJET Entite list_predicat)
+    | '[' list_predicat ']' '.' -> ^(SUJET EMPTY list_predicat);
 
 list_predicat:
       predicat list_predicatp -> predicat list_predicatp;
@@ -45,6 +46,7 @@ liste_objp:
 objet
     : Entite -> ^(OBJET Entite)
     | Texte -> ^(OBJET Texte)
+    | '[' list_predicat ']' -> ^(SUJET EMPTY list_predicat)  // Blank node
     ;
 
 Entite: '<'~('>')*'>';
