@@ -13,6 +13,6 @@ public class Test {
         CommonTree t = (CommonTree)r.getTree();
         CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
         Eval walker = new Eval(nodes);
-        walker.prog();
+        System.out.println(walker.prog());
     }
 }
