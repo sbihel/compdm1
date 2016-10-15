@@ -12,30 +12,32 @@ options {
 @members {
 }
 
-prog returns [String s]: document {$s = $document.s;};
+// Simply returning a string seems hard if possible for Test.java
+//prog returns [String s]: document {$s = $document.s;};
+prog: document {System.out.println($document.s);};
 
-document returns [String s]: ^(DOCUMENT (a+=sujet)*)  // we'll need to define a scope to access .s
-    {$s = ""; for(int i = 0; i < $a.size(); i++) {$s = $a.get(i).s + $s;}};
+// You lose the elements if you use the built-in List construction += symbol. So you end-up with just a List of the
+// right size but you can't do more with it. It's a shame, it would have been pretty with it...
+// One solution is to build manualy a List and fill it each time you encounter a node
 
-sujet returns [String s]: ^(SUJET a=Entite (b+=predicat[$a.text])*)
-    {$s = ""; for(int i = 0; i < $b.size(); i++) {$s = $b.get(i).s + $s;}};
+//document returns [String s]: ^(DOCUMENT (a+=sujet)* EMPTY)
+//    {$s = ""; for(int i = 0; i < $a.size(); i++) {$s += $a.get(i).s;}};
+document returns [String s] @init{ List<String> sl = new ArrayList<String>(); }:
+    ^(DOCUMENT (a=sujet {sl.add($a.s);})* EMPTY)
+    {$s = ""; for(int i = 0; i < sl.size(); i++) {$s += sl.get(i);}};
 
-empty returns [String s]: EMPTY {$s = "";};
+//sujet returns [String s]: ^(SUJET a=Entite (b+=predicat[$a.text])* EMPTY)
+//    {$s = ""; for(int i = 0; i < $b.size(); i++) {$s += $b.get(i).s;}};
+sujet returns [String s] @init{ List<String> sl = new ArrayList<String>(); }:
+    ^(SUJET a=Entite (b=predicat[$a.text] {sl.add($b.s);})* EMPTY)
+    {$s = ""; for(int i = 0; i < sl.size(); i++) {$s += sl.get(i);}};
 
-predicat [String h] returns [String s]: ^(PREDICAT a=objet[$h] (b+=objet[$a.s])*)
-    {$s = ""; for(int i = 0; i < $b.size(); i++) {$s = $b.get(i).s + $s;}};
+//predicat [String h] returns [String s]: ^(PREDICAT a=Entite (b+=objet[$h + " " + $Entite.text])* EMPTY)
+//    {$s = ""; for(int i = 0; i < $b.size(); i++) {$s += $b.get(i).s;}};
+predicat [String h] returns [String s] @init{ List<String> sl = new ArrayList<String>(); }:
+    ^(PREDICAT a=Entite (b=objet[$h + " " + $Entite.text] {sl.add($b.s);})* EMPTY)
+    {$s = ""; for(int i = 0; i < sl.size(); i++) {$s += sl.get(i);}};
+
+empty: EMPTY;
 
 objet [String h] returns [String s]: ^(OBJET a=(Entite|Texte)) {$s = $h + " " + $a.text + " .\n";};
-
-//expr returns [String s]
-//    : ^(DOCUMENT a+=expr)
-//        {$s = ""; for(int i = 0; i < a.size(); i++) {$s = $a.get(i).s + $s;}}
-//    | ^(SUJET a=expr b+=expr2[$a.text])
-//        {$s = ""; for(int i = 0; i < b.size(); i++) {$s = $b.get(i).s + $s;}}
-//    | EMPTY {$s = "";}
-//    ;
-//expr2 [String h] returns [String s]
-//    : ^(PREDICAT a=expr2[$h] b+=expr2[$a.s])
-//        {$s = ""; for(int i = 0; i < b.size(); i++) {$s = $b.get(i).s + $s;}}
-//    | ^(OBJET a=expr)    {$s = $h + " " + $a.text + " .\n";}
-//    ;

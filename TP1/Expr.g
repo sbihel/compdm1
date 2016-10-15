@@ -9,7 +9,7 @@ tokens {
     SUJET;
     PREDICAT;
     OBJET;
-    EMPTY;
+    EMPTY;  // Used to put something where there should be nothing. Antlr3 can't concatenate list of nodes with nothing
 }
 
 prog:       stat {System.out.println($stat.tree.toStringTree());};
