@@ -60,4 +60,4 @@ objet [String h, String tabs] returns [String s]:
                             $a.text.substring(1, $a.text.length()-1) + "\"/>\n";}
   | ^(OBJET a=Texte) {$s = $tabs + "<"+$h+">" + $a.text.substring(1, $a.text.length()-1) + "</"+$h+">\n";}
   | ^(SUJET {String idBlank = createID(); $s = $tabs + "<"+$h+" rdf:parseType=\"Resource"+idBlank+"\">\n";}
-            EMPTY (predicat[$tabs+"\t"] {$s += $predicat.s;})* EMPTY);  // Blank node
+            EMPTY (predicat[$tabs+"\t"] {$s += $predicat.s;})* {$s += $tabs + "</" + $h + ">\n";} EMPTY);  // Blank node
