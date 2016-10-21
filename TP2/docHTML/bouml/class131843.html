@@ -1,0 +1,390 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class VSLParser</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class VSLParser</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass131843"></a>
+<p>Declaration :</p><ul>
+<li>Java : public class VSLParser extends <a href="class131971.html#refclass131971"><b>Parser</b></a> </li></ul><p> Java annotation(s) :<ul>@SuppressWarnings("all")<br /></ul><p>Artifact : <a href="index.html#refartifact131459"><b>VSLParser</b></a></p>
+<div class="sub">
+<a name="refattribute143235"></a>
+<table><tr><td><div class="element">Attribute <b>tokenNames</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + tokenNames : String =  new String[] {<br />		"&lt;invalid&gt;", "&lt;EOR&gt;", "&lt;DOWN&gt;", "&lt;UP&gt;", "ASCII", "ASSIGN_KW", "COM", "COMMENT", <br />		"DIGIT", "DIV", "DO_KW", "ELSE_KW", "FI_KW", "FUNC_KW", "IDENT", "IF_KW", <br />		"INTEGER", "INT_KW", "LB", "LC", "LETTER", "LP", "MINUS", "MUL", "OD_KW", <br />		"PLUS", "PRINT_KW", "PROTO_KW", "RB", "RC", "READ_KW", "RETURN_KW", "RP", <br />		"TEXT", "THEN_KW", "VOID_KW", "WHILE_KW", "WS", "ARDECL", "ARELEM", "ARRAY", <br />		"BLOCK", "BODY", "DECL", "FCALL", "FCALL_S", "INST", "PARAM", "PROG"<br />	}, multiplicity : [], read only</li><li>Java : public static final String[] tokenNames</li></ul><a name="refattribute143363"></a>
+<table><tr><td><div class="element">Attribute <b>EOF</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + EOF : int = -1, read only</li><li>Java : public static final int EOF</li></ul><a name="refattribute143491"></a>
+<table><tr><td><div class="element">Attribute <b>ASCII</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + ASCII : int = 4, read only</li><li>Java : public static final int ASCII</li></ul><a name="refattribute143619"></a>
+<table><tr><td><div class="element">Attribute <b>ASSIGN_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + ASSIGN_KW : int = 5, read only</li><li>Java : public static final int ASSIGN_KW</li></ul><a name="refattribute143747"></a>
+<table><tr><td><div class="element">Attribute <b>COM</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + COM : int = 6, read only</li><li>Java : public static final int COM</li></ul><a name="refattribute143875"></a>
+<table><tr><td><div class="element">Attribute <b>COMMENT</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + COMMENT : int = 7, read only</li><li>Java : public static final int COMMENT</li></ul><a name="refattribute144003"></a>
+<table><tr><td><div class="element">Attribute <b>DIGIT</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + DIGIT : int = 8, read only</li><li>Java : public static final int DIGIT</li></ul><a name="refattribute144131"></a>
+<table><tr><td><div class="element">Attribute <b>DIV</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + DIV : int = 9, read only</li><li>Java : public static final int DIV</li></ul><a name="refattribute144259"></a>
+<table><tr><td><div class="element">Attribute <b>DO_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + DO_KW : int = 10, read only</li><li>Java : public static final int DO_KW</li></ul><a name="refattribute144387"></a>
+<table><tr><td><div class="element">Attribute <b>ELSE_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + ELSE_KW : int = 11, read only</li><li>Java : public static final int ELSE_KW</li></ul><a name="refattribute144515"></a>
+<table><tr><td><div class="element">Attribute <b>FI_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FI_KW : int = 12, read only</li><li>Java : public static final int FI_KW</li></ul><a name="refattribute144643"></a>
+<table><tr><td><div class="element">Attribute <b>FUNC_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FUNC_KW : int = 13, read only</li><li>Java : public static final int FUNC_KW</li></ul><a name="refattribute144771"></a>
+<table><tr><td><div class="element">Attribute <b>IDENT</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + IDENT : int = 14, read only</li><li>Java : public static final int IDENT</li></ul><a name="refattribute144899"></a>
+<table><tr><td><div class="element">Attribute <b>IF_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + IF_KW : int = 15, read only</li><li>Java : public static final int IF_KW</li></ul><a name="refattribute145027"></a>
+<table><tr><td><div class="element">Attribute <b>INTEGER</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + INTEGER : int = 16, read only</li><li>Java : public static final int INTEGER</li></ul><a name="refattribute145155"></a>
+<table><tr><td><div class="element">Attribute <b>INT_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + INT_KW : int = 17, read only</li><li>Java : public static final int INT_KW</li></ul><a name="refattribute145283"></a>
+<table><tr><td><div class="element">Attribute <b>LB</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + LB : int = 18, read only</li><li>Java : public static final int LB</li></ul><a name="refattribute145411"></a>
+<table><tr><td><div class="element">Attribute <b>LC</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + LC : int = 19, read only</li><li>Java : public static final int LC</li></ul><a name="refattribute145539"></a>
+<table><tr><td><div class="element">Attribute <b>LETTER</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + LETTER : int = 20, read only</li><li>Java : public static final int LETTER</li></ul><a name="refattribute145667"></a>
+<table><tr><td><div class="element">Attribute <b>LP</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + LP : int = 21, read only</li><li>Java : public static final int LP</li></ul><a name="refattribute145795"></a>
+<table><tr><td><div class="element">Attribute <b>MINUS</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + MINUS : int = 22, read only</li><li>Java : public static final int MINUS</li></ul><a name="refattribute145923"></a>
+<table><tr><td><div class="element">Attribute <b>MUL</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + MUL : int = 23, read only</li><li>Java : public static final int MUL</li></ul><a name="refattribute146051"></a>
+<table><tr><td><div class="element">Attribute <b>OD_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + OD_KW : int = 24, read only</li><li>Java : public static final int OD_KW</li></ul><a name="refattribute146179"></a>
+<table><tr><td><div class="element">Attribute <b>PLUS</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + PLUS : int = 25, read only</li><li>Java : public static final int PLUS</li></ul><a name="refattribute146307"></a>
+<table><tr><td><div class="element">Attribute <b>PRINT_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + PRINT_KW : int = 26, read only</li><li>Java : public static final int PRINT_KW</li></ul><a name="refattribute146435"></a>
+<table><tr><td><div class="element">Attribute <b>PROTO_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + PROTO_KW : int = 27, read only</li><li>Java : public static final int PROTO_KW</li></ul><a name="refattribute146563"></a>
+<table><tr><td><div class="element">Attribute <b>RB</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + RB : int = 28, read only</li><li>Java : public static final int RB</li></ul><a name="refattribute146691"></a>
+<table><tr><td><div class="element">Attribute <b>RC</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + RC : int = 29, read only</li><li>Java : public static final int RC</li></ul><a name="refattribute146819"></a>
+<table><tr><td><div class="element">Attribute <b>READ_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + READ_KW : int = 30, read only</li><li>Java : public static final int READ_KW</li></ul><a name="refattribute146947"></a>
+<table><tr><td><div class="element">Attribute <b>RETURN_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + RETURN_KW : int = 31, read only</li><li>Java : public static final int RETURN_KW</li></ul><a name="refattribute147075"></a>
+<table><tr><td><div class="element">Attribute <b>RP</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + RP : int = 32, read only</li><li>Java : public static final int RP</li></ul><a name="refattribute147203"></a>
+<table><tr><td><div class="element">Attribute <b>TEXT</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + TEXT : int = 33, read only</li><li>Java : public static final int TEXT</li></ul><a name="refattribute147331"></a>
+<table><tr><td><div class="element">Attribute <b>THEN_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + THEN_KW : int = 34, read only</li><li>Java : public static final int THEN_KW</li></ul><a name="refattribute147459"></a>
+<table><tr><td><div class="element">Attribute <b>VOID_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + VOID_KW : int = 35, read only</li><li>Java : public static final int VOID_KW</li></ul><a name="refattribute147587"></a>
+<table><tr><td><div class="element">Attribute <b>WHILE_KW</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + WHILE_KW : int = 36, read only</li><li>Java : public static final int WHILE_KW</li></ul><a name="refattribute147715"></a>
+<table><tr><td><div class="element">Attribute <b>WS</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + WS : int = 37, read only</li><li>Java : public static final int WS</li></ul><a name="refattribute147843"></a>
+<table><tr><td><div class="element">Attribute <b>ARDECL</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + ARDECL : int = 38, read only</li><li>Java : public static final int ARDECL</li></ul><a name="refattribute147971"></a>
+<table><tr><td><div class="element">Attribute <b>ARELEM</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + ARELEM : int = 39, read only</li><li>Java : public static final int ARELEM</li></ul><a name="refattribute148099"></a>
+<table><tr><td><div class="element">Attribute <b>ARRAY</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + ARRAY : int = 40, read only</li><li>Java : public static final int ARRAY</li></ul><a name="refattribute148227"></a>
+<table><tr><td><div class="element">Attribute <b>BLOCK</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + BLOCK : int = 41, read only</li><li>Java : public static final int BLOCK</li></ul><a name="refattribute148355"></a>
+<table><tr><td><div class="element">Attribute <b>BODY</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + BODY : int = 42, read only</li><li>Java : public static final int BODY</li></ul><a name="refattribute148483"></a>
+<table><tr><td><div class="element">Attribute <b>DECL</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + DECL : int = 43, read only</li><li>Java : public static final int DECL</li></ul><a name="refattribute148611"></a>
+<table><tr><td><div class="element">Attribute <b>FCALL</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FCALL : int = 44, read only</li><li>Java : public static final int FCALL</li></ul><a name="refattribute148739"></a>
+<table><tr><td><div class="element">Attribute <b>FCALL_S</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FCALL_S : int = 45, read only</li><li>Java : public static final int FCALL_S</li></ul><a name="refattribute148867"></a>
+<table><tr><td><div class="element">Attribute <b>INST</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + INST : int = 46, read only</li><li>Java : public static final int INST</li></ul><a name="refattribute148995"></a>
+<table><tr><td><div class="element">Attribute <b>PARAM</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + PARAM : int = 47, read only</li><li>Java : public static final int PARAM</li></ul><a name="refattribute149123"></a>
+<table><tr><td><div class="element">Attribute <b>PROG</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + PROG : int = 48, read only</li><li>Java : public static final int PROG</li></ul><a name="refoperation156419"></a>
+<table><tr><td><div class="element">Operation <b>getDelegates</b></div></td></tr></table><p>delegates<br /></p><p>Declaration :</p><ul><li>Uml : + getDelegates() : Parser</li><li>Java : public Parser[] getDelegates()</li></ul><a name="refoperation156547"></a>
+<table><tr><td><div class="element">Operation <b>VSLParser</b></div></td></tr></table><p>delegators<br /></p><p>Declaration :</p><ul><li>Uml : + VSLParser(inout input : TokenStream) : </li><li>Java : public VSLParser(TokenStream input)</li></ul><a name="refoperation156675"></a>
+<table><tr><td><div class="element">Operation <b>VSLParser</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + VSLParser(inout input : TokenStream, inout state : RecognizerSharedState) : </li><li>Java : public VSLParser(TokenStream input, RecognizerSharedState state)</li></ul><a name="refattribute149251"></a>
+<table><tr><td><div class="element">Attribute <b>adaptor</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : # adaptor : TreeAdaptor =  new CommonTreeAdaptor()</li><li>Java : protected TreeAdaptor adaptor</li></ul><a name="refoperation156803"></a>
+<table><tr><td><div class="element">Operation <b>setTreeAdaptor</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + setTreeAdaptor(inout adaptor : TreeAdaptor) : void</li><li>Java : public void setTreeAdaptor(TreeAdaptor adaptor)</li></ul><a name="refoperation156931"></a>
+<table><tr><td><div class="element">Operation <b>getTreeAdaptor</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getTreeAdaptor() : TreeAdaptor</li><li>Java : public TreeAdaptor getTreeAdaptor()</li></ul><a name="refoperation157059"></a>
+<table><tr><td><div class="element">Operation <b>getTokenNames</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getTokenNames() : String</li><li>Java : public String[] getTokenNames()</li></ul><p> Java annotation(s) :<ul>@Override<br /></ul><a name="refoperation157187"></a>
+<table><tr><td><div class="element">Operation <b>getGrammarFileName</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getGrammarFileName() : String</li><li>Java : public String getGrammarFileName()</li></ul><p> Java annotation(s) :<ul>@Override<br /></ul><table><tr><td><div class="element">Class <b><a href="class132099.html#refclass132099"><b>s_return</b></a></b></div></td></tr></table>
+<a name="refoperation157443"></a>
+<table><tr><td><div class="element">Operation <b>s</b></div></td></tr></table><p>$ANTLR start "s"<br /> ./src/VSLParser.g:17:1: s : program ;<br /></p><p>Declaration :</p><ul><li>Uml : + s() : <a href="class132099.html#refclass132099"><b>s_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class132099.html#refclass132099"><b>s_return</b></a> s() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class132355.html#refclass132355"><b>program_return</b></a></b></div></td></tr></table>
+<a name="refoperation157699"></a>
+<table><tr><td><div class="element">Operation <b>program</b></div></td></tr></table><p>$ANTLR start "program"<br /> ./src/VSLParser.g:21:1: program : ( unit )+ -&gt; ^( PROG ( unit )+ ) ;<br /></p><p>Declaration :</p><ul><li>Uml : + program() : <a href="class132355.html#refclass132355"><b>program_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class132355.html#refclass132355"><b>program_return</b></a> program() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class132483.html#refclass132483"><b>unit_return</b></a></b></div></td></tr></table>
+<a name="refoperation157955"></a>
+<table><tr><td><div class="element">Operation <b>unit</b></div></td></tr></table><p>$ANTLR start "unit"<br /> ./src/VSLParser.g:25:1: unit : ( function | proto );<br /></p><p>Declaration :</p><ul><li>Uml : + unit() : <a href="class132483.html#refclass132483"><b>unit_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class132483.html#refclass132483"><b>unit_return</b></a> unit() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class132611.html#refclass132611"><b>function_return</b></a></b></div></td></tr></table>
+<a name="refoperation158211"></a>
+<table><tr><td><div class="element">Operation <b>function</b></div></td></tr></table><p>$ANTLR start "function"<br /> ./src/VSLParser.g:30:1: function : FUNC_KW type IDENT LP param_list RP statement -&gt; ^( FUNC_KW type IDENT param_list ^( BODY statement ) ) ;<br /></p><p>Declaration :</p><ul><li>Uml : + function() : <a href="class132611.html#refclass132611"><b>function_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class132611.html#refclass132611"><b>function_return</b></a> function() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class132739.html#refclass132739"><b>proto_return</b></a></b></div></td></tr></table>
+<a name="refoperation158467"></a>
+<table><tr><td><div class="element">Operation <b>proto</b></div></td></tr></table><p>$ANTLR start "proto"<br /> ./src/VSLParser.g:34:1: proto : PROTO_KW ^ type IDENT LP ! param_list RP !;<br /></p><p>Declaration :</p><ul><li>Uml : + proto() : <a href="class132739.html#refclass132739"><b>proto_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class132739.html#refclass132739"><b>proto_return</b></a> proto() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class132867.html#refclass132867"><b>type_return</b></a></b></div></td></tr></table>
+<a name="refoperation158723"></a>
+<table><tr><td><div class="element">Operation <b>type</b></div></td></tr></table><p>$ANTLR start "type"<br /> ./src/VSLParser.g:38:1: type : ( INT_KW ^| VOID_KW ^);<br /></p><p>Declaration :</p><ul><li>Uml : + type() : <a href="class132867.html#refclass132867"><b>type_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class132867.html#refclass132867"><b>type_return</b></a> type() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class132995.html#refclass132995"><b>param_list_return</b></a></b></div></td></tr></table>
+<a name="refoperation158979"></a>
+<table><tr><td><div class="element">Operation <b>param_list</b></div></td></tr></table><p>$ANTLR start "param_list"<br /> ./src/VSLParser.g:43:1: param_list : ( param ( COM param )* -&gt; ^( PARAM ( param )* ) | -&gt; ^( PARAM ) );<br /></p><p>Declaration :</p><ul><li>Uml : + param_list() : <a href="class132995.html#refclass132995"><b>param_list_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class132995.html#refclass132995"><b>param_list_return</b></a> param_list() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class133123.html#refclass133123"><b>param_return</b></a></b></div></td></tr></table>
+<a name="refoperation159235"></a>
+<table><tr><td><div class="element">Operation <b>param</b></div></td></tr></table><p>$ANTLR start "param"<br /> ./src/VSLParser.g:48:1: param : ( IDENT | IDENT LB RB -&gt; ^( ARRAY IDENT ) );<br /></p><p>Declaration :</p><ul><li>Uml : + param() : <a href="class133123.html#refclass133123"><b>param_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class133123.html#refclass133123"><b>param_return</b></a> param() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class133251.html#refclass133251"><b>statement_return</b></a></b></div></td></tr></table>
+<a name="refoperation159491"></a>
+<table><tr><td><div class="element">Operation <b>statement</b></div></td></tr></table><p>$ANTLR start "statement"<br /> ./src/VSLParser.g:53:1: statement : ( IDENT ASSIGN_KW expression -&gt; ^( ASSIGN_KW expression IDENT ) | array_elem ASSIGN_KW expression -&gt; ^( ASSIGN_KW expression array_elem ) | RETURN_KW ^ expression | PRINT_KW ^ print_list | READ_KW ^ read_list | IF_KW ^ expression THEN_KW ! statement ( ELSE_KW ! statement )? FI_KW !| WHILE_KW ^ expression DO_KW ! statement OD_KW !| IDENT LP ( argument_list )? RP -&gt; ^( FCALL_S IDENT ( argument_list )? ) | block );<br /></p><p>Declaration :</p><ul><li>Uml : + statement() : <a href="class133251.html#refclass133251"><b>statement_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class133251.html#refclass133251"><b>statement_return</b></a> statement() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class133379.html#refclass133379"><b>block_return</b></a></b></div></td></tr></table>
+<a name="refoperation159747"></a>
+<table><tr><td><div class="element">Operation <b>block</b></div></td></tr></table><p>$ANTLR start "block"<br /> ./src/VSLParser.g:65:1: block : ( LC declaration inst_list RC -&gt; ^( BLOCK declaration inst_list ) | LC inst_list RC -&gt; ^( BLOCK inst_list ) );<br /></p><p>Declaration :</p><ul><li>Uml : + block() : <a href="class133379.html#refclass133379"><b>block_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class133379.html#refclass133379"><b>block_return</b></a> block() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class133507.html#refclass133507"><b>array_elem_return</b></a></b></div></td></tr></table>
+<a name="refoperation160003"></a>
+<table><tr><td><div class="element">Operation <b>array_elem</b></div></td></tr></table><p>$ANTLR start "array_elem"<br /> ./src/VSLParser.g:70:1: array_elem : IDENT LB expression RB -&gt; ^( ARELEM IDENT expression ) ;<br /></p><p>Declaration :</p><ul><li>Uml : + array_elem() : <a href="class133507.html#refclass133507"><b>array_elem_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class133507.html#refclass133507"><b>array_elem_return</b></a> array_elem() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class133635.html#refclass133635"><b>inst_list_return</b></a></b></div></td></tr></table>
+<a name="refoperation160259"></a>
+<table><tr><td><div class="element">Operation <b>inst_list</b></div></td></tr></table><p>$ANTLR start "inst_list"<br /> ./src/VSLParser.g:74:1: inst_list : ( statement )+ -&gt; ^( INST ( statement )+ ) ;<br /></p><p>Declaration :</p><ul><li>Uml : + inst_list() : <a href="class133635.html#refclass133635"><b>inst_list_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class133635.html#refclass133635"><b>inst_list_return</b></a> inst_list() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class133763.html#refclass133763"><b>expression_return</b></a></b></div></td></tr></table>
+<a name="refoperation160515"></a>
+<table><tr><td><div class="element">Operation <b>expression</b></div></td></tr></table><p>$ANTLR start "expression"<br /> ./src/VSLParser.g:78:1: expression : factor ( ( PLUS ^| MINUS ^) factor )* ;<br /></p><p>Declaration :</p><ul><li>Uml : + expression() : <a href="class133763.html#refclass133763"><b>expression_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class133763.html#refclass133763"><b>expression_return</b></a> expression() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class133891.html#refclass133891"><b>factor_return</b></a></b></div></td></tr></table>
+<a name="refoperation160771"></a>
+<table><tr><td><div class="element">Operation <b>factor</b></div></td></tr></table><p>$ANTLR start "factor"<br /> ./src/VSLParser.g:82:1: factor : primary ( ( MUL ^| DIV ^) primary )* ;<br /></p><p>Declaration :</p><ul><li>Uml : + factor() : <a href="class133891.html#refclass133891"><b>factor_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class133891.html#refclass133891"><b>factor_return</b></a> factor() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class134019.html#refclass134019"><b>primary_return</b></a></b></div></td></tr></table>
+<a name="refoperation161027"></a>
+<table><tr><td><div class="element">Operation <b>primary</b></div></td></tr></table><p>$ANTLR start "primary"<br /> ./src/VSLParser.g:86:1: primary : ( INTEGER | IDENT | array_elem | IDENT LP ( argument_list )? RP -&gt; ^( FCALL IDENT ( argument_list )? ) | LP ! expression RP !);<br /></p><p>Declaration :</p><ul><li>Uml : + primary() : <a href="class134019.html#refclass134019"><b>primary_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class134019.html#refclass134019"><b>primary_return</b></a> primary() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class134147.html#refclass134147"><b>argument_list_return</b></a></b></div></td></tr></table>
+<a name="refoperation161283"></a>
+<table><tr><td><div class="element">Operation <b>argument_list</b></div></td></tr></table><p>$ANTLR start "argument_list"<br /> ./src/VSLParser.g:94:1: argument_list : expression ( COM ! expression )* ;<br /></p><p>Declaration :</p><ul><li>Uml : + argument_list() : <a href="class134147.html#refclass134147"><b>argument_list_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class134147.html#refclass134147"><b>argument_list_return</b></a> argument_list() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class134275.html#refclass134275"><b>print_list_return</b></a></b></div></td></tr></table>
+<a name="refoperation161539"></a>
+<table><tr><td><div class="element">Operation <b>print_list</b></div></td></tr></table><p>$ANTLR start "print_list"<br /> ./src/VSLParser.g:98:1: print_list : print_item ( COM ! print_item )* ;<br /></p><p>Declaration :</p><ul><li>Uml : + print_list() : <a href="class134275.html#refclass134275"><b>print_list_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class134275.html#refclass134275"><b>print_list_return</b></a> print_list() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class134403.html#refclass134403"><b>print_item_return</b></a></b></div></td></tr></table>
+<a name="refoperation161795"></a>
+<table><tr><td><div class="element">Operation <b>print_item</b></div></td></tr></table><p>$ANTLR start "print_item"<br /> ./src/VSLParser.g:102:1: print_item : ( TEXT | expression );<br /></p><p>Declaration :</p><ul><li>Uml : + print_item() : <a href="class134403.html#refclass134403"><b>print_item_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class134403.html#refclass134403"><b>print_item_return</b></a> print_item() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class134531.html#refclass134531"><b>read_list_return</b></a></b></div></td></tr></table>
+<a name="refoperation162051"></a>
+<table><tr><td><div class="element">Operation <b>read_list</b></div></td></tr></table><p>$ANTLR start "read_list"<br /> ./src/VSLParser.g:107:1: read_list : read_item ( COM ! read_item )* ;<br /></p><p>Declaration :</p><ul><li>Uml : + read_list() : <a href="class134531.html#refclass134531"><b>read_list_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class134531.html#refclass134531"><b>read_list_return</b></a> read_list() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class134659.html#refclass134659"><b>read_item_return</b></a></b></div></td></tr></table>
+<a name="refoperation162307"></a>
+<table><tr><td><div class="element">Operation <b>read_item</b></div></td></tr></table><p>$ANTLR start "read_item"<br /> ./src/VSLParser.g:111:1: read_item : ( IDENT | array_elem );<br /></p><p>Declaration :</p><ul><li>Uml : + read_item() : <a href="class134659.html#refclass134659"><b>read_item_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class134659.html#refclass134659"><b>read_item_return</b></a> read_item() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class134787.html#refclass134787"><b>declaration_return</b></a></b></div></td></tr></table>
+<a name="refoperation162563"></a>
+<table><tr><td><div class="element">Operation <b>declaration</b></div></td></tr></table><p>$ANTLR start "declaration"<br /> ./src/VSLParser.g:116:1: declaration : ( INT_KW decl_list )+ -&gt; ^( DECL ( decl_list )+ ) ;<br /></p><p>Declaration :</p><ul><li>Uml : + declaration() : <a href="class134787.html#refclass134787"><b>declaration_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class134787.html#refclass134787"><b>declaration_return</b></a> declaration() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class134915.html#refclass134915"><b>decl_list_return</b></a></b></div></td></tr></table>
+<a name="refoperation162819"></a>
+<table><tr><td><div class="element">Operation <b>decl_list</b></div></td></tr></table><p>$ANTLR start "decl_list"<br /> ./src/VSLParser.g:120:1: decl_list : decl_item ( COM ! decl_item )* ;<br /></p><p>Declaration :</p><ul><li>Uml : + decl_list() : <a href="class134915.html#refclass134915"><b>decl_list_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class134915.html#refclass134915"><b>decl_list_return</b></a> decl_list() throws RecognitionException</li></ul><table><tr><td><div class="element">Class <b><a href="class135043.html#refclass135043"><b>decl_item_return</b></a></b></div></td></tr></table>
+<a name="refoperation163075"></a>
+<table><tr><td><div class="element">Operation <b>decl_item</b></div></td></tr></table><p>$ANTLR start "decl_item"<br /> ./src/VSLParser.g:124:1: decl_item : ( IDENT | IDENT LB INTEGER RB -&gt; ^( ARDECL IDENT INTEGER ) );<br /></p><p>Declaration :</p><ul><li>Uml : + decl_item() : <a href="class135043.html#refclass135043"><b>decl_item_return</b></a>,  exceptions : RecognitionException</li><li>Java : public final <a href="class135043.html#refclass135043"><b>decl_item_return</b></a> decl_item() throws RecognitionException</li></ul><a name="refattribute152323"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_program_in_s95</b></div></td></tr></table>
+<p>$ANTLR end "decl_item"<br /> Delegated rules<br /></p><p>Declaration :</p><ul><li>Uml : static, + FOLLOW_program_in_s95 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_program_in_s95</li></ul><a name="refattribute152451"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_unit_in_program112</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_unit_in_program112 : BitSet =  new BitSet(new long[]{0x0000000008002002L}), read only</li><li>Java : public static final BitSet FOLLOW_unit_in_program112</li></ul><a name="refattribute152579"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_function_in_unit139</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_function_in_unit139 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_function_in_unit139</li></ul><a name="refattribute152707"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_proto_in_unit147</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_proto_in_unit147 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_proto_in_unit147</li></ul><a name="refattribute152835"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_FUNC_KW_in_function164</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_FUNC_KW_in_function164 : BitSet =  new BitSet(new long[]{0x0000000800020000L}), read only</li><li>Java : public static final BitSet FOLLOW_FUNC_KW_in_function164</li></ul><a name="refattribute152963"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_type_in_function166</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_type_in_function166 : BitSet =  new BitSet(new long[]{0x0000000000004000L}), read only</li><li>Java : public static final BitSet FOLLOW_type_in_function166</li></ul><a name="refattribute153091"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_function168</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_function168 : BitSet =  new BitSet(new long[]{0x0000000000200000L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_function168</li></ul><a name="refattribute153219"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LP_in_function170</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LP_in_function170 : BitSet =  new BitSet(new long[]{0x0000000100004000L}), read only</li><li>Java : public static final BitSet FOLLOW_LP_in_function170</li></ul><a name="refattribute153347"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_param_list_in_function172</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_param_list_in_function172 : BitSet =  new BitSet(new long[]{0x0000000100000000L}), read only</li><li>Java : public static final BitSet FOLLOW_param_list_in_function172</li></ul><a name="refattribute153475"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RP_in_function174</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RP_in_function174 : BitSet =  new BitSet(new long[]{0x00000010C408C000L}), read only</li><li>Java : public static final BitSet FOLLOW_RP_in_function174</li></ul><a name="refattribute153603"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_statement_in_function176</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_statement_in_function176 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_statement_in_function176</li></ul><a name="refattribute153731"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_PROTO_KW_in_proto212</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_PROTO_KW_in_proto212 : BitSet =  new BitSet(new long[]{0x0000000800020000L}), read only</li><li>Java : public static final BitSet FOLLOW_PROTO_KW_in_proto212</li></ul><a name="refattribute153859"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_type_in_proto215</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_type_in_proto215 : BitSet =  new BitSet(new long[]{0x0000000000004000L}), read only</li><li>Java : public static final BitSet FOLLOW_type_in_proto215</li></ul><a name="refattribute153987"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_proto217</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_proto217 : BitSet =  new BitSet(new long[]{0x0000000000200000L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_proto217</li></ul><a name="refattribute154115"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LP_in_proto219</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LP_in_proto219 : BitSet =  new BitSet(new long[]{0x0000000100004000L}), read only</li><li>Java : public static final BitSet FOLLOW_LP_in_proto219</li></ul><a name="refattribute154243"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_param_list_in_proto222</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_param_list_in_proto222 : BitSet =  new BitSet(new long[]{0x0000000100000000L}), read only</li><li>Java : public static final BitSet FOLLOW_param_list_in_proto222</li></ul><a name="refattribute154371"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RP_in_proto224</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RP_in_proto224 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RP_in_proto224</li></ul><a name="refattribute154499"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_INT_KW_in_type242</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_INT_KW_in_type242 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_INT_KW_in_type242</li></ul><a name="refattribute154627"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_VOID_KW_in_type252</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_VOID_KW_in_type252 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_VOID_KW_in_type252</li></ul><a name="refattribute154755"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_param_in_param_list270</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_param_in_param_list270 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_param_in_param_list270</li></ul><a name="refattribute154883"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_COM_in_param_list273</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_COM_in_param_list273 : BitSet =  new BitSet(new long[]{0x0000000000004000L}), read only</li><li>Java : public static final BitSet FOLLOW_COM_in_param_list273</li></ul><a name="refattribute155011"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_param_in_param_list275</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_param_in_param_list275 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_param_in_param_list275</li></ul><a name="refattribute155139"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_param315</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_param315 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_param315</li></ul><a name="refattribute155267"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_param323</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_param323 : BitSet =  new BitSet(new long[]{0x0000000000040000L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_param323</li></ul><a name="refattribute155395"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LB_in_param325</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LB_in_param325 : BitSet =  new BitSet(new long[]{0x0000000010000000L}), read only</li><li>Java : public static final BitSet FOLLOW_LB_in_param325</li></ul><a name="refattribute155523"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RB_in_param327</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RB_in_param327 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RB_in_param327</li></ul><a name="refattribute155651"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_statement352</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_statement352 : BitSet =  new BitSet(new long[]{0x0000000000000020L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_statement352</li></ul><a name="refattribute155779"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_ASSIGN_KW_in_statement354</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_ASSIGN_KW_in_statement354 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_ASSIGN_KW_in_statement354</li></ul><a name="refattribute155907"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_statement356</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_statement356 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_statement356</li></ul><a name="refattribute156035"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_array_elem_in_statement374</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_array_elem_in_statement374 : BitSet =  new BitSet(new long[]{0x0000000000000020L}), read only</li><li>Java : public static final BitSet FOLLOW_array_elem_in_statement374</li></ul><a name="refattribute156163"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_ASSIGN_KW_in_statement376</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_ASSIGN_KW_in_statement376 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_ASSIGN_KW_in_statement376</li></ul><a name="refattribute156291"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_statement378</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_statement378 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_statement378</li></ul><a name="refattribute156419"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RETURN_KW_in_statement396</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RETURN_KW_in_statement396 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_RETURN_KW_in_statement396</li></ul><a name="refattribute156547"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_statement399</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_statement399 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_statement399</li></ul><a name="refattribute156675"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_PRINT_KW_in_statement407</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_PRINT_KW_in_statement407 : BitSet =  new BitSet(new long[]{0x0000000200214000L}), read only</li><li>Java : public static final BitSet FOLLOW_PRINT_KW_in_statement407</li></ul><a name="refattribute156803"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_print_list_in_statement410</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_print_list_in_statement410 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_print_list_in_statement410</li></ul><a name="refattribute156931"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_READ_KW_in_statement418</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_READ_KW_in_statement418 : BitSet =  new BitSet(new long[]{0x0000000000004000L}), read only</li><li>Java : public static final BitSet FOLLOW_READ_KW_in_statement418</li></ul><a name="refattribute157059"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_read_list_in_statement421</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_read_list_in_statement421 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_read_list_in_statement421</li></ul><a name="refattribute157187"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IF_KW_in_statement429</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IF_KW_in_statement429 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_IF_KW_in_statement429</li></ul><a name="refattribute157315"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_statement432</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_statement432 : BitSet =  new BitSet(new long[]{0x0000000400000000L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_statement432</li></ul><a name="refattribute157443"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_THEN_KW_in_statement434</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_THEN_KW_in_statement434 : BitSet =  new BitSet(new long[]{0x00000010C408C000L}), read only</li><li>Java : public static final BitSet FOLLOW_THEN_KW_in_statement434</li></ul><a name="refattribute157571"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_statement_in_statement437</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_statement_in_statement437 : BitSet =  new BitSet(new long[]{0x0000000000001800L}), read only</li><li>Java : public static final BitSet FOLLOW_statement_in_statement437</li></ul><a name="refattribute157699"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_ELSE_KW_in_statement440</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_ELSE_KW_in_statement440 : BitSet =  new BitSet(new long[]{0x00000010C408C000L}), read only</li><li>Java : public static final BitSet FOLLOW_ELSE_KW_in_statement440</li></ul><a name="refattribute157827"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_statement_in_statement443</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_statement_in_statement443 : BitSet =  new BitSet(new long[]{0x0000000000001000L}), read only</li><li>Java : public static final BitSet FOLLOW_statement_in_statement443</li></ul><a name="refattribute157955"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_FI_KW_in_statement447</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_FI_KW_in_statement447 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_FI_KW_in_statement447</li></ul><a name="refattribute158083"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_WHILE_KW_in_statement456</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_WHILE_KW_in_statement456 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_WHILE_KW_in_statement456</li></ul><a name="refattribute158211"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_statement459</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_statement459 : BitSet =  new BitSet(new long[]{0x0000000000000400L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_statement459</li></ul><a name="refattribute158339"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_DO_KW_in_statement461</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_DO_KW_in_statement461 : BitSet =  new BitSet(new long[]{0x00000010C408C000L}), read only</li><li>Java : public static final BitSet FOLLOW_DO_KW_in_statement461</li></ul><a name="refattribute158467"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_statement_in_statement464</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_statement_in_statement464 : BitSet =  new BitSet(new long[]{0x0000000001000000L}), read only</li><li>Java : public static final BitSet FOLLOW_statement_in_statement464</li></ul><a name="refattribute158595"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_OD_KW_in_statement466</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_OD_KW_in_statement466 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_OD_KW_in_statement466</li></ul><a name="refattribute158723"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_statement475</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_statement475 : BitSet =  new BitSet(new long[]{0x0000000000200000L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_statement475</li></ul><a name="refattribute158851"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LP_in_statement477</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LP_in_statement477 : BitSet =  new BitSet(new long[]{0x0000000100214000L}), read only</li><li>Java : public static final BitSet FOLLOW_LP_in_statement477</li></ul><a name="refattribute158979"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_argument_list_in_statement479</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_argument_list_in_statement479 : BitSet =  new BitSet(new long[]{0x0000000100000000L}), read only</li><li>Java : public static final BitSet FOLLOW_argument_list_in_statement479</li></ul><a name="refattribute159107"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RP_in_statement482</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RP_in_statement482 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RP_in_statement482</li></ul><a name="refattribute159235"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_block_in_statement501</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_block_in_statement501 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_block_in_statement501</li></ul><a name="refattribute159363"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LC_in_block519</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LC_in_block519 : BitSet =  new BitSet(new long[]{0x0000000000020000L}), read only</li><li>Java : public static final BitSet FOLLOW_LC_in_block519</li></ul><a name="refattribute159491"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_declaration_in_block521</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_declaration_in_block521 : BitSet =  new BitSet(new long[]{0x00000010C408C000L}), read only</li><li>Java : public static final BitSet FOLLOW_declaration_in_block521</li></ul><a name="refattribute159619"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_inst_list_in_block523</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_inst_list_in_block523 : BitSet =  new BitSet(new long[]{0x0000000020000000L}), read only</li><li>Java : public static final BitSet FOLLOW_inst_list_in_block523</li></ul><a name="refattribute159747"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RC_in_block525</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RC_in_block525 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RC_in_block525</li></ul><a name="refattribute159875"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LC_in_block543</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LC_in_block543 : BitSet =  new BitSet(new long[]{0x00000010C408C000L}), read only</li><li>Java : public static final BitSet FOLLOW_LC_in_block543</li></ul><a name="refattribute160003"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_inst_list_in_block545</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_inst_list_in_block545 : BitSet =  new BitSet(new long[]{0x0000000020000000L}), read only</li><li>Java : public static final BitSet FOLLOW_inst_list_in_block545</li></ul><a name="refattribute160131"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RC_in_block547</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RC_in_block547 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RC_in_block547</li></ul><a name="refattribute160259"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_array_elem576</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_array_elem576 : BitSet =  new BitSet(new long[]{0x0000000000040000L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_array_elem576</li></ul><a name="refattribute160387"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LB_in_array_elem578</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LB_in_array_elem578 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_LB_in_array_elem578</li></ul><a name="refattribute160515"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_array_elem580</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_array_elem580 : BitSet =  new BitSet(new long[]{0x0000000010000000L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_array_elem580</li></ul><a name="refattribute160643"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RB_in_array_elem582</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RB_in_array_elem582 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RB_in_array_elem582</li></ul><a name="refattribute160771"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_statement_in_inst_list611</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_statement_in_inst_list611 : BitSet =  new BitSet(new long[]{0x00000010C408C002L}), read only</li><li>Java : public static final BitSet FOLLOW_statement_in_inst_list611</li></ul><a name="refattribute160899"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_factor_in_expression638</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_factor_in_expression638 : BitSet =  new BitSet(new long[]{0x0000000002400002L}), read only</li><li>Java : public static final BitSet FOLLOW_factor_in_expression638</li></ul><a name="refattribute161027"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_PLUS_in_expression642</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_PLUS_in_expression642 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_PLUS_in_expression642</li></ul><a name="refattribute161155"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_MINUS_in_expression645</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_MINUS_in_expression645 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_MINUS_in_expression645</li></ul><a name="refattribute161283"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_factor_in_expression649</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_factor_in_expression649 : BitSet =  new BitSet(new long[]{0x0000000002400002L}), read only</li><li>Java : public static final BitSet FOLLOW_factor_in_expression649</li></ul><a name="refattribute161411"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_primary_in_factor668</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_primary_in_factor668 : BitSet =  new BitSet(new long[]{0x0000000000800202L}), read only</li><li>Java : public static final BitSet FOLLOW_primary_in_factor668</li></ul><a name="refattribute161539"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_MUL_in_factor672</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_MUL_in_factor672 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_MUL_in_factor672</li></ul><a name="refattribute161667"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_DIV_in_factor675</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_DIV_in_factor675 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_DIV_in_factor675</li></ul><a name="refattribute161795"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_primary_in_factor679</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_primary_in_factor679 : BitSet =  new BitSet(new long[]{0x0000000000800202L}), read only</li><li>Java : public static final BitSet FOLLOW_primary_in_factor679</li></ul><a name="refattribute161923"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_INTEGER_in_primary698</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_INTEGER_in_primary698 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_INTEGER_in_primary698</li></ul><a name="refattribute162051"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_primary706</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_primary706 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_primary706</li></ul><a name="refattribute162179"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_array_elem_in_primary714</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_array_elem_in_primary714 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_array_elem_in_primary714</li></ul><a name="refattribute162307"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_primary722</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_primary722 : BitSet =  new BitSet(new long[]{0x0000000000200000L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_primary722</li></ul><a name="refattribute162435"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LP_in_primary724</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LP_in_primary724 : BitSet =  new BitSet(new long[]{0x0000000100214000L}), read only</li><li>Java : public static final BitSet FOLLOW_LP_in_primary724</li></ul><a name="refattribute162563"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_argument_list_in_primary726</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_argument_list_in_primary726 : BitSet =  new BitSet(new long[]{0x0000000100000000L}), read only</li><li>Java : public static final BitSet FOLLOW_argument_list_in_primary726</li></ul><a name="refattribute162691"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RP_in_primary729</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RP_in_primary729 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RP_in_primary729</li></ul><a name="refattribute162819"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LP_in_primary748</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LP_in_primary748 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_LP_in_primary748</li></ul><a name="refattribute162947"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_primary751</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_primary751 : BitSet =  new BitSet(new long[]{0x0000000100000000L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_primary751</li></ul><a name="refattribute163075"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RP_in_primary753</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RP_in_primary753 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RP_in_primary753</li></ul><a name="refattribute163203"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_argument_list771</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_argument_list771 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_argument_list771</li></ul><a name="refattribute163331"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_COM_in_argument_list774</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_COM_in_argument_list774 : BitSet =  new BitSet(new long[]{0x0000000000214000L}), read only</li><li>Java : public static final BitSet FOLLOW_COM_in_argument_list774</li></ul><a name="refattribute163459"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_argument_list777</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_argument_list777 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_argument_list777</li></ul><a name="refattribute163587"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_print_item_in_print_list796</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_print_item_in_print_list796 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_print_item_in_print_list796</li></ul><a name="refattribute163715"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_COM_in_print_list799</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_COM_in_print_list799 : BitSet =  new BitSet(new long[]{0x0000000200214000L}), read only</li><li>Java : public static final BitSet FOLLOW_COM_in_print_list799</li></ul><a name="refattribute163843"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_print_item_in_print_list802</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_print_item_in_print_list802 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_print_item_in_print_list802</li></ul><a name="refattribute163971"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_TEXT_in_print_item821</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_TEXT_in_print_item821 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_TEXT_in_print_item821</li></ul><a name="refattribute164099"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_expression_in_print_item829</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_expression_in_print_item829 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_expression_in_print_item829</li></ul><a name="refattribute164227"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_read_item_in_read_list846</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_read_item_in_read_list846 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_read_item_in_read_list846</li></ul><a name="refattribute164355"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_COM_in_read_list849</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_COM_in_read_list849 : BitSet =  new BitSet(new long[]{0x0000000000004000L}), read only</li><li>Java : public static final BitSet FOLLOW_COM_in_read_list849</li></ul><a name="refattribute164483"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_read_item_in_read_list852</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_read_item_in_read_list852 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_read_item_in_read_list852</li></ul><a name="refattribute164611"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_read_item871</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_read_item871 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_read_item871</li></ul><a name="refattribute164739"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_array_elem_in_read_item879</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_array_elem_in_read_item879 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_array_elem_in_read_item879</li></ul><a name="refattribute164867"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_INT_KW_in_declaration897</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_INT_KW_in_declaration897 : BitSet =  new BitSet(new long[]{0x0000000000004000L}), read only</li><li>Java : public static final BitSet FOLLOW_INT_KW_in_declaration897</li></ul><a name="refattribute164995"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_decl_list_in_declaration899</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_decl_list_in_declaration899 : BitSet =  new BitSet(new long[]{0x0000000000020002L}), read only</li><li>Java : public static final BitSet FOLLOW_decl_list_in_declaration899</li></ul><a name="refattribute165123"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_decl_item_in_decl_list930</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_decl_item_in_decl_list930 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_decl_item_in_decl_list930</li></ul><a name="refattribute165251"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_COM_in_decl_list933</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_COM_in_decl_list933 : BitSet =  new BitSet(new long[]{0x0000000000004000L}), read only</li><li>Java : public static final BitSet FOLLOW_COM_in_decl_list933</li></ul><a name="refattribute165379"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_decl_item_in_decl_list936</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_decl_item_in_decl_list936 : BitSet =  new BitSet(new long[]{0x0000000000000042L}), read only</li><li>Java : public static final BitSet FOLLOW_decl_item_in_decl_list936</li></ul><a name="refattribute165507"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_decl_item955</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_decl_item955 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_decl_item955</li></ul><a name="refattribute165635"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_IDENT_in_decl_item963</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_IDENT_in_decl_item963 : BitSet =  new BitSet(new long[]{0x0000000000040000L}), read only</li><li>Java : public static final BitSet FOLLOW_IDENT_in_decl_item963</li></ul><a name="refattribute165763"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_LB_in_decl_item965</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_LB_in_decl_item965 : BitSet =  new BitSet(new long[]{0x0000000000010000L}), read only</li><li>Java : public static final BitSet FOLLOW_LB_in_decl_item965</li></ul><a name="refattribute165891"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_INTEGER_in_decl_item967</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_INTEGER_in_decl_item967 : BitSet =  new BitSet(new long[]{0x0000000010000000L}), read only</li><li>Java : public static final BitSet FOLLOW_INTEGER_in_decl_item967</li></ul><a name="refattribute166019"></a>
+<table><tr><td><div class="element">Attribute <b>FOLLOW_RB_in_decl_item969</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + FOLLOW_RB_in_decl_item969 : BitSet =  new BitSet(new long[]{0x0000000000000002L}), read only</li><li>Java : public static final BitSet FOLLOW_RB_in_decl_item969</li></ul></div>
+<p>All public operations : <a href="class131843.html#refoperation161283"><b>argument_list</b></a> , <a href="class131843.html#refoperation160003"><b>array_elem</b></a> , <a href="class131843.html#refoperation159747"><b>block</b></a> , <a href="class131843.html#refoperation163075"><b>decl_item</b></a> , <a href="class131843.html#refoperation162819"><b>decl_list</b></a> , <a href="class131843.html#refoperation162563"><b>declaration</b></a> , <a href="class131843.html#refoperation160515"><b>expression</b></a> , <a href="class131843.html#refoperation160771"><b>factor</b></a> , <a href="class131843.html#refoperation158211"><b>function</b></a> , <a href="class131843.html#refoperation156419"><b>getDelegates</b></a> , <a href="class131843.html#refoperation157187"><b>getGrammarFileName</b></a> , <a href="class131843.html#refoperation157059"><b>getTokenNames</b></a> , <a href="class131843.html#refoperation156931"><b>getTreeAdaptor</b></a> , <a href="class131843.html#refoperation160259"><b>inst_list</b></a> , <a href="class131843.html#refoperation159235"><b>param</b></a> , <a href="class131843.html#refoperation158979"><b>param_list</b></a> , <a href="class131843.html#refoperation161027"><b>primary</b></a> , <a href="class131843.html#refoperation161795"><b>print_item</b></a> , <a href="class131843.html#refoperation161539"><b>print_list</b></a> , <a href="class131843.html#refoperation157699"><b>program</b></a> , <a href="class131843.html#refoperation158467"><b>proto</b></a> , <a href="class131843.html#refoperation162307"><b>read_item</b></a> , <a href="class131843.html#refoperation162051"><b>read_list</b></a> , <a href="class131843.html#refoperation157443"><b>s</b></a> , <a href="class131843.html#refoperation156803"><b>setTreeAdaptor</b></a> , <a href="class131843.html#refoperation159491"><b>statement</b></a> , <a href="class131843.html#refoperation158723"><b>type</b></a> , <a href="class131843.html#refoperation157955"><b>unit</b></a> </p>
+</body>
+</html>

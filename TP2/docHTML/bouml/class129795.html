@@ -1,0 +1,32 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class Errors</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class Errors</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass129795"></a>
+<p>This class contains predefined messages for most semantic/typing errors. It<br />helps providing automatic error evaluation. Each method here emits an error<br />corresponding to the method name. Its parameters are useful for human<br />readability.<br /><br />Error codes are used by the test scripts and are chosen arbitrarily.<br /><br />@author aoliveir<br /><br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class Errors </li></ul><p>Artifact : <a href="index.html#refartifact129155"><b>Errors</b></a></p>
+<div class="sub">
+<a name="refoperation136195"></a>
+<table><tr><td><div class="element">Operation <b>addExtra</b></div></td></tr></table><p>Auxiliary method to add extra information to the error message.<br /><br />@param extra<br />           extra information, or null if nothing should be added.<br />@return an empty String if null, "(" + extra + )" otherwise.<br /></p><p>Declaration :</p><ul><li>Uml : static, - addExtra(in extra : String) : String</li><li>Java : private static String addExtra(String extra)</li></ul><a name="refoperation136323"></a>
+<table><tr><td><div class="element">Operation <b>unknownIdentifier</b></div></td></tr></table><p>Error message for an unknown identifier (i.e., use before declaration).<br /><br />@param token<br />           ANTLR token (for line/column numbering).<br />@param name<br />           name of the undeclared identifier.<br />@param extra<br />           additional information to the error message, or null if none.<br /></p><p>Declaration :</p><ul><li>Uml : static, + unknownIdentifier(inout token : CommonTree, in name : String, in extra : String) : void</li><li>Java : public static void unknownIdentifier(CommonTree token, String name, String extra)</li></ul><a name="refoperation136451"></a>
+<table><tr><td><div class="element">Operation <b>redefinedIdentifier</b></div></td></tr></table><p>Error message for a redefined identifier (e.g., two local variable<br />declarations with same name).<br /><br />@param token<br />           ANTLR token (for line/column numbering).<br />@param name<br />           name of the redefined identifier.<br />@param extra<br />           additional information to the error message, or null if none.<br /></p><p>Declaration :</p><ul><li>Uml : static, + redefinedIdentifier(inout token : CommonTree, in name : String, in extra : String) : void</li><li>Java : public static void redefinedIdentifier(CommonTree token, String name, String extra)</li></ul><a name="refoperation136579"></a>
+<table><tr><td><div class="element">Operation <b>incompatibleTypes</b></div></td></tr></table><p>Error message for incompatible types (i.e., assignment of INT value to<br />POINTER variable). Note that this uses a very broad definition of type<br />incompatibility, i.e., several kinds of invalid operations can be mapped<br />to a type incompatibility issue.<br /><br />@param token<br />           ANTLR token (for line/column numbering).<br />@param expectedType<br />           expected type (e.g., INT for a return value). Uses the<br />           toString() method of the object.<br />@param actualType<br />           actual obtained type (which is incompatible with the previous<br />           one). Uses the toString() method of the object.<br />@param extra<br />           additional information to the error message, or null if none.<br /></p><p>Declaration :</p><ul><li>Uml : static, + incompatibleTypes(inout token : CommonTree, inout expectedType : Object, inout actualType : Object, in extra : String) : void</li><li>Java : public static void incompatibleTypes(CommonTree token, Object expectedType, Object actualType, String extra)</li></ul><a name="refoperation136707"></a>
+<table><tr><td><div class="element">Operation <b>miscError</b></div></td></tr></table><p>Miscellaneous error message (for errors which do not fit any other<br />method). Note: all "standard" errors should fit in one of the previous<br />categories.<br /><br />@param token<br />           ANTLR token (for line/column numbering).<br />@param msg<br />           the entire error message describing the error.<br /></p><p>Declaration :</p><ul><li>Uml : static, + miscError(inout token : CommonTree, inout msg : Object) : void</li><li>Java : public static void miscError(CommonTree token, Object msg)</li></ul><a name="refrelation139267"></a>
+<table><tr><td><div class="element">Relation <b>&lt;unidirectional association&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="class131331.html#refclass131331"><b>Util</b></a></li><li>Java : private <a href="class131331.html#refclass131331"><b>Util</b></a> </li></ul></div>
+<p>All public operations : <a href="class129795.html#refoperation136579"><b>incompatibleTypes</b></a> , <a href="class129795.html#refoperation136707"><b>miscError</b></a> , <a href="class129795.html#refoperation136451"><b>redefinedIdentifier</b></a> , <a href="class129795.html#refoperation136323"><b>unknownIdentifier</b></a> </p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>E</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">E</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<table>
+<tr bgcolor=#f0f0f0><td align=center><b>Name</b></td><td align=center><b>Kind</b></td><td align=center><b>Description</b></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute139779" target = "projectFrame"><b>ELSE_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute144387" target = "projectFrame"><b>ELSE_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute167299" target = "projectFrame"><b>ELSE_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute131203" target = "projectFrame"><b>ENDFUNC</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation146819" target = "projectFrame"><b>enterScope</b></a></td><td>operation</td><td>Pushes a new table, which becomes the current one. Updates the current<br />scope accordingly.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute138755" target = "projectFrame"><b>EOF</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute143363" target = "projectFrame"><b>EOF</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute166275" target = "projectFrame"><b>EOF</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation128643" target = "projectFrame"><b>equals</b></a></td><td>operation</td><td>Returns true iff the given parameter is an object with the same type as<br />this one.<br /><br />@param o<br />           object to be compared with.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute184067" target = "projectFrame"><b>ERROR</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation128643" target = "projectFrame"><b>ERROR</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129795.html#refclass129795" target = "projectFrame"><b>Errors</b></a></td><td>class</td><td>This class contains predefined messages for most semantic/typing errors. It<br />helps providing automatic error evaluation. Each method here emits an error<br />corresponding to the method name. Its parameters are useful for human<br />readability.<br /><br />Error codes are used by the test scripts and are chosen arbitrarily.<br /><br />@author aoliveir<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refartifact129155" target = "projectFrame"><b>Errors</b></a></td><td>artifact</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation136835" target = "projectFrame"><b>ExpAttribute</b></a></td><td>operation</td><td>Constructor of ExpAttribute<br /><br />@param ty<br />           Type: the type associated with the expression<br />@param cod<br />           Code3a: the code implementing the expression<br />@param pl<br />           Operand3a: a representation of memory place for expression<br />           value</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refartifact129283" target = "projectFrame"><b>ExpAttribute</b></a></td><td>artifact</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129155.html#refclass129155" target = "projectFrame"><b>ExpAttribute</b></a></td><td>class</td><td>Wrapper class to associate the type, code and place to an expression. In<br />other words, a triple of objects.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation160515" target = "projectFrame"><b>expression</b></a></td><td>operation</td><td> $ANTLR start "expression"<br /> ./src/VSLParser.g:78:1: expression : factor ( ( PLUS ^| MINUS ^) factor )* ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation165507" target = "projectFrame"><b>expression</b></a></td><td>operation</td><td> $ANTLR end "instruction_list"<br /> $ANTLR start "expression"<br /> ./src/VSLTreeParser.g:225:1: expression[SymbolTable symTab] returns [ExpAttribute expAtt] : ( ^( PLUS e1= expression[symTab] e2= expression[symTab] ) | ^( MINUS e1= expression[symTab] e2= expression[symTab] ) | ^( MUL e1= expression[symTab] e2= expression[symTab] ) | ^( DIV e1= expression[symTab] e2= expression[symTab] ) |pe= primary_exp[symTab] );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133763.html#refclass133763" target = "projectFrame"><b>expression_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation137859" target = "projectFrame"><b>extend</b></a></td><td>operation</td><td>Extend the arity of this function type, from f(t1, ..., tn) to f(t1, ...,<br />tn, t).<br /><br />Use this when iteratively constructing the entire type of a function<br />call.<br /><br />@param t<br />           the new argument type to be added.</td></tr>
+</table>
+</body>
+</html>

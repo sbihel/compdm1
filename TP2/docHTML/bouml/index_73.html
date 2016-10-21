@@ -1,0 +1,73 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>I</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">I</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<table>
+<tr bgcolor=#f0f0f0><td align=center><b>Name</b></td><td align=center><b>Kind</b></td><td align=center><b>Description</b></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute183555" target = "projectFrame"><b>I_CONST</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation128259" target = "projectFrame"><b>I_CONST</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute140163" target = "projectFrame"><b>IDENT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute144771" target = "projectFrame"><b>IDENT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute167683" target = "projectFrame"><b>IDENT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute140291" target = "projectFrame"><b>IF_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute144899" target = "projectFrame"><b>IF_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute167811" target = "projectFrame"><b>IF_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute130051" target = "projectFrame"><b>IFNZ</b></a></td><td>attribute</td><td> ifnz a goto b</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute129923" target = "projectFrame"><b>IFZ</b></a></td><td>attribute</td><td> ifz a goto b</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation132995" target = "projectFrame"><b>iGoto</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation132867" target = "projectFrame"><b>iIfZ</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation133123" target = "projectFrame"><b>iLabel</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation136579" target = "projectFrame"><b>incompatibleTypes</b></a></td><td>operation</td><td>Error message for incompatible types (i.e., assignment of INT value to<br />POINTER variable). Note that this uses a very broad definition of type<br />incompatibility, i.e., several kinds of invalid operations can be mapped<br />to a type incompatibility issue.<br /><br />@param token<br />           ANTLR token (for line/column numbering).<br />@param expectedType<br />           expected type (e.g., INT for a return value). Uses the<br />           toString() method of the object.<br />@param actualType<br />           actual obtained type (which is incompatible with the previous<br />           one). Uses the toString() method of the object.<br />@param extra<br />           additional information to the error message, or null if none.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation146435" target = "projectFrame"><b>insert</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation147203" target = "projectFrame"><b>insert</b></a></td><td>operation</td><td>Puts a pair (key, value) in the current table.<br /><br />@param name<br />           : name (String)<br />@param t<br />           : value of Operand3a type</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute148867" target = "projectFrame"><b>INST</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute171779" target = "projectFrame"><b>INST</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation138243" target = "projectFrame"><b>Inst3a</b></a></td><td>operation</td><td>Constructor<br /><br />@param op<br />           : TAC operator<br />@param a<br />           : Operand3a<br />@param b<br />           : Operand3a or null<br />@param c<br />           : Operand3a or null</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refartifact129667" target = "projectFrame"><b>Inst3a</b></a></td><td>artifact</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128643.html#refclass128643" target = "projectFrame"><b>Inst3a</b></a></td><td>class</td><td>A three address code (TAC) instruction is composed of an operation code and<br />three operands a,b,c The operands are objects from the Operand3a class. The<br />operation codes form an enumeration (TAC). The meaning of the codes is as<br />follows:<br />&lt;ul&gt;<br />&lt;li&gt;ADD a = b + c<br />&lt;li&gt;SUB a = b - c<br />&lt;li&gt;MUL a = b * c<br />&lt;li&gt;DIV a = b / c<br />&lt;li&gt;NEG a = -b<br />&lt;li&gt;COPY a = b<br />&lt;li&gt;GOTO goto a<br />&lt;li&gt;IFZ ifz a goto b<br />&lt;li&gt;IFNZ ifnz a goto b<br />&lt;li&gt;ARG arg a<br />&lt;li&gt;CALL a = call b ou call b<br />&lt;li&gt;RETURN return a<br />&lt;li&gt;TABVAR a = b[c]<br />&lt;li&gt;VARTAB a[b] = c<br />&lt;li&gt;LABEL label a<br />&lt;li&gt;VAR var a<br />&lt;li&gt;BEGINFUNC<br />&lt;li&gt;ENDFUNC<br />&lt;/ul&gt;<br />&lt;p&gt;<br />When an operand is missing, it must be replaced by the null object in the<br />constructor. For example: i = Inst3a(LABEL, a, null, null)<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation160259" target = "projectFrame"><b>inst_list</b></a></td><td>operation</td><td> $ANTLR start "inst_list"<br /> ./src/VSLParser.g:74:1: inst_list : ( statement )+ -&gt; ^( INST ( statement )+ ) ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133635.html#refclass133635" target = "projectFrame"><b>inst_list_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation165379" target = "projectFrame"><b>instruction_list</b></a></td><td>operation</td><td> $ANTLR end "array_elem"<br /> $ANTLR start "instruction_list"<br /> ./src/VSLTreeParser.g:220:1: instruction_list[SymbolTable symTab, Type thisFunctionType] returns [Code3a code] : ^( INST (st= statement[symTab, thisFunctionType] )+ ) ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute183427" target = "projectFrame"><b>INT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation128131" target = "projectFrame"><b>INT</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute140547" target = "projectFrame"><b>INT_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute145155" target = "projectFrame"><b>INT_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute168067" target = "projectFrame"><b>INT_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute140419" target = "projectFrame"><b>INTEGER</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute145027" target = "projectFrame"><b>INTEGER</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute167939" target = "projectFrame"><b>INTEGER</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation129795" target = "projectFrame"><b>isArray</b></a></td><td>operation</td><td>Test if a TAC operand is an array<br /><br />@return a boolean</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation134531" target = "projectFrame"><b>isArray</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation129155" target = "projectFrame"><b>isCompatible</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation137987" target = "projectFrame"><b>isCompatible</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation128387" target = "projectFrame"><b>isCompatible</b></a></td><td>operation</td><td>Tests if two types are compatible. For simple types, compatibility is<br />equality of types. Sub-types (e.g. function types) must override this<br />function accordingly.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation129411" target = "projectFrame"><b>isConstInteger</b></a></td><td>operation</td><td>Test if a TAC operand is an integer literal<br /><br />@return a boolean</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation134659" target = "projectFrame"><b>isConstInteger</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation131331" target = "projectFrame"><b>isEmpty</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation144387" target = "projectFrame"><b>isInRegister</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation130051" target = "projectFrame"><b>isLabel</b></a></td><td>operation</td><td>Test if a TAC operand is a label<br /><br />@return a boolean</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation134787" target = "projectFrame"><b>isLabel</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation129667" target = "projectFrame"><b>isParam</b></a></td><td>operation</td><td>Test if a TAC_VAR is a parameter of a function<br /><br />@return a boolean</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation135171" target = "projectFrame"><b>isParam</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation151043" target = "projectFrame"><b>isParam</b></a></td><td>operation</td><td>MIPS code generator interface only</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation129923" target = "projectFrame"><b>isPointer</b></a></td><td>operation</td><td>Test if a TAC operand is a pointer. When an array is passed as a<br />parameter, the value of the the address is passed to the subroutine. So<br />it is a pointer.<br /><br />@return a boolean</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation134915" target = "projectFrame"><b>isPointer</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation129539" target = "projectFrame"><b>isVarInteger</b></a></td><td>operation</td><td>Test if a TAC operand is an integer variable<br /><br />@return a boolean</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation135043" target = "projectFrame"><b>isVarInteger</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation166531" target = "projectFrame"><b>item_declaration</b></a></td><td>operation</td><td> $ANTLR end "declaration"<br /> $ANTLR start "item_declaration"<br /> ./src/VSLTreeParser.g:353:1: item_declaration[SymbolTable symTab] returns [Code3a code] : ( IDENT |ad= array_declaration[symTab] );</td></tr>
+</table>
+</body>
+</html>

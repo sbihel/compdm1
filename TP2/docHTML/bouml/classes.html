@@ -1,0 +1,81 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Classes Index</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Classes Index</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<table>
+<tr bgcolor=#f0f0f0><td><a href="class134147.html#refclass134147" target = "projectFrame"><b>argument_list_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133507.html#refclass133507" target = "projectFrame"><b>array_elem_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128131.html#refclass128131" target = "projectFrame"><b>ArrayType</b></a></td><td></td><td>Type for arrays (currently, only integer arrays). Includes the underlying<br />array type and the length of the array (necessary to compute its size in<br />memory).<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133379.html#refclass133379" target = "projectFrame"><b>block_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128387.html#refclass128387" target = "projectFrame"><b>CGInterface</b></a></td><td>interface</td><td>This interface must be implemented for assembly code generation. It defines a<br />contract between TAC and code generator. In order for the code generator to<br />work, a TAC operand must be an Operand3a object and it must answer all the<br />requests defined in this interface. Some of these requests could be useful in<br />the front-end of the compiler. It's your choice.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128515.html#refclass128515" target = "projectFrame"><b>Code3a</b></a></td><td></td><td>This class implements list of TAC statements. Basically, 3 address code is a<br />list of Inst3a objects. However, in any compiler, it is necessary to allocate<br />some memory for constants of variable size. The most obvious example are<br />string constants. In VSL it is the only constants which need memory<br />allocation. The other constants are integers which are operands in arithmetic<br />expression and have immediate addresses. Consequently, Code3a has two<br />attributes: a list of 3a instructions and a list of Data3a for storing the<br />string constants.<br /><br />@author MLB</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128899.html#refclass128899" target = "projectFrame"><b>Code3aGenerator</b></a></td><td></td><td>This class implements all the methods for 3a code generation.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135683.html#refclass135683" target = "projectFrame"><b>constant_types</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129539.html#refclass129539" target = "projectFrame"><b>ConstSymbol</b></a></td><td></td><td>Symbol for an integer constant. It could be a string since we never use the<br />value in integer operations.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128771.html#refclass128771" target = "projectFrame"><b>Data3a</b></a></td><td></td><td>Class for implementing initialized constants. The only constants in VSL are<br />character strings. A label must be associated to its textual content and is<br />used as the name of the text in three-address code. So the class is simple:<br />it contains the label and its text.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135043.html#refclass135043" target = "projectFrame"><b>decl_item_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134915.html#refclass134915" target = "projectFrame"><b>decl_list_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134787.html#refclass134787" target = "projectFrame"><b>declaration_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129795.html#refclass129795" target = "projectFrame"><b>Errors</b></a></td><td></td><td>This class contains predefined messages for most semantic/typing errors. It<br />helps providing automatic error evaluation. Each method here emits an error<br />corresponding to the method name. Its parameters are useful for human<br />readability.<br /><br />Error codes are used by the test scripts and are chosen arbitrarily.<br /><br />@author aoliveir<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129155.html#refclass129155" target = "projectFrame"><b>ExpAttribute</b></a></td><td></td><td>Wrapper class to associate the type, code and place to an expression. In<br />other words, a triple of objects.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133763.html#refclass133763" target = "projectFrame"><b>expression_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133891.html#refclass133891" target = "projectFrame"><b>factor_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132611.html#refclass132611" target = "projectFrame"><b>function_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129283.html#refclass129283" target = "projectFrame"><b>FunctionSymbol</b></a></td><td></td><td>Symbol for functions. In addition to the name, this class has a label<br />attribute. The label associated to a function is the 3a name in CALL and the<br />address in 3a code function definition.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129923.html#refclass129923" target = "projectFrame"><b>FunctionType</b></a></td><td></td><td>The type of a function is composed of a return type plus a list of types for<br />its arguments (empty if none). It also has a field "prototype" indicating<br />whether this represents a prototype declaration (without body) or a function<br />definition (with body).<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128643.html#refclass128643" target = "projectFrame"><b>Inst3a</b></a></td><td></td><td>A three address code (TAC) instruction is composed of an operation code and<br />three operands a,b,c The operands are objects from the Operand3a class. The<br />operation codes form an enumeration (TAC). The meaning of the codes is as<br />follows:<br />&lt;ul&gt;<br />&lt;li&gt;ADD a = b + c<br />&lt;li&gt;SUB a = b - c<br />&lt;li&gt;MUL a = b * c<br />&lt;li&gt;DIV a = b / c<br />&lt;li&gt;NEG a = -b<br />&lt;li&gt;COPY a = b<br />&lt;li&gt;GOTO goto a<br />&lt;li&gt;IFZ ifz a goto b<br />&lt;li&gt;IFNZ ifnz a goto b<br />&lt;li&gt;ARG arg a<br />&lt;li&gt;CALL a = call b ou call b<br />&lt;li&gt;RETURN return a<br />&lt;li&gt;TABVAR a = b[c]<br />&lt;li&gt;VARTAB a[b] = c<br />&lt;li&gt;LABEL label a<br />&lt;li&gt;VAR var a<br />&lt;li&gt;BEGINFUNC<br />&lt;li&gt;ENDFUNC<br />&lt;/ul&gt;<br />&lt;p&gt;<br />When an operand is missing, it must be replaced by the null object in the<br />constructor. For example: i = Inst3a(LABEL, a, null, null)<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133635.html#refclass133635" target = "projectFrame"><b>inst_list_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129667.html#refclass129667" target = "projectFrame"><b>LabelSymbol</b></a></td><td></td><td>Label symbol. Except for functions, the name of a label must be provided by<br />SymbDistrib via newLabel().<br /><br />@author MLB</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131715.html#refclass131715" target = "projectFrame"><b>Lexer</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class130179.html#refclass130179" target = "projectFrame"><b>MIPSCGConstants</b></a></td><td>interface</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class130307.html#refclass130307" target = "projectFrame"><b>MIPSCGTriplet</b></a></td><td></td><td>For MIPS code generator. Don't care.<br /><br />@param &lt;T&gt;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class130435.html#refclass130435" target = "projectFrame"><b>MIPSCodeGenerator</b></a></td><td></td><td>This is the MIPS code generator. You only need to know the &lt;b&gt;genCode&lt;/b&gt;<br />method. Read it if you are curious but it is pretty hairy!!</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class130563.html#refclass130563" target = "projectFrame"><b>MIPSRegAlloc</b></a></td><td></td><td>Manage register allocation during assembler code generation.<br /><br />@author Bennet, MLB and others<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class130691.html#refclass130691" target = "projectFrame"><b>MIPSRegDesc</b></a></td><td></td><td>register descriptor for assembler code generation<br /><br />@author Bennet, MLB and others<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129027.html#refclass129027" target = "projectFrame"><b>Operand3a</b></a></td><td></td><td>Abstract class for implementing the TAC operands. This class has the minimal<br />set of attributes for (assembler) code generation. The abstract methods<br />defined in the interface are also necessary for assembler code generation.<br />They might be useful for type checking and TAC generation.<br />&lt;p&gt;<br />The offset attribute is set and used by the machine code generator. It<br />represents the address of the operand relative to the top of the function<br />frame in the execution stack. You don't need it in the frontend.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132995.html#refclass132995" target = "projectFrame"><b>param_list_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133123.html#refclass133123" target = "projectFrame"><b>param_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131971.html#refclass131971" target = "projectFrame"><b>Parser</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132227.html#refclass132227" target = "projectFrame"><b>ParserRuleReturnScope</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134019.html#refclass134019" target = "projectFrame"><b>primary_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134403.html#refclass134403" target = "projectFrame"><b>print_item_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134275.html#refclass134275" target = "projectFrame"><b>print_list_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132355.html#refclass132355" target = "projectFrame"><b>program_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135427.html#refclass135427" target = "projectFrame"><b>program_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132739.html#refclass132739" target = "projectFrame"><b>proto_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134659.html#refclass134659" target = "projectFrame"><b>read_item_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134531.html#refclass134531" target = "projectFrame"><b>read_list_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132099.html#refclass132099" target = "projectFrame"><b>s_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131075.html#refclass131075" target = "projectFrame"><b>SingleScopeTable</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133251.html#refclass133251" target = "projectFrame"><b>statement_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class130819.html#refclass130819" target = "projectFrame"><b>SymbDistrib</b></a></td><td></td><td>A simple new symbol generator for temporaries and labels. It also manages<br />symbols for built-in functions (read/print).</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129411.html#refclass129411" target = "projectFrame"><b>SymbolTable</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class130051.html#refclass130051" target = "projectFrame"><b>TAC</b></a></td><td>enum</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135299.html#refclass135299" target = "projectFrame"><b>TreeParser</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135555.html#refclass135555" target = "projectFrame"><b>TreeRuleReturnScope</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128259.html#refclass128259" target = "projectFrame"><b>Type</b></a></td><td></td><td>Implementation of a generic type object. The type is represented by the type<br />expression: T(t1, ...,tn). An attribute size was added for compiler needs.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132867.html#refclass132867" target = "projectFrame"><b>type_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131203.html#refclass131203" target = "projectFrame"><b>TypeCheck</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132483.html#refclass132483" target = "projectFrame"><b>unit_return</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131331.html#refclass131331" target = "projectFrame"><b>Util</b></a></td><td></td><td>Utility methods for generating error and warning messages, as well as<br />debugging settings. This class contains a status field which is set in the<br />presence of errors and warnings. It also contains a field indicating the<br />current debugging level.<br /><br />All messages here are emitted using the standard error (stderr) or a logger<br />(if the -debug option is used).</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class130947.html#refclass130947" target = "projectFrame"><b>VarSymbol</b></a></td><td></td><td>Symbol for a var Ident or an Array ident. We need name + type + scope in<br />general - type is already an attribute of Operand3a. Notice the param<br />attribute, used to mark an ident as a function argument. The interface<br />methods isParam is necessary for MIPS code generation.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131459.html#refclass131459" target = "projectFrame"><b>VslComp</b></a></td><td></td><td>The main file of the compiler.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131587.html#refclass131587" target = "projectFrame"><b>VSLLexer</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131843.html#refclass131843" target = "projectFrame"><b>VSLParser</b></a></td><td></td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135171.html#refclass135171" target = "projectFrame"><b>VSLTreeParser</b></a></td><td></td><td></td></tr>
+</table>
+</body>
+</html>

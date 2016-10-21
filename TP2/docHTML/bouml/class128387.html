@@ -1,0 +1,37 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class CGInterface</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class CGInterface</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass128387"></a>
+<p>This interface must be implemented for assembly code generation. It defines a<br />contract between TAC and code generator. In order for the code generator to<br />work, a TAC operand must be an Operand3a object and it must answer all the<br />requests defined in this interface. Some of these requests could be useful in<br />the front-end of the compiler. It's your choice.<br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public interface CGInterface </li></ul><p>Directly inherited by : <a href="class129027.html#refclass129027"><b>Operand3a</b></a> </p>
+<p>Artifact : <a href="index.html#refartifact128387"><b>CGInterface</b></a></p>
+<p>Stereotype: interface</p>
+<div class="sub">
+<a name="refoperation129411"></a>
+<table><tr><td><div class="element">Operation <b>isConstInteger</b></div></td></tr></table><p>Test if a TAC operand is an integer literal<br /><br />@return a boolean<br /></p><p>Declaration :</p><ul><li>Uml : + isConstInteger() : boolean</li><li>Java : public boolean isConstInteger()</li></ul><a name="refoperation129539"></a>
+<table><tr><td><div class="element">Operation <b>isVarInteger</b></div></td></tr></table><p>Test if a TAC operand is an integer variable<br /><br />@return a boolean<br /></p><p>Declaration :</p><ul><li>Uml : + isVarInteger() : boolean</li><li>Java : public boolean isVarInteger()</li></ul><a name="refoperation129667"></a>
+<table><tr><td><div class="element">Operation <b>isParam</b></div></td></tr></table><p>Test if a TAC_VAR is a parameter of a function<br /><br />@return a boolean<br /></p><p>Declaration :</p><ul><li>Uml : + isParam() : boolean</li><li>Java : public boolean isParam()</li></ul><a name="refoperation129795"></a>
+<table><tr><td><div class="element">Operation <b>isArray</b></div></td></tr></table><p>Test if a TAC operand is an array<br /><br />@return a boolean<br /></p><p>Declaration :</p><ul><li>Uml : + isArray() : boolean</li><li>Java : public boolean isArray()</li></ul><a name="refoperation129923"></a>
+<table><tr><td><div class="element">Operation <b>isPointer</b></div></td></tr></table><p>Test if a TAC operand is a pointer. When an array is passed as a<br />parameter, the value of the the address is passed to the subroutine. So<br />it is a pointer.<br /><br />@return a boolean<br /></p><p>Declaration :</p><ul><li>Uml : + isPointer() : boolean</li><li>Java : public boolean isPointer()</li></ul><a name="refoperation130051"></a>
+<table><tr><td><div class="element">Operation <b>isLabel</b></div></td></tr></table><p>Test if a TAC operand is a label<br /><br />@return a boolean<br /></p><p>Declaration :</p><ul><li>Uml : + isLabel() : boolean</li><li>Java : public boolean isLabel()</li></ul><a name="refoperation130179"></a>
+<table><tr><td><div class="element">Operation <b>getName3a</b></div></td></tr></table><p>This method must return a printable view of a TAC operand. Variable name<br />for a variable, integer string for an integer. Recall that the TAC name<br />of a function is the associated label!!<br /><br />@return String<br /></p><p>Declaration :</p><ul><li>Uml : + getName3a() : String</li><li>Java : public String getName3a()</li></ul><a name="refoperation130307"></a>
+<table><tr><td><div class="element">Operation <b>getScope</b></div></td></tr></table><p>Returns the scope of a TAC operand if not meaningless. Othewise, should<br />return -1.<br /><br />@return integer<br /></p><p>Declaration :</p><ul><li>Uml : + getScope() : int</li><li>Java : public int getScope()</li></ul><a name="refoperation130435"></a>
+<table><tr><td><div class="element">Operation <b>getSize</b></div></td></tr></table><p>Returns the size (in bytes) of a TAC operand unless meaningless. -1 if<br />not appropriate.<br /><br />@return the size<br /></p><p>Declaration :</p><ul><li>Uml : + getSize() : int</li><li>Java : public int getSize()</li></ul></div>
+<p>All public operations : <a href="class128387.html#refoperation130179"><b>getName3a</b></a> , <a href="class128387.html#refoperation130307"><b>getScope</b></a> , <a href="class128387.html#refoperation130435"><b>getSize</b></a> , <a href="class128387.html#refoperation129795"><b>isArray</b></a> , <a href="class128387.html#refoperation129411"><b>isConstInteger</b></a> , <a href="class128387.html#refoperation130051"><b>isLabel</b></a> , <a href="class128387.html#refoperation129667"><b>isParam</b></a> , <a href="class128387.html#refoperation129923"><b>isPointer</b></a> , <a href="class128387.html#refoperation129539"><b>isVarInteger</b></a> </p>
+</body>
+</html>

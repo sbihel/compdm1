@@ -1,0 +1,30 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class FunctionSymbol</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class FunctionSymbol</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass129283"></a>
+<p>Symbol for functions. In addition to the name, this class has a label<br />attribute. The label associated to a function is the 3a name in CALL and the<br />address in 3a code function definition.<br /><br />@author MLB<br /><br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class FunctionSymbol extends <a href="class129027.html#refclass129027"><b>Operand3a</b></a> </li></ul><p>Artifact : <a href="index.html#refartifact129411"><b>FunctionSymbol</b></a></p>
+<div class="sub">
+<a name="refrelation130435"></a>
+<table><tr><td><div class="element">Relation <b>label (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + label : <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a>, read only</li><li>Java : public final <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> label</li></ul><a name="refoperation136963"></a>
+<table><tr><td><div class="element">Operation <b>FunctionSymbol</b></div></td></tr></table><p>Constructor<br /><br />@param lab<br />           LabelAttribute: the label associated<br />@param t<br />           : a function type handled separately in compilation process<br /></p><p>Declaration :</p><ul><li>Uml : + FunctionSymbol(inout lab : <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a>, inout t : <a href="class129923.html#refclass129923"><b>FunctionType</b></a>) : </li><li>Java : public FunctionSymbol(<a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> lab, <a href="class129923.html#refclass129923"><b>FunctionType</b></a> t)</li></ul><a name="refoperation137091"></a>
+<table><tr><td><div class="element">Operation <b>getScope</b></div></td></tr></table><p>The scope of a function is always zero in VSL+<br /></p><p>Declaration :</p><ul><li>Uml : + getScope() : int</li><li>Java : public int getScope()</li></ul><a name="refoperation137219"></a>
+<table><tr><td><div class="element">Operation <b>getName3a</b></div></td></tr></table><p>Necessary for TAC printing<br /></p><p>Declaration :</p><ul><li>Uml : + getName3a() : String</li><li>Java : public String getName3a()</li></ul></div>
+<p>All public operations : <a href="class128387.html#refoperation130179"><b>getName3a</b></a> , <a href="class129283.html#refoperation137219"><b>getName3a</b></a> , <a href="class129027.html#refoperation134147"><b>getName3a</b></a> , <a href="class129027.html#refoperation133763"><b>getOffset</b></a> , <a href="class128387.html#refoperation130307"><b>getScope</b></a> , <a href="class129283.html#refoperation137091"><b>getScope</b></a> , <a href="class129027.html#refoperation134275"><b>getScope</b></a> , <a href="class128387.html#refoperation130435"><b>getSize</b></a> , <a href="class129027.html#refoperation134403"><b>getSize</b></a> , <a href="class128387.html#refoperation129795"><b>isArray</b></a> , <a href="class129027.html#refoperation134531"><b>isArray</b></a> , <a href="class128387.html#refoperation129411"><b>isConstInteger</b></a> , <a href="class129027.html#refoperation134659"><b>isConstInteger</b></a> , <a href="class128387.html#refoperation130051"><b>isLabel</b></a> , <a href="class129027.html#refoperation134787"><b>isLabel</b></a> , <a href="class128387.html#refoperation129667"><b>isParam</b></a> , <a href="class129027.html#refoperation135171"><b>isParam</b></a> , <a href="class128387.html#refoperation129923"><b>isPointer</b></a> , <a href="class129027.html#refoperation134915"><b>isPointer</b></a> , <a href="class128387.html#refoperation129539"><b>isVarInteger</b></a> , <a href="class129027.html#refoperation135043"><b>isVarInteger</b></a> , <a href="class129027.html#refoperation133635"><b>setOffset</b></a> , <a href="class129027.html#refoperation134019"><b>toString</b></a> </p>
+</body>
+</html>

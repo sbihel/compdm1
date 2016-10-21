@@ -1,0 +1,38 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class VarSymbol</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class VarSymbol</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass130947"></a>
+<p>Symbol for a var Ident or an Array ident. We need name + type + scope in<br />general - type is already an attribute of Operand3a. Notice the param<br />attribute, used to mark an ident as a function argument. The interface<br />methods isParam is necessary for MIPS code generation.<br /><br />@author MLB<br /><br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class VarSymbol extends <a href="class129027.html#refclass129027"><b>Operand3a</b></a> </li></ul><p>Artifact : <a href="index.html#refartifact131075"><b>VarSymbol</b></a></p>
+<div class="sub">
+<a name="refattribute138371"></a>
+<table><tr><td><div class="element">Attribute <b>name</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : + name : String</li><li>Java : public String name</li></ul><a name="refattribute138499"></a>
+<table><tr><td><div class="element">Attribute <b>scope</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : + scope : int</li><li>Java : public int scope</li></ul><a name="refattribute138627"></a>
+<table><tr><td><div class="element">Attribute <b>param</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : + param : boolean</li><li>Java : public boolean param</li></ul><a name="refoperation150403"></a>
+<table><tr><td><div class="element">Operation <b>VarSymbol</b></div></td></tr></table><p>Generic constructor<br /><br />@param t<br />           type (INT or ARRAY)<br />@param n<br />           string: name of the symbol<br />@param sc<br />           int: declaration scope level<br /></p><p>Declaration :</p><ul><li>Uml : + VarSymbol(inout t : <a href="class128259.html#refclass128259"><b>Type</b></a>, in n : String, in sc : int) : </li><li>Java : public VarSymbol(<a href="class128259.html#refclass128259"><b>Type</b></a> t, String n, int sc)</li></ul><a name="refoperation150531"></a>
+<table><tr><td><div class="element">Operation <b>VarSymbol</b></div></td></tr></table><p>Constructor for temporary integer variables (scope is meaningless).<br /><br />@param n<br />           string: name of the id<br /></p><p>Declaration :</p><ul><li>Uml : + VarSymbol(in n : String) : </li><li>Java : public VarSymbol(String n)</li></ul><a name="refoperation150659"></a>
+<table><tr><td><div class="element">Operation <b>getName3a</b></div></td></tr></table><p>for code 3a printing<br /></p><p>Declaration :</p><ul><li>Uml : + getName3a() : String</li><li>Java : public String getName3a()</li></ul><a name="refoperation150787"></a>
+<table><tr><td><div class="element">Operation <b>getScope</b></div></td></tr></table><p>Self explained<br /></p><p>Declaration :</p><ul><li>Uml : + getScope() : int</li><li>Java : public int getScope()</li></ul><a name="refoperation150915"></a>
+<table><tr><td><div class="element">Operation <b>setParam</b></div></td></tr></table><p>Put param attribute to true<br /></p><p>Declaration :</p><ul><li>Uml : + setParam() : void</li><li>Java : public void setParam()</li></ul><a name="refoperation151043"></a>
+<table><tr><td><div class="element">Operation <b>isParam</b></div></td></tr></table><p>MIPS code generator interface only<br /></p><p>Declaration :</p><ul><li>Uml : + isParam() : boolean</li><li>Java : public boolean isParam()</li></ul></div>
+<p>All public operations : <a href="class128387.html#refoperation130179"><b>getName3a</b></a> , <a href="class129027.html#refoperation134147"><b>getName3a</b></a> , <a href="class130947.html#refoperation150659"><b>getName3a</b></a> , <a href="class129027.html#refoperation133763"><b>getOffset</b></a> , <a href="class128387.html#refoperation130307"><b>getScope</b></a> , <a href="class129027.html#refoperation134275"><b>getScope</b></a> , <a href="class130947.html#refoperation150787"><b>getScope</b></a> , <a href="class128387.html#refoperation130435"><b>getSize</b></a> , <a href="class129027.html#refoperation134403"><b>getSize</b></a> , <a href="class128387.html#refoperation129795"><b>isArray</b></a> , <a href="class129027.html#refoperation134531"><b>isArray</b></a> , <a href="class128387.html#refoperation129411"><b>isConstInteger</b></a> , <a href="class129027.html#refoperation134659"><b>isConstInteger</b></a> , <a href="class128387.html#refoperation130051"><b>isLabel</b></a> , <a href="class129027.html#refoperation134787"><b>isLabel</b></a> , <a href="class128387.html#refoperation129667"><b>isParam</b></a> , <a href="class129027.html#refoperation135171"><b>isParam</b></a> , <a href="class130947.html#refoperation151043"><b>isParam</b></a> , <a href="class128387.html#refoperation129923"><b>isPointer</b></a> , <a href="class129027.html#refoperation134915"><b>isPointer</b></a> , <a href="class128387.html#refoperation129539"><b>isVarInteger</b></a> , <a href="class129027.html#refoperation135043"><b>isVarInteger</b></a> , <a href="class129027.html#refoperation133635"><b>setOffset</b></a> , <a href="class130947.html#refoperation150915"><b>setParam</b></a> , <a href="class129027.html#refoperation134019"><b>toString</b></a> </p>
+</body>
+</html>

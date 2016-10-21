@@ -1,0 +1,42 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class Code3a</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class Code3a</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass128515"></a>
+<p>This class implements list of TAC statements. Basically, 3 address code is a<br />list of Inst3a objects. However, in any compiler, it is necessary to allocate<br />some memory for constants of variable size. The most obvious example are<br />string constants. In VSL it is the only constants which need memory<br />allocation. The other constants are integers which are operands in arithmetic<br />expression and have immediate addresses. Consequently, Code3a has two<br />attributes: a list of 3a instructions and a list of Data3a for storing the<br />string constants.<br /><br />@author MLB<br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class Code3a </li></ul><p>Artifact : <a href="index.html#refartifact128515"><b>Code3a</b></a></p>
+<div class="sub">
+<a name="refrelation129155"></a>
+<table><tr><td><div class="element">Relation <b>the_code (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>private static boolean no_error = true;<br /></p><p>Declaration :</p><ul><li>Uml : # the_code : <a href="class128643.html#refclass128643"><b>Inst3a</b></a></li><li>Java : protected List&lt;<a href="class128643.html#refclass128643"><b>Inst3a</b></a>&gt; the_code</li></ul><p>Stereotype: List</p>
+<a name="refrelation129283"></a>
+<table><tr><td><div class="element">Relation <b>the_data (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : # the_data : <a href="class128771.html#refclass128771"><b>Data3a</b></a></li><li>Java : protected List&lt;<a href="class128771.html#refclass128771"><b>Data3a</b></a>&gt; the_data</li></ul><p>Stereotype: List</p>
+<a name="refoperation130563"></a>
+<table><tr><td><div class="element">Operation <b>Code3a</b></div></td></tr></table><p>Creates an empty list of TAC<br /></p><p>Declaration :</p><ul><li>Uml : + Code3a() : </li><li>Java : public Code3a()</li></ul><a name="refoperation130691"></a>
+<table><tr><td><div class="element">Operation <b>Code3a</b></div></td></tr></table><p>Creates a list of TAC with only one statement.<br /></p><p>Declaration :</p><ul><li>Uml : + Code3a(inout i : <a href="class128643.html#refclass128643"><b>Inst3a</b></a>) : </li><li>Java : public Code3a(<a href="class128643.html#refclass128643"><b>Inst3a</b></a> i)</li></ul><a name="refoperation130819"></a>
+<table><tr><td><div class="element">Operation <b>append</b></div></td></tr></table><p>Appends two codes. Lists of instructions are concatenated. The two lists<br />of string constants used in each code are also concatenated.<br /></p><p>Declaration :</p><ul><li>Uml : + append(inout c : <a href="class128515.html#refclass128515"><b>Code3a</b></a>) : void</li><li>Java : public void append(<a href="class128515.html#refclass128515"><b>Code3a</b></a> c)</li></ul><a name="refoperation130947"></a>
+<table><tr><td><div class="element">Operation <b>appendData</b></div></td></tr></table><p>Add a Data3a for storing a string constant<br /></p><p>Declaration :</p><ul><li>Uml : + appendData(inout dat : <a href="class128771.html#refclass128771"><b>Data3a</b></a>) : void</li><li>Java : public void appendData(<a href="class128771.html#refclass128771"><b>Data3a</b></a> dat)</li></ul><a name="refoperation131075"></a>
+<table><tr><td><div class="element">Operation <b>append</b></div></td></tr></table><p>Add a statement at the end of the list of TAC.<br /></p><p>Declaration :</p><ul><li>Uml : + append(inout inst : <a href="class128643.html#refclass128643"><b>Inst3a</b></a>) : void</li><li>Java : public void append(<a href="class128643.html#refclass128643"><b>Inst3a</b></a> inst)</li></ul><a name="refoperation131203"></a>
+<table><tr><td><div class="element">Operation <b>getCode</b></div></td></tr></table><p>To be used by the (machine) code generator<br /><br />@return List&lt;Inst3a&gt; the 3a code<br /></p><p>Declaration :</p><ul><li>Uml : + getCode() : <a href="class128643.html#refclass128643"><b>Inst3a</b></a></li><li>Java : public List&lt;<a href="class128643.html#refclass128643"><b>Inst3a</b></a>&gt; getCode()</li></ul><a name="refoperation131331"></a>
+<table><tr><td><div class="element">Operation <b>isEmpty</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isEmpty() : boolean</li><li>Java : public boolean isEmpty()</li></ul><a name="refoperation131459"></a>
+<table><tr><td><div class="element">Operation <b>print</b></div></td></tr></table><p>Print the 3A code.<br /><br /></p><p>Declaration :</p><ul><li>Uml : + print() : void</li><li>Java : public void print()</li></ul><a name="refoperation131587"></a>
+<table><tr><td><div class="element">Operation <b>print_in_file</b></div></td></tr></table><p>Print the 3A code in a file<br /></p><p>Declaration :</p><ul><li>Uml : + print_in_file(inout fo : FileWriter) : void</li><li>Java : public void print_in_file(FileWriter fo)</li></ul><a name="refoperation131715"></a>
+<table><tr><td><div class="element">Operation <b>toString</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + toString() : String</li><li>Java : public String toString()</li></ul><a name="refrelation137859"></a>
+<table><tr><td><div class="element">Relation <b>&lt;unidirectional association&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="class129027.html#refclass129027"><b>Operand3a</b></a></li><li>Java : private <a href="class129027.html#refclass129027"><b>Operand3a</b></a> </li></ul><a name="refrelation138115"></a>
+<table><tr><td><div class="element">Relation <b>&lt;unidirectional association&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="class128643.html#refclass128643"><b>Inst3a</b></a></li><li>Java : private <a href="class128643.html#refclass128643"><b>Inst3a</b></a> </li></ul></div>
+<p>All public operations : <a href="class128515.html#refoperation131075"><b>append</b></a> , <a href="class128515.html#refoperation130819"><b>append</b></a> , <a href="class128515.html#refoperation130947"><b>appendData</b></a> , <a href="class128515.html#refoperation131203"><b>getCode</b></a> , <a href="class128515.html#refoperation131331"><b>isEmpty</b></a> , <a href="class128515.html#refoperation131459"><b>print</b></a> , <a href="class128515.html#refoperation131587"><b>print_in_file</b></a> , <a href="class128515.html#refoperation131715"><b>toString</b></a> </p>
+</body>
+</html>

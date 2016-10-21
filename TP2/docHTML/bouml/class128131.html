@@ -1,0 +1,33 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class ArrayType</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class ArrayType</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass128131"></a>
+<p>Type for arrays (currently, only integer arrays). Includes the underlying<br />array type and the length of the array (necessary to compute its size in<br />memory).<br /><br />@author MLB<br /><br /></p>
+<p>Declaration :</p><ul>
+<li>Java : package class ArrayType extends <a href="class128259.html#refclass128259"><b>Type</b></a> </li></ul><p>Artifact : <a href="index.html#refartifact128259"><b>ArrayType</b></a></p>
+<div class="sub">
+<a name="refattribute128387"></a>
+<table><tr><td><div class="element">Attribute <b>length</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - length : int</li><li>Java : private int length</li></ul><a name="refrelation129027"></a>
+<table><tr><td><div class="element">Relation <b>type (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : - type : <a href="class128259.html#refclass128259"><b>Type</b></a></li><li>Java : private <a href="class128259.html#refclass128259"><b>Type</b></a> type</li></ul><a name="refoperation128899"></a>
+<table><tr><td><div class="element">Operation <b>ArrayType</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + ArrayType(inout t : <a href="class128259.html#refclass128259"><b>Type</b></a>, in l : int) : </li><li>Java : public ArrayType(<a href="class128259.html#refclass128259"><b>Type</b></a> t, int l)</li></ul><a name="refoperation129027"></a>
+<table><tr><td><div class="element">Operation <b>getLength</b></div></td></tr></table><p>Returns the dimension of this array (used only for code generation).<br /></p><p>Declaration :</p><ul><li>Uml : + getLength() : int</li><li>Java : public int getLength()</li></ul><a name="refoperation129155"></a>
+<table><tr><td><div class="element">Operation <b>isCompatible</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isCompatible(inout t : <a href="class128259.html#refclass128259"><b>Type</b></a>) : boolean</li><li>Java : public boolean isCompatible(<a href="class128259.html#refclass128259"><b>Type</b></a> t)</li></ul><p> Java annotation(s) :<ul>@Override<br /></ul><a name="refoperation129283"></a>
+<table><tr><td><div class="element">Operation <b>toString</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + toString() : String</li><li>Java : public String toString()</li></ul><p> Java annotation(s) :<ul>@Override<br /></ul></div>
+<p>All public operations : <a href="class128259.html#refoperation128643"><b>equals</b></a> , <a href="class128131.html#refoperation129027"><b>getLength</b></a> , <a href="class128259.html#refoperation128259"><b>getSize</b></a> , <a href="class128259.html#refoperation128771"><b>hashCode</b></a> , <a href="class128131.html#refoperation129155"><b>isCompatible</b></a> , <a href="class128259.html#refoperation128387"><b>isCompatible</b></a> , <a href="class128131.html#refoperation129283"><b>toString</b></a> , <a href="class128259.html#refoperation128515"><b>toString</b></a> </p>
+</body>
+</html>

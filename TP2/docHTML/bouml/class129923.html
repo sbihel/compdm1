@@ -1,0 +1,38 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class FunctionType</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class FunctionType</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass129923"></a>
+<p>The type of a function is composed of a return type plus a list of types for<br />its arguments (empty if none). It also has a field "prototype" indicating<br />whether this represents a prototype declaration (without body) or a function<br />definition (with body).<br /><br />@author MLB<br /><br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class FunctionType extends <a href="class128259.html#refclass128259"><b>Type</b></a> </li></ul><p>Artifact : <a href="index.html#refartifact129539"><b>FunctionType</b></a></p>
+<div class="sub">
+<a name="refattribute128899"></a>
+<table><tr><td><div class="element">Attribute <b>prototype</b></div></td></tr></table>
+<p>True if this is a prototype declaration, false if this is a function<br />definition.<br /><br /></p><p>Declaration :</p><ul><li>Uml : + prototype : boolean, read only</li><li>Java : public final boolean prototype</li></ul><a name="refrelation130691"></a>
+<table><tr><td><div class="element">Relation <b>returnType (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : - returnType : <a href="class128259.html#refclass128259"><b>Type</b></a></li><li>Java : private <a href="class128259.html#refclass128259"><b>Type</b></a> returnType</li></ul><a name="refrelation130819"></a>
+<table><tr><td><div class="element">Relation <b>arguments (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : - arguments : <a href="class128259.html#refclass128259"><b>Type</b></a> =  new LinkedList&lt;Type&gt;()</li><li>Java : private List&lt;<a href="class128259.html#refclass128259"><b>Type</b></a>&gt; arguments</li></ul><p>Stereotype: List</p>
+<a name="refoperation137347"></a>
+<table><tr><td><div class="element">Operation <b>FunctionType</b></div></td></tr></table><p>Creates a new function type with the given return type and whether it is<br />a prototype declaration or a function definition.<br /><br />@param returnType<br />           Return type of the function<br />@param prototype<br />           True iff this is a prototype declaration (instead of a<br />           function definition)<br /></p><p>Declaration :</p><ul><li>Uml : + FunctionType(inout returnType : <a href="class128259.html#refclass128259"><b>Type</b></a>, inout prototype : boolean) : </li><li>Java : public FunctionType(<a href="class128259.html#refclass128259"><b>Type</b></a> returnType, boolean prototype)</li></ul><a name="refoperation137475"></a>
+<table><tr><td><div class="element">Operation <b>FunctionType</b></div></td></tr></table><p>Creates a new function type indifferent of prototype/function status<br />(used to check function calls).<br /><br />@param returnType<br />           Return type of the function<br /></p><p>Declaration :</p><ul><li>Uml : + FunctionType(inout returnType : <a href="class128259.html#refclass128259"><b>Type</b></a>) : </li><li>Java : public FunctionType(<a href="class128259.html#refclass128259"><b>Type</b></a> returnType)</li></ul><a name="refoperation137603"></a>
+<table><tr><td><div class="element">Operation <b>getReturnType</b></div></td></tr></table><p>Returns the return type of this function (it can be VOID).<br /><br />@return the return type of this function (it can be VOID).<br /></p><p>Declaration :</p><ul><li>Uml : + getReturnType() : <a href="class128259.html#refclass128259"><b>Type</b></a></li><li>Java : public <a href="class128259.html#refclass128259"><b>Type</b></a> getReturnType()</li></ul><a name="refoperation137731"></a>
+<table><tr><td><div class="element">Operation <b>getArguments</b></div></td></tr></table><p>Returns the list of argument types of this function (without the return<br />type).<br /><br />@return the list of argument types of this function.<br /></p><p>Declaration :</p><ul><li>Uml : + getArguments() : <a href="class128259.html#refclass128259"><b>Type</b></a></li><li>Java : public List&lt;<a href="class128259.html#refclass128259"><b>Type</b></a>&gt; getArguments()</li></ul><a name="refoperation137859"></a>
+<table><tr><td><div class="element">Operation <b>extend</b></div></td></tr></table><p>Extend the arity of this function type, from f(t1, ..., tn) to f(t1, ...,<br />tn, t).<br /><br />Use this when iteratively constructing the entire type of a function<br />call.<br /><br />@param t<br />           the new argument type to be added.<br /></p><p>Declaration :</p><ul><li>Uml : + extend(inout t : <a href="class128259.html#refclass128259"><b>Type</b></a>) : void</li><li>Java : public void extend(<a href="class128259.html#refclass128259"><b>Type</b></a> t)</li></ul><a name="refoperation137987"></a>
+<table><tr><td><div class="element">Operation <b>isCompatible</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isCompatible(inout t : <a href="class128259.html#refclass128259"><b>Type</b></a>) : boolean</li><li>Java : public boolean isCompatible(<a href="class128259.html#refclass128259"><b>Type</b></a> t)</li></ul><p> Java annotation(s) :<ul>@Override<br /></ul><a name="refoperation138115"></a>
+<table><tr><td><div class="element">Operation <b>toString</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + toString() : String</li><li>Java : public String toString()</li></ul><p> Java annotation(s) :<ul>@Override<br /></ul></div>
+<p>All public operations : <a href="class128259.html#refoperation128643"><b>equals</b></a> , <a href="class129923.html#refoperation137859"><b>extend</b></a> , <a href="class129923.html#refoperation137731"><b>getArguments</b></a> , <a href="class129923.html#refoperation137603"><b>getReturnType</b></a> , <a href="class128259.html#refoperation128259"><b>getSize</b></a> , <a href="class128259.html#refoperation128771"><b>hashCode</b></a> , <a href="class129923.html#refoperation137987"><b>isCompatible</b></a> , <a href="class128259.html#refoperation128387"><b>isCompatible</b></a> , <a href="class129923.html#refoperation138115"><b>toString</b></a> , <a href="class128259.html#refoperation128515"><b>toString</b></a> </p>
+</body>
+</html>

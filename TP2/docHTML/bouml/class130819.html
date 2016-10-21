@@ -1,0 +1,41 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class SymbDistrib</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class SymbDistrib</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass130819"></a>
+<p>A simple new symbol generator for temporaries and labels. It also manages<br />symbols for built-in functions (read/print).<br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class SymbDistrib </li></ul><p>Artifact : <a href="index.html#refartifact130563"><b>SymbDistrib</b></a></p>
+<div class="sub">
+<a name="refattribute137603"></a>
+<table><tr><td><div class="element">Attribute <b>noTemp</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, - noTemp : int =  0</li><li>Java : private static int noTemp</li></ul><a name="refattribute137731"></a>
+<table><tr><td><div class="element">Attribute <b>noLabel</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, - noLabel : int =  10</li><li>Java : private static int noLabel</li></ul><a name="refoperation145923"></a>
+<table><tr><td><div class="element">Operation <b>newTemp</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + newTemp() : <a href="class130947.html#refclass130947"><b>VarSymbol</b></a></li><li>Java : public static <a href="class130947.html#refclass130947"><b>VarSymbol</b></a> newTemp()</li></ul><a name="refoperation146051"></a>
+<table><tr><td><div class="element">Operation <b>newLabel</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + newLabel() : <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a></li><li>Java : public static <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> newLabel()</li></ul><a name="refrelation132355"></a>
+<table><tr><td><div class="element">Relation <b>builtinPrintN (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>The label of the built-in function printN (print integer).<br /><br /><br /></p><p>Declaration :</p><ul><li>Uml : static, + builtinPrintN : <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> =  new LabelSymbol("L2"), read only</li><li>Java : public static final <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> builtinPrintN</li></ul><a name="refrelation132483"></a>
+<table><tr><td><div class="element">Relation <b>builtinPrintS (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>The label of the built-in function printS (print string).<br /><br /><br /></p><p>Declaration :</p><ul><li>Uml : static, + builtinPrintS : <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> =  new LabelSymbol("L4"), read only</li><li>Java : public static final <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> builtinPrintS</li></ul><a name="refrelation132611"></a>
+<table><tr><td><div class="element">Relation <b>builtinRead (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>The label of the built-in function read (to read integers).<br /><br /><br /></p><p>Declaration :</p><ul><li>Uml : static, + builtinRead : <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> =  new LabelSymbol("L8"), read only</li><li>Java : public static final <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> builtinRead</li></ul><a name="refattribute183043"></a>
+<table><tr><td><div class="element">Attribute <b>_builtinPrintS</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - _builtinPrintS : </li><li>Java : private  _builtinPrintS</li></ul><a name="refattribute183171"></a>
+<table><tr><td><div class="element">Attribute <b>_builtinPrintN</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - _builtinPrintN : </li><li>Java : private  _builtinPrintN</li></ul><a name="refattribute183299"></a>
+<table><tr><td><div class="element">Attribute <b>_builtinRead</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - _builtinRead : </li><li>Java : private  _builtinRead</li></ul></div>
+<p>All public operations : <a href="class130819.html#refoperation146051"><b>newLabel</b></a> , <a href="class130819.html#refoperation145923"><b>newTemp</b></a> </p>
+</body>
+</html>

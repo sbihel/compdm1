@@ -1,0 +1,38 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class MIPSRegDesc</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class MIPSRegDesc</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass130691"></a>
+<p>register descriptor for assembler code generation<br /><br />@author Bennet, MLB and others<br /><br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class MIPSRegDesc implements <a href="class130179.html#refclass130179"><b>MIPSCGConstants</b></a> </li></ul><p>Artifact : <a href="index.html#refartifact130435"><b>MIPSRegDesc</b></a></p>
+<div class="sub">
+<a name="refrelation132227"></a>
+<table><tr><td><div class="element">Relation <b>memory (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : - memory : <a href="class129027.html#refclass129027"><b>Operand3a</b></a></li><li>Java : private <a href="class129027.html#refclass129027"><b>Operand3a</b></a> memory</li></ul><a name="refattribute137347"></a>
+<table><tr><td><div class="element">Attribute <b>modified</b></div></td></tr></table>
+<p>memory associated with register<br /></p><p>Declaration :</p><ul><li>Uml : - modified : boolean</li><li>Java : private boolean modified</li></ul><a name="refattribute137475"></a>
+<table><tr><td><div class="element">Attribute <b>regNumber</b></div></td></tr></table>
+<p>true if the content of memory is different from those of the register<br /></p><p>Declaration :</p><ul><li>Uml : - regNumber : int</li><li>Java : private int regNumber</li></ul><a name="refoperation145027"></a>
+<table><tr><td><div class="element">Operation <b>MIPSRegDesc</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + MIPSRegDesc(in regNumber : int) : </li><li>Java : public MIPSRegDesc(int regNumber)</li></ul><a name="refoperation145155"></a>
+<table><tr><td><div class="element">Operation <b>getMemory</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getMemory() : <a href="class129027.html#refclass129027"><b>Operand3a</b></a></li><li>Java : public <a href="class129027.html#refclass129027"><b>Operand3a</b></a> getMemory()</li></ul><a name="refoperation145283"></a>
+<table><tr><td><div class="element">Operation <b>getModif</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getModif() : boolean</li><li>Java : public boolean getModif()</li></ul><a name="refoperation145411"></a>
+<table><tr><td><div class="element">Operation <b>getRegNumber</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getRegNumber() : int</li><li>Java : public int getRegNumber()</li></ul><a name="refoperation145539"></a>
+<table><tr><td><div class="element">Operation <b>clear</b></div></td></tr></table><p>if cleared, the register is no more associated with a variable<br /></p><p>Declaration :</p><ul><li>Uml : + clear() : void</li><li>Java : public void clear()</li></ul><a name="refoperation145667"></a>
+<table><tr><td><div class="element">Operation <b>spill</b></div></td></tr></table><p>dump the register content in the associated memory, if different<br /></p><p>Declaration :</p><ul><li>Uml : + spill(in n : int, inout out : PrintStream) : void</li><li>Java : public void spill(int n, PrintStream out)</li></ul><a name="refoperation145795"></a>
+<table><tr><td><div class="element">Operation <b>set</b></div></td></tr></table><p>set the attributes<br /></p><p>Declaration :</p><ul><li>Uml : + set(inout mem : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout mod : boolean) : void</li><li>Java : public void set(<a href="class129027.html#refclass129027"><b>Operand3a</b></a> mem, boolean mod)</li></ul></div>
+<p>All public operations : <a href="class130691.html#refoperation145539"><b>clear</b></a> , <a href="class130691.html#refoperation145155"><b>getMemory</b></a> , <a href="class130691.html#refoperation145283"><b>getModif</b></a> , <a href="class130691.html#refoperation145411"><b>getRegNumber</b></a> , <a href="class130691.html#refoperation145795"><b>set</b></a> , <a href="class130691.html#refoperation145667"><b>spill</b></a> </p>
+</body>
+</html>

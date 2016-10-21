@@ -1,0 +1,44 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class Operand3a</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class Operand3a</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass129027"></a>
+<p>Abstract class for implementing the TAC operands. This class has the minimal<br />set of attributes for (assembler) code generation. The abstract methods<br />defined in the interface are also necessary for assembler code generation.<br />They might be useful for type checking and TAC generation.<br />&lt;p&gt;<br />The offset attribute is set and used by the machine code generator. It<br />represents the address of the operand relative to the top of the function<br />frame in the execution stack. You don't need it in the frontend.<br /><br />@author MLB<br /><br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public abstract class Operand3a implements <a href="class128387.html#refclass128387"><b>CGInterface</b></a> </li></ul><p>Directly inherited by : <a href="class129539.html#refclass129539"><b>ConstSymbol</b></a> <a href="class129283.html#refclass129283"><b>FunctionSymbol</b></a> <a href="class129667.html#refclass129667"><b>LabelSymbol</b></a> <a href="class130947.html#refclass130947"><b>VarSymbol</b></a> </p>
+<p>Artifact : <a href="index.html#refartifact128771"><b>Operand3a</b></a></p>
+<div class="sub">
+<a name="refrelation129539"></a>
+<table><tr><td><div class="element">Relation <b>type (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + type : <a href="class128259.html#refclass128259"><b>Type</b></a>, read only</li><li>Java : public final <a href="class128259.html#refclass128259"><b>Type</b></a> type</li></ul><a name="refattribute128515"></a>
+<table><tr><td><div class="element">Attribute <b>offset</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - offset : int</li><li>Java : private int offset</li></ul><a name="refoperation133635"></a>
+<table><tr><td><div class="element">Operation <b>setOffset</b></div></td></tr></table><p>set the address of the operand<br /><br />@param off<br />           int<br /></p><p>Declaration :</p><ul><li>Uml : + setOffset(in off : int) : void</li><li>Java : public void setOffset(int off)</li></ul><a name="refoperation133763"></a>
+<table><tr><td><div class="element">Operation <b>getOffset</b></div></td></tr></table><p>returns the address of the operand.<br /><br />@return the address<br /></p><p>Declaration :</p><ul><li>Uml : + getOffset() : int</li><li>Java : public int getOffset()</li></ul><a name="refoperation133891"></a>
+<table><tr><td><div class="element">Operation <b>Operand3a</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + Operand3a(inout t : <a href="class128259.html#refclass128259"><b>Type</b></a>) : </li><li>Java : public Operand3a(<a href="class128259.html#refclass128259"><b>Type</b></a> t)</li></ul><a name="refoperation134019"></a>
+<table><tr><td><div class="element">Operation <b>toString</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + toString() : String</li><li>Java : public String toString()</li></ul><a name="refoperation134147"></a>
+<table><tr><td><div class="element">Operation <b>getName3a</b></div></td></tr></table><p>Must be overridden by subclasses<br /></p><p>Declaration :</p><ul><li>Uml : abstract, + getName3a() : String</li><li>Java : public abstract String getName3a()</li></ul><a name="refoperation134275"></a>
+<table><tr><td><div class="element">Operation <b>getScope</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getScope() : int</li><li>Java : public int getScope()</li></ul><a name="refoperation134403"></a>
+<table><tr><td><div class="element">Operation <b>getSize</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + getSize() : int</li><li>Java : public int getSize()</li></ul><a name="refoperation134531"></a>
+<table><tr><td><div class="element">Operation <b>isArray</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isArray() : boolean</li><li>Java : public boolean isArray()</li></ul><a name="refoperation134659"></a>
+<table><tr><td><div class="element">Operation <b>isConstInteger</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isConstInteger() : boolean</li><li>Java : public boolean isConstInteger()</li></ul><a name="refoperation134787"></a>
+<table><tr><td><div class="element">Operation <b>isLabel</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isLabel() : boolean</li><li>Java : public boolean isLabel()</li></ul><a name="refoperation134915"></a>
+<table><tr><td><div class="element">Operation <b>isPointer</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isPointer() : boolean</li><li>Java : public boolean isPointer()</li></ul><a name="refoperation135043"></a>
+<table><tr><td><div class="element">Operation <b>isVarInteger</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isVarInteger() : boolean</li><li>Java : public boolean isVarInteger()</li></ul><a name="refoperation135171"></a>
+<table><tr><td><div class="element">Operation <b>isParam</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + isParam() : boolean</li><li>Java : public boolean isParam()</li></ul><a name="refrelation138499"></a>
+<table><tr><td><div class="element">Relation <b>&lt;composition&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="class129411.html#refclass129411"><b>SymbolTable</b></a></li><li>Java : private <a href="class129411.html#refclass129411"><b>SymbolTable</b></a> </li></ul></div>
+<p>All public operations : <a href="class128387.html#refoperation130179"><b>getName3a</b></a> , <a href="class129027.html#refoperation134147"><b>getName3a</b></a> , <a href="class129027.html#refoperation133763"><b>getOffset</b></a> , <a href="class128387.html#refoperation130307"><b>getScope</b></a> , <a href="class129027.html#refoperation134275"><b>getScope</b></a> , <a href="class128387.html#refoperation130435"><b>getSize</b></a> , <a href="class129027.html#refoperation134403"><b>getSize</b></a> , <a href="class128387.html#refoperation129795"><b>isArray</b></a> , <a href="class129027.html#refoperation134531"><b>isArray</b></a> , <a href="class128387.html#refoperation129411"><b>isConstInteger</b></a> , <a href="class129027.html#refoperation134659"><b>isConstInteger</b></a> , <a href="class128387.html#refoperation130051"><b>isLabel</b></a> , <a href="class129027.html#refoperation134787"><b>isLabel</b></a> , <a href="class128387.html#refoperation129667"><b>isParam</b></a> , <a href="class129027.html#refoperation135171"><b>isParam</b></a> , <a href="class128387.html#refoperation129923"><b>isPointer</b></a> , <a href="class129027.html#refoperation134915"><b>isPointer</b></a> , <a href="class128387.html#refoperation129539"><b>isVarInteger</b></a> , <a href="class129027.html#refoperation135043"><b>isVarInteger</b></a> , <a href="class129027.html#refoperation133635"><b>setOffset</b></a> , <a href="class129027.html#refoperation134019"><b>toString</b></a> </p>
+</body>
+</html>

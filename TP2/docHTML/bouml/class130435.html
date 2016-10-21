@@ -1,0 +1,81 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class MIPSCodeGenerator</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class MIPSCodeGenerator</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass130435"></a>
+<p>This is the MIPS code generator. You only need to know the &lt;b&gt;genCode&lt;/b&gt;<br />method. Read it if you are curious but it is pretty hairy!!<br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class MIPSCodeGenerator implements <a href="class130179.html#refclass130179"><b>MIPSCGConstants</b></a> </li></ul><p>Artifact : <a href="index.html#refartifact130179"><b>MIPSCodeGenerator</b></a></p>
+<div class="sub">
+<a name="refattribute133763"></a>
+<table><tr><td><div class="element">Attribute <b>nachos</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, ~ nachos : boolean =  true</li><li>Java : package static boolean nachos</li></ul><a name="refattribute133891"></a>
+<table><tr><td><div class="element">Attribute <b>debugCG</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, ~ debugCG : boolean =  false</li><li>Java : package static boolean debugCG</li></ul><a name="refrelation131715"></a>
+<table><tr><td><div class="element">Relation <b>regalloc (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : - regalloc : <a href="class130563.html#refclass130563"><b>MIPSRegAlloc</b></a></li><li>Java : private <a href="class130563.html#refclass130563"><b>MIPSRegAlloc</b></a> regalloc</li></ul><a name="refattribute134019"></a>
+<table><tr><td><div class="element">Attribute <b>topOfStack</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - topOfStack : int</li><li>Java : private int topOfStack</li></ul><a name="refattribute134147"></a>
+<table><tr><td><div class="element">Attribute <b>nextArgMIPS</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - nextArgMIPS : int</li><li>Java : private int nextArgMIPS</li></ul><a name="refattribute134275"></a>
+<table><tr><td><div class="element">Attribute <b>nextArgCallMIPS</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - nextArgCallMIPS : int</li><li>Java : private int nextArgCallMIPS</li></ul><a name="refattribute134403"></a>
+<table><tr><td><div class="element">Attribute <b>beginFunction</b></div></td></tr></table>
+<p>/-----------------------<br /> / add for function<br /> /-----------------------<br /></p><p>Declaration :</p><ul><li>Uml : - beginFunction : boolean =  true</li><li>Java : private boolean beginFunction</li></ul><a name="refattribute134531"></a>
+<table><tr><td><div class="element">Attribute <b>currentFunctionLabel</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - currentFunctionLabel : String =  ""</li><li>Java : private String currentFunctionLabel</li></ul><a name="refattribute134659"></a>
+<table><tr><td><div class="element">Attribute <b>out</b></div></td></tr></table>
+<p>/-----------------------<br /><br />This is the output stream where the generated assembly code is directed<br />to.<br /><br /></p><p>Declaration :</p><ul><li>Uml : - out : PrintStream</li><li>Java : private PrintStream out</li></ul><a name="refoperation140291"></a>
+<table><tr><td><div class="element">Operation <b>MIPSCodeGenerator</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + MIPSCodeGenerator(inout out : PrintStream) : </li><li>Java : public MIPSCodeGenerator(PrintStream out)</li></ul><a name="refattribute134787"></a>
+<table><tr><td><div class="element">Attribute <b>StackInformation</b></div></td></tr></table>
+<p>size of the stack frame of each function without arguments<br /></p><p>Declaration :</p><ul><li>Uml : ~ StackInformation : String, Integer =  new HashMap&lt;String, Integer&gt;()</li><li>Java : package Map&lt;String, Integer&gt; StackInformation</li></ul><p>Stereotype: Map</p>
+<a name="refattribute134915"></a>
+<table><tr><td><div class="element">Attribute <b>CalleeInformation</b></div></td></tr></table>
+<p>number of argument of each callee<br /></p><p>Declaration :</p><ul><li>Uml : ~ CalleeInformation : String, Integer =  new HashMap&lt;String, Integer&gt;()</li><li>Java : package Map&lt;String, Integer&gt; CalleeInformation</li></ul><p>Stereotype: Map</p>
+<a name="refattribute135043"></a>
+<table><tr><td><div class="element">Attribute <b>CallerInformation</b></div></td></tr></table>
+<p>max number of arguments gives to callees by each caller<br /></p><p>Declaration :</p><ul><li>Uml : ~ CallerInformation : String, Integer =  new HashMap&lt;String, Integer&gt;()</li><li>Java : package Map&lt;String, Integer&gt; CallerInformation</li></ul><p>Stereotype: Map</p>
+<a name="refattribute135171"></a>
+<table><tr><td><div class="element">Attribute <b>functionStackSize</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - functionStackSize : int =  0</li><li>Java : private int functionStackSize</li></ul><a name="refattribute135299"></a>
+<table><tr><td><div class="element">Attribute <b>beginCurrentFunction</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - beginCurrentFunction : boolean =  true</li><li>Java : private boolean beginCurrentFunction</li></ul><a name="refattribute135427"></a>
+<table><tr><td><div class="element">Attribute <b>functionName</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - functionName : String =  ""</li><li>Java : private String functionName</li></ul><a name="refattribute135555"></a>
+<table><tr><td><div class="element">Attribute <b>nbMaxArgFunctionCaller</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - nbMaxArgFunctionCaller : int =  0</li><li>Java : private int nbMaxArgFunctionCaller</li></ul><a name="refattribute135683"></a>
+<table><tr><td><div class="element">Attribute <b>nbArgFunctionCallee</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - nbArgFunctionCallee : int =  0</li><li>Java : private int nbArgFunctionCallee</li></ul><a name="refoperation140419"></a>
+<table><tr><td><div class="element">Operation <b>firstAnalysis</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : - firstAnalysis(inout inst : <a href="class128643.html#refclass128643"><b>Inst3a</b></a>) : void,  exceptions : IOException</li><li>Java : private void firstAnalysis(<a href="class128643.html#refclass128643"><b>Inst3a</b></a> inst) throws IOException</li></ul><a name="refoperation140547"></a>
+<table><tr><td><div class="element">Operation <b>genCode</b></div></td></tr></table><p>This method generates code for a whole three address code fragment. The<br />resulting assembly code is emitted on the data output stream.<br /><br />@param c<br />           : Code 3a to be translated<br /></p><p>Declaration :</p><ul><li>Uml : + genCode(inout c : <a href="class128515.html#refclass128515"><b>Code3a</b></a>) : void,  exceptions : IOException</li><li>Java : public void genCode(<a href="class128515.html#refclass128515"><b>Code3a</b></a> c) throws IOException</li></ul><a name="refattribute135811"></a>
+<table><tr><td><div class="element">Attribute <b>nbMaxarg</b></div></td></tr></table>
+<p>max number of argument of callee<br /></p><p>Declaration :</p><ul><li>Uml : - nbMaxarg : int =  0</li><li>Java : private int nbMaxarg</li></ul><a name="refattribute135939"></a>
+<table><tr><td><div class="element">Attribute <b>sizeLocal</b></div></td></tr></table>
+<p>number of local + temporaries<br /></p><p>Declaration :</p><ul><li>Uml : - sizeLocal : int =  0</li><li>Java : private int sizeLocal</li></ul><a name="refattribute136067"></a>
+<table><tr><td><div class="element">Attribute <b>stackSize</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - stackSize : int =  0</li><li>Java : private int stackSize</li></ul><a name="refoperation140675"></a>
+<table><tr><td><div class="element">Operation <b>genCodeMIPS</b></div></td></tr></table><p>This method generates code for a simple instruction. The resulting<br />assembly code is emitted on the data output stream.<br /><br />@param inst<br /></p><p>Declaration :</p><ul><li>Uml : - genCodeMIPS(inout inst : <a href="class128643.html#refclass128643"><b>Inst3a</b></a>) : void,  exceptions : IOException</li><li>Java : private void genCodeMIPS(<a href="class128643.html#refclass128643"><b>Inst3a</b></a> inst) throws IOException</li></ul><a name="refoperation140803"></a>
+<table><tr><td><div class="element">Operation <b>genCodeMIPSBinaryOp</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : - genCodeMIPSBinaryOp(in inst : String, inout dest : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout op1 : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout op2 : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>) : void,  exceptions : IOException</li><li>Java : private void genCodeMIPSBinaryOp(String inst, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> dest, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> op1, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> op2) throws IOException</li></ul><a name="refoperation140931"></a>
+<table><tr><td><div class="element">Operation <b>cg_negMIPS</b></div></td></tr></table><p>generate code for unary neg operator a := - b.<br /><br />MIPS: neg $dest,$src<br /></p><p>Declaration :</p><ul><li>Uml : - cg_negMIPS(inout a : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout b : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>) : void</li><li>Java : private void cg_negMIPS(<a href="class129027.html#refclass129027"><b>Operand3a</b></a> a, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> b)</li></ul><a name="refoperation141059"></a>
+<table><tr><td><div class="element">Operation <b>cg_copyMIPS</b></div></td></tr></table><p>Generate code for a copy instruction a := b We load b into an register,<br />then update the descriptors to indicate that a is also in that register.<br />We need not do the store until the register is spilled or flushed.<br /><br />@param a<br />@param b<br /></p><p>Declaration :</p><ul><li>Uml : - cg_copyMIPS(inout a : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout b : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>) : void</li><li>Java : private void cg_copyMIPS(<a href="class129027.html#refclass129027"><b>Operand3a</b></a> a, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> b)</li></ul><a name="refoperation141187"></a>
+<table><tr><td><div class="element">Operation <b>cg_condMIPS</b></div></td></tr></table><p>Generate for "goto", "ifz" or "ifnz". We must spill registers before the<br />branch. In the case of unconditional goto we have no condition, and so<br />"a" is NULL. We set the condition flags if necessary by explicitly<br />loading "a" into a register to ensure the zero flag is set. A better<br />approach would be to keep track of what is in the status register, so<br />saving this load.<br /></p><p>Declaration :</p><ul><li>Uml : - cg_condMIPS(in op : String, inout a : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout label : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>) : void</li><li>Java : private void cg_condMIPS(String op, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> a, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> label)</li></ul><a name="refoperation141315"></a>
+<table><tr><td><div class="element">Operation <b>cg_varMIPS</b></div></td></tr></table><p>Allocate 4*sizeof(var) bytes on top of stack<br /></p><p>Declaration :</p><ul><li>Uml : - cg_varMIPS(inout var : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, in offset : int) : int</li><li>Java : private int cg_varMIPS(<a href="class129027.html#refclass129027"><b>Operand3a</b></a> var, int offset)</li></ul><a name="refoperation141443"></a>
+<table><tr><td><div class="element">Operation <b>tab_addressMIPS</b></div></td></tr></table><p>We compute the address of the array element tab[indice]. If tab is a<br />local array its address is R_STACK+offset+indice. If it is a pointer, its<br />address is tab+indice. indice is the offset from the beginning of the<br />array<br /></p><p>Declaration :</p><ul><li>Uml : - tab_addressMIPS(inout tab : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout indice : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>) : int</li><li>Java : private int tab_addressMIPS(<a href="class129027.html#refclass129027"><b>Operand3a</b></a> tab, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> indice)</li></ul><a name="refoperation141571"></a>
+<table><tr><td><div class="element">Operation <b>cg_vartabMIPS</b></div></td></tr></table><p>assignments using indice adressing<br /><br /> tab[indice]=val<br /></p><p>Declaration :</p><ul><li>Uml : - cg_vartabMIPS(inout tab : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout indice : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout val : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>) : void</li><li>Java : private void cg_vartabMIPS(<a href="class129027.html#refclass129027"><b>Operand3a</b></a> tab, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> indice, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> val)</li></ul><a name="refoperation141699"></a>
+<table><tr><td><div class="element">Operation <b>cg_tabvarMIPS</b></div></td></tr></table><p>var=tab[indice]<br /></p><p>Declaration :</p><ul><li>Uml : - cg_tabvarMIPS(inout var : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout tab : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>, inout indice : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>) : void</li><li>Java : private void cg_tabvarMIPS(<a href="class129027.html#refclass129027"><b>Operand3a</b></a> var, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> tab, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> indice)</li></ul><a name="refoperation141827"></a>
+<table><tr><td><div class="element">Operation <b>cg_constMIPS</b></div></td></tr></table><p>This routine is used to create the constant area in memory<br /></p><p>Declaration :</p><ul><li>Uml : - cg_constMIPS(inout suite : List&lt;Data3a&gt;) : void</li><li>Java : private void cg_constMIPS(List&lt;Data3a&gt; suite)</li></ul></div>
+<p>All public operations : <a href="class130435.html#refoperation140547"><b>genCode</b></a> </p>
+</body>
+</html>

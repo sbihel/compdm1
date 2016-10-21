@@ -1,0 +1,45 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>D</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">D</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<table>
+<tr bgcolor=#f0f0f0><td align=center><b>Name</b></td><td align=center><b>Kind</b></td><td align=center><b>Description</b></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation135555" target = "projectFrame"><b>Data3a</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128771.html#refclass128771" target = "projectFrame"><b>Data3a</b></a></td><td>class</td><td>Class for implementing initialized constants. The only constants in VSL are<br />character strings. A label must be associated to its textual content and is<br />used as the name of the text in three-address code. So the class is simple:<br />it contains the label and its text.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refartifact129027" target = "projectFrame"><b>Data3a</b></a></td><td>artifact</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute133891" target = "projectFrame"><b>debugCG</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute148483" target = "projectFrame"><b>DECL</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute171395" target = "projectFrame"><b>DECL</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation163075" target = "projectFrame"><b>decl_item</b></a></td><td>operation</td><td> $ANTLR start "decl_item"<br /> ./src/VSLParser.g:124:1: decl_item : ( IDENT | IDENT LB INTEGER RB -&gt; ^( ARDECL IDENT INTEGER ) );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135043.html#refclass135043" target = "projectFrame"><b>decl_item_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation162819" target = "projectFrame"><b>decl_list</b></a></td><td>operation</td><td> $ANTLR start "decl_list"<br /> ./src/VSLParser.g:120:1: decl_list : decl_item ( COM ! decl_item )* ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134915.html#refclass134915" target = "projectFrame"><b>decl_list_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation162563" target = "projectFrame"><b>declaration</b></a></td><td>operation</td><td> $ANTLR start "declaration"<br /> ./src/VSLParser.g:116:1: declaration : ( INT_KW decl_list )+ -&gt; ^( DECL ( decl_list )+ ) ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation166403" target = "projectFrame"><b>declaration</b></a></td><td>operation</td><td> $ANTLR end "read_item"<br /> $ANTLR start "declaration"<br /> ./src/VSLTreeParser.g:347:1: declaration[SymbolTable symTab] returns [Code3a code] : ( ^( DECL (i= item_declaration[symTab] )* ) |);</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134787.html#refclass134787" target = "projectFrame"><b>declaration_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute139395" target = "projectFrame"><b>DIGIT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute144003" target = "projectFrame"><b>DIGIT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute166915" target = "projectFrame"><b>DIGIT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute129411" target = "projectFrame"><b>DIV</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute139523" target = "projectFrame"><b>DIV</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute144131" target = "projectFrame"><b>DIV</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute167043" target = "projectFrame"><b>DIV</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute139651" target = "projectFrame"><b>DO_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute144259" target = "projectFrame"><b>DO_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute167171" target = "projectFrame"><b>DO_KW</b></a></td><td>attribute</td><td></td></tr>
+</table>
+</body>
+</html>

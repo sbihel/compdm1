@@ -1,0 +1,73 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>C</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">C</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<table>
+<tr bgcolor=#f0f0f0><td align=center><b>Name</b></td><td align=center><b>Kind</b></td><td align=center><b>Description</b></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute130307" target = "projectFrame"><b>CALL</b></a></td><td>attribute</td><td> a = call b ou call b</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute134915" target = "projectFrame"><b>CalleeInformation</b></a></td><td>attribute</td><td> number of argument of each callee</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute135043" target = "projectFrame"><b>CallerInformation</b></a></td><td>attribute</td><td> max number of arguments gives to callees by each caller</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation141187" target = "projectFrame"><b>cg_condMIPS</b></a></td><td>operation</td><td>Generate for "goto", "ifz" or "ifnz". We must spill registers before the<br />branch. In the case of unconditional goto we have no condition, and so<br />"a" is NULL. We set the condition flags if necessary by explicitly<br />loading "a" into a register to ensure the zero flag is set. A better<br />approach would be to keep track of what is in the status register, so<br />saving this load.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation141827" target = "projectFrame"><b>cg_constMIPS</b></a></td><td>operation</td><td>This routine is used to create the constant area in memory</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation141059" target = "projectFrame"><b>cg_copyMIPS</b></a></td><td>operation</td><td>Generate code for a copy instruction a := b We load b into an register,<br />then update the descriptors to indicate that a is also in that register.<br />We need not do the store until the register is spilled or flushed.<br /><br />@param a<br />@param b</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation140931" target = "projectFrame"><b>cg_negMIPS</b></a></td><td>operation</td><td>generate code for unary neg operator a := - b.<br /><br />MIPS: neg $dest,$src</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation141699" target = "projectFrame"><b>cg_tabvarMIPS</b></a></td><td>operation</td><td> var=tab[indice]</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation141315" target = "projectFrame"><b>cg_varMIPS</b></a></td><td>operation</td><td>Allocate 4*sizeof(var) bytes on top of stack</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation141571" target = "projectFrame"><b>cg_vartabMIPS</b></a></td><td>operation</td><td>assignments using indice adressing<br /><br /> tab[indice]=val</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128387.html#refclass128387" target = "projectFrame"><b>CGInterface</b></a></td><td>class</td><td>This interface must be implemented for assembly code generation. It defines a<br />contract between TAC and code generator. In order for the code generator to<br />work, a TAC operand must be an Operand3a object and it must answer all the<br />requests defined in this interface. Some of these requests could be useful in<br />the front-end of the compiler. It's your choice.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refartifact128387" target = "projectFrame"><b>CGInterface</b></a></td><td>artifact</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation148739" target = "projectFrame"><b>checkAndDeclArray</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation148355" target = "projectFrame"><b>checkAndDeclIdent</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation148483" target = "projectFrame"><b>checkAndDeclParmIdent</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation148611" target = "projectFrame"><b>checkAndDeclParmPointer</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation148995" target = "projectFrame"><b>checkArrayElem</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation149123" target = "projectFrame"><b>checkAssign</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation147587" target = "projectFrame"><b>checkBinOp</b></a></td><td>operation</td><td> an Example<br /><br />Type checking for a binary operation - in VSL+: integer operations only!</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation149251" target = "projectFrame"><b>checkFuncCall</b></a></td><td>operation</td><td>Verifies the call is correct (valid function name and compatible argument<br />types). Returns Type.INT if no error occurs, Type.ERROR otherwise.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation148099" target = "projectFrame"><b>checkFuncDecl</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation147843" target = "projectFrame"><b>checkFuncOrProtoDecl</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation148867" target = "projectFrame"><b>checkIdent</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation147971" target = "projectFrame"><b>checkProtoDecl</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation145539" target = "projectFrame"><b>clear</b></a></td><td>operation</td><td>if cleared, the register is no more associated with a variable</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation142467" target = "projectFrame"><b>clearAll</b></a></td><td>operation</td><td>clear all descriptors</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation142339" target = "projectFrame"><b>clearDescriptor</b></a></td><td>operation</td><td>clear a descriptor</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation129923" target = "projectFrame"><b>code</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation136707" target = "projectFrame"><b>code</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refclass diagram128387" target = "projectFrame"><b>code</b></a></td><td>class diagram</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation130563" target = "projectFrame"><b>Code3a</b></a></td><td>operation</td><td>Creates an empty list of TAC</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation130691" target = "projectFrame"><b>Code3a</b></a></td><td>operation</td><td>Creates a list of TAC with only one statement.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128515.html#refclass128515" target = "projectFrame"><b>Code3a</b></a></td><td>class</td><td>This class implements list of TAC statements. Basically, 3 address code is a<br />list of Inst3a objects. However, in any compiler, it is necessary to allocate<br />some memory for constants of variable size. The most obvious example are<br />string constants. In VSL it is the only constants which need memory<br />allocation. The other constants are integers which are operands in arithmetic<br />expression and have immediate addresses. Consequently, Code3a has two<br />attributes: a list of 3a instructions and a list of Data3a for storing the<br />string constants.<br /><br />@author MLB</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refartifact128515" target = "projectFrame"><b>Code3a</b></a></td><td>artifact</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation131843" target = "projectFrame"><b>Code3aGenerator</b></a></td><td>operation</td><td> Constructor not needed</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class128899.html#refclass128899" target = "projectFrame"><b>Code3aGenerator</b></a></td><td>class</td><td>This class implements all the methods for 3a code generation.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refartifact128643" target = "projectFrame"><b>Code3aGenerator</b></a></td><td>artifact</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation130947" target = "projectFrame"><b>code_op</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute139139" target = "projectFrame"><b>COM</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute143747" target = "projectFrame"><b>COM</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute166659" target = "projectFrame"><b>COM</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute139267" target = "projectFrame"><b>COMMENT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute143875" target = "projectFrame"><b>COMMENT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute166787" target = "projectFrame"><b>COMMENT</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135683.html#refclass135683" target = "projectFrame"><b>constant_types</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation135299" target = "projectFrame"><b>ConstSymbol</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class129539.html#refclass129539" target = "projectFrame"><b>ConstSymbol</b></a></td><td>class</td><td>Symbol for an integer constant. It could be a string since we never use the<br />value in integer operations.<br /><br />@author MLB<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refartifact128899" target = "projectFrame"><b>ConstSymbol</b></a></td><td>artifact</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute129667" target = "projectFrame"><b>COPY</b></a></td><td>attribute</td><td> a = b</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute134531" target = "projectFrame"><b>currentFunctionLabel</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation132995" target = "projectFrame"><b>currentTable</b></a></td><td>relation</td><td></td></tr>
+</table>
+</body>
+</html>

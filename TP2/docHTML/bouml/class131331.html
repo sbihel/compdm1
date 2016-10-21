@@ -1,0 +1,40 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class Util</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class Util</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass131331"></a>
+<p>Utility methods for generating error and warning messages, as well as<br />debugging settings. This class contains a status field which is set in the<br />presence of errors and warnings. It also contains a field indicating the<br />current debugging level.<br /><br />All messages here are emitted using the standard error (stderr) or a logger<br />(if the -debug option is used).<br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class Util </li></ul><p>Artifact : <a href="index.html#refartifact130947"><b>Util</b></a></p>
+<div class="sub">
+<a name="refattribute137987"></a>
+<table><tr><td><div class="element">Attribute <b>vslFilename</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + vslFilename : String =  "&lt;undefined&gt;"</li><li>Java : public static String vslFilename</li></ul><a name="refattribute138115"></a>
+<table><tr><td><div class="element">Attribute <b>status</b></div></td></tr></table>
+<p>0 - no errors nor warnings; 1 - errors<br /></p><p>Declaration :</p><ul><li>Uml : static, + status : int =  0</li><li>Java : public static int status</li></ul><a name="refoperation149379"></a>
+<table><tr><td><div class="element">Operation <b>printMsg</b></div></td></tr></table><p>detected; 2 - warnings emitted; 3 -<br /> errors and warnings<br /></p><p>Declaration :</p><ul><li>Uml : static, - printMsg(in newStatus : int, in line : int, in col : int, in type : String, in msg : String) : void</li><li>Java : private static void printMsg(int newStatus, int line, int col, String type, String msg)</li></ul><a name="refoperation149507"></a>
+<table><tr><td><div class="element">Operation <b>printMsg</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, - printMsg(in newStatus : int, in type : String, in msg : String) : void</li><li>Java : private static void printMsg(int newStatus, String type, String msg)</li></ul><a name="refoperation149635"></a>
+<table><tr><td><div class="element">Operation <b>printError</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + printError(in msg : String) : void</li><li>Java : public static void printError(String msg)</li></ul><a name="refoperation149763"></a>
+<table><tr><td><div class="element">Operation <b>printError</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + printError(in line : int, in col : int, in msg : String) : void</li><li>Java : public static void printError(int line, int col, String msg)</li></ul><a name="refoperation149891"></a>
+<table><tr><td><div class="element">Operation <b>printError</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + printError(inout token : CommonTree, in msg : String) : void</li><li>Java : public static void printError(CommonTree token, String msg)</li></ul><a name="refoperation150019"></a>
+<table><tr><td><div class="element">Operation <b>printWarning</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + printWarning(in msg : String) : void</li><li>Java : public static void printWarning(String msg)</li></ul><a name="refoperation150147"></a>
+<table><tr><td><div class="element">Operation <b>printWarning</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + printWarning(in line : int, in col : int, in msg : String) : void</li><li>Java : public static void printWarning(int line, int col, String msg)</li></ul><a name="refoperation150275"></a>
+<table><tr><td><div class="element">Operation <b>printWarning</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + printWarning(inout token : CommonTree, in msg : String) : void</li><li>Java : public static void printWarning(CommonTree token, String msg)</li></ul><a name="refattribute138243"></a>
+<table><tr><td><div class="element">Attribute <b>log</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : static, + log : Logger =  Logger.getLogger("comp")</li><li>Java : public static Logger log</li></ul></div>
+<p>All public operations : <a href="class131331.html#refoperation149763"><b>printError</b></a> , <a href="class131331.html#refoperation149891"><b>printError</b></a> , <a href="class131331.html#refoperation149635"><b>printError</b></a> , <a href="class131331.html#refoperation150147"><b>printWarning</b></a> , <a href="class131331.html#refoperation150275"><b>printWarning</b></a> , <a href="class131331.html#refoperation150019"><b>printWarning</b></a> </p>
+</body>
+</html>

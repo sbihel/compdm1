@@ -1,0 +1,39 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class SymbolTable</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class SymbolTable</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass129411"></a>
+<p>Declaration :</p><ul>
+<li>Java : public class SymbolTable </li></ul><p>Artifact : <a href="index.html#refartifact130691"><b>SymbolTable</b></a></p>
+<div class="sub">
+<table><tr><td><div class="element">Class <b><a href="class131075.html#refclass131075"><b>SingleScopeTable</b></a></b></div></td></tr></table>
+<a name="refrelation132995"></a>
+<table><tr><td><div class="element">Relation <b>currentTable (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : - currentTable : <a href="class131075.html#refclass131075"><b>SingleScopeTable</b></a></li><li>Java : private <a href="class131075.html#refclass131075"><b>SingleScopeTable</b></a> currentTable</li></ul><a name="refattribute137859"></a>
+<table><tr><td><div class="element">Attribute <b>scopeLevel</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : - scopeLevel : int</li><li>Java : private int scopeLevel</li></ul><a name="refoperation146691"></a>
+<table><tr><td><div class="element">Operation <b>SymbolTable</b></div></td></tr></table><p>Creates a new symbol table. The current scope is zero.<br /><br /></p><p>Declaration :</p><ul><li>Uml : + SymbolTable() : </li><li>Java : public SymbolTable()</li></ul><a name="refoperation146819"></a>
+<table><tr><td><div class="element">Operation <b>enterScope</b></div></td></tr></table><p>Pushes a new table, which becomes the current one. Updates the current<br />scope accordingly.<br /></p><p>Declaration :</p><ul><li>Uml : + enterScope() : void</li><li>Java : public void enterScope()</li></ul><a name="refoperation146947"></a>
+<table><tr><td><div class="element">Operation <b>leaveScope</b></div></td></tr></table><p>Pops the current table and decrements the current scope.<br /></p><p>Declaration :</p><ul><li>Uml : + leaveScope() : void</li><li>Java : public void leaveScope()</li></ul><a name="refoperation147075"></a>
+<table><tr><td><div class="element">Operation <b>lookup</b></div></td></tr></table><p>Lookup for a value associated with a key. Returns null if the key is not<br />found.<br /><br />@param name<br />           string - the key<br />@return Value with Operand3a type (which might be necessary to cast)<br /></p><p>Declaration :</p><ul><li>Uml : + lookup(in name : String) : <a href="class129027.html#refclass129027"><b>Operand3a</b></a></li><li>Java : public <a href="class129027.html#refclass129027"><b>Operand3a</b></a> lookup(String name)</li></ul><a name="refoperation147203"></a>
+<table><tr><td><div class="element">Operation <b>insert</b></div></td></tr></table><p>Puts a pair (key, value) in the current table.<br /><br />@param name<br />           : name (String)<br />@param t<br />           : value of Operand3a type<br /></p><p>Declaration :</p><ul><li>Uml : + insert(in name : String, inout t : <a href="class129027.html#refclass129027"><b>Operand3a</b></a>) : void</li><li>Java : public void insert(String name, <a href="class129027.html#refclass129027"><b>Operand3a</b></a> t)</li></ul><a name="refoperation147331"></a>
+<table><tr><td><div class="element">Operation <b>getScope</b></div></td></tr></table><p>Returns the current scope.<br /></p><p>Declaration :</p><ul><li>Uml : + getScope() : int</li><li>Java : public int getScope()</li></ul><a name="refoperation147459"></a>
+<table><tr><td><div class="element">Operation <b>print</b></div></td></tr></table><p>For debugging; displays the name of the key associated with whatever the<br />user wants to display by mean of a &lt;b&gt;toString&lt;/b&gt; method on the object<br />associated with the key.<br /></p><p>Declaration :</p><ul><li>Uml : + print() : void</li><li>Java : public void print()</li></ul><a name="refrelation138243"></a>
+<table><tr><td><div class="element">Relation <b>&lt;unidirectional association&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="class129027.html#refclass129027"><b>Operand3a</b></a></li><li>Java : private <a href="class129027.html#refclass129027"><b>Operand3a</b></a> </li></ul><a name="refrelation138371"></a>
+<table><tr><td><div class="element">Relation <b>&lt;composition&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="class129027.html#refclass129027"><b>Operand3a</b></a></li><li>Java : private <a href="class129027.html#refclass129027"><b>Operand3a</b></a> </li></ul><a name="refrelation138627"></a>
+<table><tr><td><div class="element">Relation <b>&lt;unidirectional association&gt;</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : -  : <a href="class129027.html#refclass129027"><b>Operand3a</b></a></li><li>Java : private <a href="class129027.html#refclass129027"><b>Operand3a</b></a> </li></ul></div>
+<p>All public operations : <a href="class129411.html#refoperation146819"><b>enterScope</b></a> , <a href="class129411.html#refoperation147331"><b>getScope</b></a> , <a href="class129411.html#refoperation147203"><b>insert</b></a> , <a href="class129411.html#refoperation146947"><b>leaveScope</b></a> , <a href="class129411.html#refoperation147075"><b>lookup</b></a> , <a href="class129411.html#refoperation147459"><b>print</b></a> </p>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Class Type</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">Class Type</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<a name="refclass128259"></a>
+<p>Implementation of a generic type object. The type is represented by the type<br />expression: T(t1, ...,tn). An attribute size was added for compiler needs.<br /></p>
+<p>Declaration :</p><ul>
+<li>Java : public class Type </li></ul><p>Directly inherited by : <a href="class128131.html#refclass128131"><b>ArrayType</b></a> <a href="class129923.html#refclass129923"><b>FunctionType</b></a> </p>
+<p>Artifact : <a href="index.html#refartifact128131"><b>Type</b></a></p>
+<div class="sub">
+<a name="refattribute128131"></a>
+<table><tr><td><div class="element">Attribute <b>size</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : # size : int</li><li>Java : protected int size</li></ul><a name="refattribute128259"></a>
+<table><tr><td><div class="element">Attribute <b>name</b></div></td></tr></table>
+<p>Declaration :</p><ul><li>Uml : # name : String</li><li>Java : protected String name</li></ul><a name="refoperation128131"></a>
+<table><tr><td><div class="element">Operation <b>Type</b></div></td></tr></table><p>Constructor for a simple type name().<br /></p><p>Declaration :</p><ul><li>Uml : + Type(in name : String, in size : int) : </li><li>Java : public Type(String name, int size)</li></ul><a name="refoperation128259"></a>
+<table><tr><td><div class="element">Operation <b>getSize</b></div></td></tr></table><p>Returns the size in bytes.<br /></p><p>Declaration :</p><ul><li>Uml : + getSize() : int</li><li>Java : public int getSize()</li></ul><a name="refoperation128387"></a>
+<table><tr><td><div class="element">Operation <b>isCompatible</b></div></td></tr></table><p>Tests if two types are compatible. For simple types, compatibility is<br />equality of types. Sub-types (e.g. function types) must override this<br />function accordingly.<br /></p><p>Declaration :</p><ul><li>Uml : + isCompatible(inout t : <a href="class128259.html#refclass128259"><b>Type</b></a>) : boolean</li><li>Java : public boolean isCompatible(<a href="class128259.html#refclass128259"><b>Type</b></a> t)</li></ul><a name="refoperation128515"></a>
+<table><tr><td><div class="element">Operation <b>toString</b></div></td></tr></table><p>Returns a printable representation of the type expression. Must be<br />overridden by subclasses.<br /></p><p>Declaration :</p><ul><li>Uml : + toString() : String</li><li>Java : public String toString()</li></ul><a name="refoperation128643"></a>
+<table><tr><td><div class="element">Operation <b>equals</b></div></td></tr></table><p>Returns true iff the given parameter is an object with the same type as<br />this one.<br /><br />@param o<br />           object to be compared with.<br /></p><p>Declaration :</p><ul><li>Uml : + equals(inout o : Object) : boolean</li><li>Java : public boolean equals(Object o)</li></ul><a name="refoperation128771"></a>
+<table><tr><td><div class="element">Operation <b>hashCode</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : + hashCode() : int</li><li>Java : public int hashCode()</li></ul><a name="refrelation128131"></a>
+<table><tr><td><div class="element">Relation <b>INT (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + INT : <a href="class128259.html#refclass128259"><b>Type</b></a> =  new Type("INT", 4), read only</li><li>Java : public static final <a href="class128259.html#refclass128259"><b>Type</b></a> INT</li></ul><a name="refrelation128259"></a>
+<table><tr><td><div class="element">Relation <b>I_CONST (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + I_CONST : <a href="class128259.html#refclass128259"><b>Type</b></a> =  new Type("I_CONST", 4), read only</li><li>Java : public static final <a href="class128259.html#refclass128259"><b>Type</b></a> I_CONST</li></ul><a name="refrelation128387"></a>
+<table><tr><td><div class="element">Relation <b>LABEL (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + LABEL : <a href="class128259.html#refclass128259"><b>Type</b></a> =  new Type("LABEL", -1), read only</li><li>Java : public static final <a href="class128259.html#refclass128259"><b>Type</b></a> LABEL</li></ul><a name="refrelation128515"></a>
+<table><tr><td><div class="element">Relation <b>POINTER (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + POINTER : <a href="class128259.html#refclass128259"><b>Type</b></a> =  new Type("POINTER", 4), read only</li><li>Java : public static final <a href="class128259.html#refclass128259"><b>Type</b></a> POINTER</li></ul><a name="refrelation128643"></a>
+<table><tr><td><div class="element">Relation <b>ERROR (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + ERROR : <a href="class128259.html#refclass128259"><b>Type</b></a> =  new Type("ERROR", -1), read only</li><li>Java : public static final <a href="class128259.html#refclass128259"><b>Type</b></a> ERROR</li></ul><a name="refrelation128771"></a>
+<table><tr><td><div class="element">Relation <b>VOID (&lt;unidirectional association&gt;)</b></div></td></tr></table><p>Declaration :</p><ul><li>Uml : static, + VOID : <a href="class128259.html#refclass128259"><b>Type</b></a> =  new Type("VOID", 0), read only</li><li>Java : public static final <a href="class128259.html#refclass128259"><b>Type</b></a> VOID</li></ul></div>
+<p>All public operations : <a href="class128259.html#refoperation128643"><b>equals</b></a> , <a href="class128259.html#refoperation128259"><b>getSize</b></a> , <a href="class128259.html#refoperation128771"><b>hashCode</b></a> , <a href="class128259.html#refoperation128387"><b>isCompatible</b></a> , <a href="class128259.html#refoperation128515"><b>toString</b></a> </p>
+</body>
+</html>

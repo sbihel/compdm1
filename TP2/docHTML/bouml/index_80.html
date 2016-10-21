@@ -1,0 +1,82 @@
+<!-- Documentation produced by the Html generator of Bouml (http://bouml.free.fr) -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>P</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<div class = "title">P</div>
+<p></p>
+
+<!-- ============================================================= -->
+
+<table>
+<tr bgcolor=#f0f0f0><td align=center><b>Name</b></td><td align=center><b>Kind</b></td><td align=center><b>Description</b></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute138627" target = "projectFrame"><b>param</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute148995" target = "projectFrame"><b>PARAM</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation159235" target = "projectFrame"><b>param</b></a></td><td>operation</td><td> $ANTLR start "param"<br /> ./src/VSLParser.g:48:1: param : ( IDENT | IDENT LB RB -&gt; ^( ARRAY IDENT ) );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute171907" target = "projectFrame"><b>PARAM</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation164739" target = "projectFrame"><b>param</b></a></td><td>operation</td><td> $ANTLR end "param_list"<br /> $ANTLR start "param"<br /> ./src/VSLTreeParser.g:82:1: param[SymbolTable symTab, FunctionType ft] returns [Code3a code] : ( IDENT | ^( ARRAY IDENT ) );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation158979" target = "projectFrame"><b>param_list</b></a></td><td>operation</td><td> $ANTLR start "param_list"<br /> ./src/VSLParser.g:43:1: param_list : ( param ( COM param )* -&gt; ^( PARAM ( param )* ) | -&gt; ^( PARAM ) );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation164611" target = "projectFrame"><b>param_list</b></a></td><td>operation</td><td> $ANTLR end "type"<br /> $ANTLR start "param_list"<br /> ./src/VSLTreeParser.g:76:1: param_list[SymbolTable symTab, FunctionType ft] returns [Code3a code] : ( ^( PARAM (p= param[symTab, ft] )* ) |);</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132995.html#refclass132995" target = "projectFrame"><b>param_list_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class133123.html#refclass133123" target = "projectFrame"><b>param_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation132867" target = "projectFrame"><b>parent</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class131971.html#refclass131971" target = "projectFrame"><b>Parser</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132227.html#refclass132227" target = "projectFrame"><b>ParserRuleReturnScope</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation130179" target = "projectFrame"><b>place</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute141571" target = "projectFrame"><b>PLUS</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute146179" target = "projectFrame"><b>PLUS</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute169091" target = "projectFrame"><b>PLUS</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute183811" target = "projectFrame"><b>POINTER</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refrelation128515" target = "projectFrame"><b>POINTER</b></a></td><td>relation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation161027" target = "projectFrame"><b>primary</b></a></td><td>operation</td><td> $ANTLR start "primary"<br /> ./src/VSLParser.g:86:1: primary : ( INTEGER | IDENT | array_elem | IDENT LP ( argument_list )? RP -&gt; ^( FCALL IDENT ( argument_list )? ) | LP ! expression RP !);</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation165635" target = "projectFrame"><b>primary_exp</b></a></td><td>operation</td><td> $ANTLR end "expression"<br /> $ANTLR start "primary_exp"<br /> ./src/VSLTreeParser.g:238:1: primary_exp[SymbolTable symTab] returns [ExpAttribute expAtt] : ( INTEGER | IDENT |ae= array_elem[symTab, null] | ^( FCALL IDENT al= argument_list[symTab, ft] ) );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134019.html#refclass134019" target = "projectFrame"><b>primary_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation131459" target = "projectFrame"><b>print</b></a></td><td>operation</td><td>Print the 3A code.<br /></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation136067" target = "projectFrame"><b>print</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation139139" target = "projectFrame"><b>print</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation146563" target = "projectFrame"><b>print</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation147459" target = "projectFrame"><b>print</b></a></td><td>operation</td><td>For debugging; displays the name of the key associated with whatever the<br />user wants to display by mean of a &lt;b&gt;toString&lt;/b&gt; method on the object<br />associated with the key.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation131587" target = "projectFrame"><b>print_in_file</b></a></td><td>operation</td><td>Print the 3A code in a file</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation139267" target = "projectFrame"><b>print_in_file</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation161795" target = "projectFrame"><b>print_item</b></a></td><td>operation</td><td> $ANTLR start "print_item"<br /> ./src/VSLParser.g:102:1: print_item : ( TEXT | expression );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation166019" target = "projectFrame"><b>print_item</b></a></td><td>operation</td><td> $ANTLR end "print_list"<br /> $ANTLR start "print_item"<br /> ./src/VSLTreeParser.g:292:1: print_item[SymbolTable symTab] returns [Code3a code] : ( TEXT |exp= expression[symTab] );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134403.html#refclass134403" target = "projectFrame"><b>print_item_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute141699" target = "projectFrame"><b>PRINT_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute146307" target = "projectFrame"><b>PRINT_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute169219" target = "projectFrame"><b>PRINT_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation161539" target = "projectFrame"><b>print_list</b></a></td><td>operation</td><td> $ANTLR start "print_list"<br /> ./src/VSLParser.g:98:1: print_list : print_item ( COM ! print_item )* ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation165891" target = "projectFrame"><b>print_list</b></a></td><td>operation</td><td> $ANTLR end "argument_list"<br /> $ANTLR start "print_list"<br /> ./src/VSLTreeParser.g:287:1: print_list[SymbolTable symTab] returns [Code3a code] : (pi= print_item[symTab] )* ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class134275.html#refclass134275" target = "projectFrame"><b>print_list_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation149635" target = "projectFrame"><b>printError</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation149891" target = "projectFrame"><b>printError</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation149763" target = "projectFrame"><b>printError</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation148227" target = "projectFrame"><b>printErrorDecl</b></a></td><td>operation</td><td>Auxiliary function to print an (already identified) error related to<br />undeclared variables.</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation149379" target = "projectFrame"><b>printMsg</b></a></td><td>operation</td><td> detected; 2 - warnings emitted; 3 -<br /> errors and warnings</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation149507" target = "projectFrame"><b>printMsg</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation150019" target = "projectFrame"><b>printWarning</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation150275" target = "projectFrame"><b>printWarning</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation150147" target = "projectFrame"><b>printWarning</b></a></td><td>operation</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute149123" target = "projectFrame"><b>PROG</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute172035" target = "projectFrame"><b>PROG</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation157699" target = "projectFrame"><b>program</b></a></td><td>operation</td><td> $ANTLR start "program"<br /> ./src/VSLParser.g:21:1: program : ( unit )+ -&gt; ^( PROG ( unit )+ ) ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation163971" target = "projectFrame"><b>program</b></a></td><td>operation</td><td> $ANTLR start "program"<br /> ./src/VSLTreeParser.g:19:1: program returns [Code3a code, int status] : ^( PROG (pu= program_unit[symTab] )+ ) ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132355.html#refclass132355" target = "projectFrame"><b>program_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class135427.html#refclass135427" target = "projectFrame"><b>program_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation164099" target = "projectFrame"><b>program_unit</b></a></td><td>operation</td><td> $ANTLR end "program"<br /> $ANTLR start "program_unit"<br /> ./src/VSLTreeParser.g:27:1: program_unit[SymbolTable symTab] returns [Code3a code] : (f= function[symTab] |p= proto[symTab] );</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation158467" target = "projectFrame"><b>proto</b></a></td><td>operation</td><td> $ANTLR start "proto"<br /> ./src/VSLParser.g:34:1: proto : PROTO_KW ^ type IDENT LP ! param_list RP !;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refoperation164355" target = "projectFrame"><b>proto</b></a></td><td>operation</td><td> $ANTLR end "function"<br /> $ANTLR start "proto"<br /> ./src/VSLTreeParser.g:56:1: proto[SymbolTable symTab] : ^( PROTO_KW rt= type IDENT pl= param_list[symTab, ft] ) ;</td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute141827" target = "projectFrame"><b>PROTO_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute146435" target = "projectFrame"><b>PROTO_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute169347" target = "projectFrame"><b>PROTO_KW</b></a></td><td>attribute</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="class132739.html#refclass132739" target = "projectFrame"><b>proto_return</b></a></td><td>class</td><td></td></tr>
+<tr bgcolor=#f0f0f0><td><a href="index.html#refattribute128899" target = "projectFrame"><b>prototype</b></a></td><td>attribute</td><td>True if this is a prototype declaration, false if this is a function<br />definition.<br /></td></tr>
+</table>
+</body>
+</html>
