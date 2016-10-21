@@ -124,5 +124,3 @@ decl_item
     : IDENT
     | IDENT LB INTEGER RB -> ^(ARDECL IDENT INTEGER)
     ;
-
-
