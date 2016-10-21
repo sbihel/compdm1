@@ -41,9 +41,9 @@ expression [SymbolTable symTab] returns [ExpAttribute expAtt]
     }
   | ^(ASSIGN_KW e=expression[symTab] IDENT)
     {
-      VarSymbol temp = SymbDistrib.newTemp();
+      VarSymbol temp = SymbDistrib.newTemp();  // TODO, use IDENT var
       Type ty = TypeCheck.checkBinOp(temp.type, e.type);
-      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.COPY, temp, e, null);
+      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.COPY, temp, e, e);  // don't care about op_c
       expAtt = new ExpAttribute(ty, cod, temp);
     }
   | pe=primary_exp[symTab]
