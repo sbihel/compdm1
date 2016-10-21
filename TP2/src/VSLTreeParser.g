@@ -11,14 +11,42 @@ s [SymbolTable symTab] returns [Code3a code]
   ;
 
 expression [SymbolTable symTab] returns [ExpAttribute expAtt]
-  : ^(PLUS e1=expression[symTab] e2=expression[symTab]) 
-    { 
+  : ^(PLUS e1=expression[symTab] e2=expression[symTab])
+    {
       Type ty = TypeCheck.checkBinOp(e1.type, e2.type);
       VarSymbol temp = SymbDistrib.newTemp();
       Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.ADD, temp, e1, e2);
       expAtt = new ExpAttribute(ty, cod, temp);
     }
-  | pe=primary_exp[symTab] 
+  | ^(MINUS e1=expression[symTab] e2=expression[symTab])
+    {
+      Type ty = TypeCheck.checkBinOp(e1.type, e2.type);
+      VarSymbol temp = SymbDistrib.newTemp();
+      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.SUB, temp, e1, e2);
+      expAtt = new ExpAttribute(ty, cod, temp);
+    }
+  | ^(MUL e1=expression[symTab] e2=expression[symTab])
+    {
+      Type ty = TypeCheck.checkBinOp(e1.type, e2.type);
+      VarSymbol temp = SymbDistrib.newTemp();
+      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.MUL, temp, e1, e2);
+      expAtt = new ExpAttribute(ty, cod, temp);
+    }
+  | ^(DIV e1=expression[symTab] e2=expression[symTab])
+    {
+      Type ty = TypeCheck.checkBinOp(e1.type, e2.type);
+      VarSymbol temp = SymbDistrib.newTemp();
+      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.DIV, temp, e1, e2);
+      expAtt = new ExpAttribute(ty, cod, temp);
+    }
+  | ^(ASSIGN_KW e=expression[symTab] IDENT)
+    {
+      VarSymbol temp = SymbDistrib.newTemp();
+      Type ty = TypeCheck.checkBinOp(temp.type, e.type);
+      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.COPY, temp, e, null);
+      expAtt = new ExpAttribute(ty, cod, temp);
+    }
+  | pe=primary_exp[symTab]
     { expAtt = pe; }
   ;
 

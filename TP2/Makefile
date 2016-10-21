@@ -43,5 +43,5 @@ clean:
 clean_test:
 	rm -f tests/testlevel*/*.mips tests/testlevel*/*.mips.o tests/testlevel*/*.mips.s tests/testlevel*/*.vsm.o tests/testlevel*/*.vsm.s tests/testlevel*/*.mips_res tests/testlevel*/*.vsm_res tests/testlevel*/*.comp_res
 
-run: 
+run: all
 	java -cp $(CLASSPATHRUN) VslComp $(SRC_DIR)/test.vsl -debug
