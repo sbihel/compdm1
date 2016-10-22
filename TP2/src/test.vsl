@@ -1,9 +1,7 @@
 {
     INT a
-    a := 1
-    IF a
-        a := a + 1
-    ELSE
-        a := 0
-    FI
+    a := 10
+    WHILE a DO
+        a := a - 1
+    OD
 }

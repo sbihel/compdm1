@@ -25,6 +25,14 @@ statement [SymbolTable symTab] returns [Code3a code]
                           code.append(Code3aGenerator.genLabel(tempL1));}
     (e3=statement[symTab] {code.append(e3);})?  // TODO, use only 1 goto if there's no else
     {code.append(Code3aGenerator.genLabel(tempL2));})
+  | ^(WHILE_KW {code = new Code3a();
+                LabelSymbol tempL1 = SymbDistrib.newLabel();
+                LabelSymbol tempL2 = SymbDistrib.newLabel();
+                code.append(Code3aGenerator.genLabel(tempL1));}
+    e1=expression[symTab] {code.append(Code3aGenerator.genIfz(e1, tempL2));}
+    e2=statement[symTab] {code.append(e2);
+                          code.append(Code3aGenerator.genGoto(tempL1));
+                          code.append(Code3aGenerator.genLabel(tempL2));})
   ;
 
 block [SymbolTable symTab] returns [Code3a code]
