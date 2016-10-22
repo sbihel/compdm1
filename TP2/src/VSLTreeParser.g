@@ -15,16 +15,20 @@ s [SymbolTable symTab] returns [Code3a code]
 statement [SymbolTable symTab] returns [ExpAttribute expAtt]
   : ^(ASSIGN_KW e=expression[symTab] IDENT)
     {
-      VarSymbol temp = SymbDistrib.newTemp();  // TODO, use IDENT var
+      Operand3a temp = symTab.lookup($IDENT.text);
       Type ty = TypeCheck.checkBinOp(temp.type, e.type);
-      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.COPY, temp, e, e);  // don't care about op_c
+      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.COPY, temp, e, e);  // we don't care about op_c
       expAtt = new ExpAttribute(ty, cod, temp);
     }
+  // TODO, array
   ;
 
 block [SymbolTable symTab] returns [Code3a code]
-  // TODO, ^(BLOCK declaration inst_list)
-  : ^(BLOCK e=inst_list[symTab])
+  : ^(BLOCK declaration[symTab] e=inst_list[symTab])
+    {
+      code = e;
+    }
+  | ^(BLOCK e=inst_list[symTab])
     {
       code = e;
     }
@@ -78,4 +82,17 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
       Operand3a id = symTab.lookup($IDENT.text);
       expAtt = new ExpAttribute(id.type, new Code3a(), symTab.lookup($IDENT.text));
     }
+  ;
+
+declaration [SymbolTable symTab] returns [Code3a code]
+  : ^(DECL {code = new Code3a();} (decl_item[symTab] {code.append($decl_item.code);})+)
+  ;
+
+decl_item [SymbolTable symTab] returns [Code3a code]
+  : IDENT
+    {
+      symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, 0));
+      code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
+    }
+  /*| ^(ARDECL IDENT INTEGER) {}  // TODO, array declaration*/
   ;
