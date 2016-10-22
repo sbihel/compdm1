@@ -21,6 +21,15 @@ public class Code3aGenerator {
 	}
 
 	/**
+	 * Generates the 3a statement: COPY a = b
+	 **/
+	public static Code3a genCopy(Operand3a a, ExpAttribute b) {
+		Code3a cod = b.code;
+		cod.append(new Inst3a(Inst3a.TAC.COPY, a, b.place, null));
+		return cod;
+	}
+
+	/**
 	 * Generate code for a binary operation
 	 * 
 	 * @param op

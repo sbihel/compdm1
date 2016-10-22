@@ -8,8 +8,6 @@ options {
 
 s [SymbolTable symTab] returns [Code3a code]
   : e=block[symTab]      { code = e; }
-  /*| e=statement[symTab]  { code = e.code; }*/
-  /*| e=expression[symTab] { code = e.code; }*/
   ;
 
 statement [SymbolTable symTab] returns [ExpAttribute expAtt]
@@ -17,7 +15,7 @@ statement [SymbolTable symTab] returns [ExpAttribute expAtt]
     {
       Operand3a temp = symTab.lookup($IDENT.text);
       Type ty = TypeCheck.checkBinOp(temp.type, e.type);
-      Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.COPY, temp, e, e);  // we don't care about op_c
+      Code3a cod = Code3aGenerator.genCopy(temp, e);
       expAtt = new ExpAttribute(ty, cod, temp);
     }
   // TODO, array
@@ -80,7 +78,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
   | IDENT
     {
       Operand3a id = symTab.lookup($IDENT.text);
-      expAtt = new ExpAttribute(id.type, new Code3a(), symTab.lookup($IDENT.text));
+      expAtt = new ExpAttribute(id.type, new Code3a(), id);
     }
   ;
 
