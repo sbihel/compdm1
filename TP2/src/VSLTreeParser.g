@@ -10,15 +10,21 @@ s [SymbolTable symTab] returns [Code3a code]
   : e=block[symTab]      { code = e; }
   ;
 
-statement [SymbolTable symTab] returns [ExpAttribute expAtt]
+statement [SymbolTable symTab] returns [Code3a code]
   : ^(ASSIGN_KW e=expression[symTab] IDENT)
     {
-      Operand3a temp = symTab.lookup($IDENT.text);
-      Type ty = TypeCheck.checkBinOp(temp.type, e.type);
-      Code3a cod = Code3aGenerator.genCopy(temp, e);
-      expAtt = new ExpAttribute(ty, cod, temp);
+      code = Code3aGenerator.genCopy(symTab.lookup($IDENT.text), e);
     }
   // TODO, array
+  | ^(IF_KW {code = new Code3a();
+            LabelSymbol tempL1 = SymbDistrib.newLabel();
+            LabelSymbol tempL2 = SymbDistrib.newLabel();}
+    e1=expression[symTab] {code.append(Code3aGenerator.genIfz(e1, tempL1));}
+    e2=statement[symTab] {code.append(e2);
+                          code.append(Code3aGenerator.genGoto(tempL2));
+                          code.append(Code3aGenerator.genLabel(tempL1));}
+    (e3=statement[symTab] {code.append(e3);})?  // TODO, use only 1 goto if there's no else
+    {code.append(Code3aGenerator.genLabel(tempL2));})
   ;
 
 block [SymbolTable symTab] returns [Code3a code]
@@ -33,7 +39,7 @@ block [SymbolTable symTab] returns [Code3a code]
   ;
 
 inst_list [SymbolTable symTab] returns [Code3a code]
-  : ^(INST {code = new Code3a();} (e=statement[symTab] {code.append(e.code);})+)
+  : ^(INST {code = new Code3a();} (e=statement[symTab] {code.append(e);})+)
   ;
 
 expression [SymbolTable symTab] returns [ExpAttribute expAtt]

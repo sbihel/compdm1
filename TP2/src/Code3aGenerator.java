@@ -30,6 +30,34 @@ public class Code3aGenerator {
 	}
 
 	/**
+	 * Generates the 3a statement: IFZ ifz a goto b
+	 **/
+	public static Code3a genIfz(ExpAttribute a, LabelSymbol b) {
+		return new Code3a(new Inst3a(Inst3a.TAC.IFZ, a.place, b, null));
+	}
+
+	/**
+	 * Generates the 3a statement: IFNZ ifnz a goto b
+	 **/
+	public static Code3a genIfnz(ExpAttribute a, LabelSymbol b) {
+		return new Code3a(new Inst3a(Inst3a.TAC.IFNZ, a.place, b, null));
+	}
+
+	/**
+	 * Generates the 3a statement: GOTO goto a
+	 **/
+	public static Code3a genGoto(LabelSymbol a) {
+		return new Code3a(new Inst3a(Inst3a.TAC.GOTO, a, null, null));
+	}
+
+	/**
+	 * Generates the 3a statement: LABEL label a
+	 **/
+	public static Code3a genLabel(LabelSymbol a) {
+		return new Code3a(new Inst3a(Inst3a.TAC.LABEL, a, null, null));
+	}
+
+	/**
 	 * Generate code for a binary operation
 	 * 
 	 * @param op

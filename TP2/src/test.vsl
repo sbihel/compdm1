@@ -1,8 +1,9 @@
 {
-    INT a, b
-    INT c
+    INT a
     a := 1
-    a := 2
-    b := a + 1
-    c := a + b
+    IF a
+        a := a + 1
+    ELSE
+        a := 0
+    FI
 }
