@@ -61,7 +61,7 @@ public class VslComp {
 			// <<< NOTE: this line must be changed during development, if one
 			// wishes to parse just a fragment of the language (e.g. begin with
 			// an expression). >>>
-			VSLParser.statement_return r = parser.statement();
+			VSLParser.block_return r = parser.block();
 			// The parser produces an AST.
 			CommonTree t = (CommonTree) r.getTree();
 			// If debugging is on, this prints the resulting tree in LISP
