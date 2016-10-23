@@ -4,7 +4,7 @@ options {
   language=Java;
   k=3;
   tokenVocab = VSLLexer;
-  output = AST; 
+  output = AST;
 }
 
 // imaginaryTokenDefinitions
@@ -34,7 +34,7 @@ proto
     ;
 
 type
-    : INT_KW^ 
+    : INT_KW^
     | VOID_KW^
     ;
 
@@ -57,14 +57,14 @@ statement
     | IF_KW^ expression THEN_KW! statement (ELSE_KW! statement)? FI_KW!
     | WHILE_KW^ expression DO_KW! statement OD_KW!
     | IDENT LP argument_list? RP -> ^(FCALL_S IDENT argument_list?)
-    | block 
+    | block
     ;
 
 block
     : LC declaration inst_list RC -> ^(BLOCK declaration inst_list)
     | LC inst_list RC -> ^(BLOCK inst_list)
     ;
-    
+
 array_elem
     : IDENT LB expression RB ->  ^(ARELEM  IDENT expression)
     ;
@@ -115,7 +115,7 @@ read_item
 declaration
     : (INT_KW decl_list)+  ->  ^(DECL decl_list+)
     ;
- 
+
 decl_list
     : decl_item (COM! decl_item)*
     ;

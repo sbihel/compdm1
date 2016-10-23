@@ -5,7 +5,7 @@ options {
   language = Java;
   k=3;
 }
-  
+
 WS      : (' '|'\n'|'\t') {$channel = HIDDEN;}
     ;
 

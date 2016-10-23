@@ -6,8 +6,24 @@ options {
   ASTLabelType = CommonTree;
 }
 
+@header {
+  import java.util.List;
+  import java.util.LinkedList;
+}
+
 s [SymbolTable symTab] returns [Code3a code]
-  : e=block[symTab]      { code = e; }
+  : ^(PROG {code = new Code3a();} (e=unit[symTab] {code.append($e.code);})+)
+  ;
+
+unit [SymbolTable symTab] returns [Code3a code]
+  : ^(PROTO_KW type IDENT e=param_list[symTab])
+    {
+      // TODO, as for everything else we'll have to check the type of arguments
+      FunctionType ft = new FunctionType($type.ty, true);
+      for(int i = 0; i < $e.lty.size(); i++)
+        ft.extend($e.lty.get(i));
+      symTab.insert($IDENT.text, new FunctionSymbol(SymbDistrib.newLabel(), ft));
+    }
   ;
 
 statement [SymbolTable symTab] returns [Code3a code]
@@ -96,6 +112,20 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     }
   ;
 
+param_list [SymbolTable symTab] returns [List<Type> lty]  // TODO, check that params aren't in symTab?
+    : ^(PARAM {lty = new LinkedList<Type>();} (e=param[symTab] {lty.add($e.ty);})*)
+    ;
+
+param [SymbolTable symTab] returns [Type ty]
+    : IDENT {ty = Type.INT;}
+    | ^(ARRAY IDENT) {ty = Type.POINTER;}
+    ;
+
+type returns [Type ty]
+    : INT_KW {ty = Type.INT;}
+    | VOID_KW {ty = Type.VOID;}
+    ;
+
 declaration [SymbolTable symTab] returns [Code3a code]
   : ^(DECL {code = new Code3a();} (decl_item[symTab] {code.append($decl_item.code);})+)
   ;
@@ -103,7 +133,7 @@ declaration [SymbolTable symTab] returns [Code3a code]
 decl_item [SymbolTable symTab] returns [Code3a code]
   : IDENT
     {
-      symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, 0));
+      symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, 0));  // TODO, understand scope
       code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
     }
   /*| ^(ARDECL IDENT INTEGER) {}  // TODO, array declaration*/

@@ -1,7 +1,5 @@
+PROTO INT fact(k)
 {
-    INT a
-    a := 10
-    WHILE a DO
-        a := a - 1
-    OD
+    var a
+    a := a + 1
 }
