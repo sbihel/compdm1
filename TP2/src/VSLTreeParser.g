@@ -18,11 +18,24 @@ s [SymbolTable symTab] returns [Code3a code]
 unit [SymbolTable symTab] returns [Code3a code]
   : ^(PROTO_KW type IDENT e=param_list[symTab])
     {
-      // TODO, as for everything else we'll have to check the type of arguments
       FunctionType ft = new FunctionType($type.ty, true);
       for(int i = 0; i < $e.lty.size(); i++)
         ft.extend($e.lty.get(i));
       symTab.insert($IDENT.text, new FunctionSymbol(SymbDistrib.newLabel(), ft));
+    }
+  | ^(FUNC_KW type IDENT e=param_list[symTab]
+    {
+      // TODO, as for everything else we'll have to check the type of arguments
+      // TODO, a function might not have been prototyped
+      code = new Code3a();
+      for(int i = 0; i < $e.lnames.size(); i++) {
+        symTab.insert($e.lnames.get(i), new VarSymbol($e.lty.get(i), $e.lnames.get(i), 1));
+        code.append(Code3aGenerator.genVar(symTab.lookup($e.lnames.get(i))));
+      }
+    }
+    ^(BODY statement[symTab]))
+    {
+      code.append($statement.code);
     }
   ;
 
@@ -49,6 +62,7 @@ statement [SymbolTable symTab] returns [Code3a code]
     e2=statement[symTab] {code.append(e2);
                           code.append(Code3aGenerator.genGoto(tempL1));
                           code.append(Code3aGenerator.genLabel(tempL2));})
+  | block[symTab] {code = $block.code;}
   ;
 
 block [SymbolTable symTab] returns [Code3a code]
@@ -112,19 +126,21 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     }
   ;
 
-param_list [SymbolTable symTab] returns [List<Type> lty]  // TODO, check that params aren't in symTab?
-    : ^(PARAM {lty = new LinkedList<Type>();} (e=param[symTab] {lty.add($e.ty);})*)
-    ;
+param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab?
+  // TODO, that's stupid to use lists right?
+  : ^(PARAM {$lty = new LinkedList<Type>(); $lnames = new LinkedList<String>();}
+    (e=param[symTab] {$lty.add($e.ty); $lnames.add($e.name);})*)
+  ;
 
-param [SymbolTable symTab] returns [Type ty]
-    : IDENT {ty = Type.INT;}
-    | ^(ARRAY IDENT) {ty = Type.POINTER;}
-    ;
+param [SymbolTable symTab] returns [Type ty, String name]
+  : IDENT {$ty = Type.INT; $name = $IDENT.text;}
+  | ^(ARRAY IDENT) {$ty = Type.POINTER; $name = $IDENT.text;}
+  ;
 
 type returns [Type ty]
-    : INT_KW {ty = Type.INT;}
-    | VOID_KW {ty = Type.VOID;}
-    ;
+  : INT_KW {ty = Type.INT;}
+  | VOID_KW {ty = Type.VOID;}
+  ;
 
 declaration [SymbolTable symTab] returns [Code3a code]
   : ^(DECL {code = new Code3a();} (decl_item[symTab] {code.append($decl_item.code);})+)

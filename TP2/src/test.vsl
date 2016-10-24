@@ -1,5 +1,5 @@
 PROTO INT fact(k)
+FUNC INT fact(a)
 {
-    var a
     a := a + 1
 }
