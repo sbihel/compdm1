@@ -21,7 +21,8 @@ unit [SymbolTable symTab] returns [Code3a code]
       FunctionType ft = new FunctionType($type.ty, true);
       for(int i = 0; i < $e.lty.size(); i++)
         ft.extend($e.lty.get(i));
-      symTab.insert($IDENT.text, new FunctionSymbol(SymbDistrib.newLabel(), ft));
+      /*symTab.insert($IDENT.text, new FunctionSymbol(SymbDistrib.newLabel(), ft));*/
+      symTab.insert($IDENT.text, new FunctionSymbol(new LabelSymbol($IDENT.text), ft));
     }
   | ^(FUNC_KW type IDENT e=param_list[symTab]
     {
@@ -123,6 +124,15 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     {
       Operand3a id = symTab.lookup($IDENT.text);
       expAtt = new ExpAttribute(id.type, new Code3a(), id);
+    }
+  | ^(FCALL IDENT {Code3a code = new Code3a(); Operand3a id = symTab.lookup($IDENT.text);} (e=expression[symTab]
+    {
+      code.append(Code3aGenerator.genArg(e.place));
+    })*)
+    {
+      VarSymbol temp = SymbDistrib.newTemp();
+      code.append(Code3aGenerator.genCall(temp, new ExpAttribute(id.type, new Code3a(), id)));
+      expAtt = new ExpAttribute(id.type, code, temp);
     }
   ;
 

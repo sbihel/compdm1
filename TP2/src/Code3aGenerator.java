@@ -29,6 +29,22 @@ public class Code3aGenerator {
 	}
 
 	/**
+	 * Generates the 3a statement: CALL a = call b
+	 */
+	public static Code3a genCall(Operand3a a, ExpAttribute b) {
+		Inst3a i = new Inst3a(Inst3a.TAC.CALL, a, b.place, null);
+		return new Code3a(i);
+	}
+
+	/**
+	 * Generates the 3a statement: CALL b
+	 */
+	public static Code3a genCall(ExpAttribute b) {
+		Inst3a i = new Inst3a(Inst3a.TAC.CALL, null, b.place, null);
+		return new Code3a(i);
+	}
+
+	/**
 	 * Generates the 3a statement: COPY a = b
 	 */
 	public static Code3a genCopy(Operand3a a, ExpAttribute b) {

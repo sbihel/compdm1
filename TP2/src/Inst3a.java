@@ -167,7 +167,7 @@ public class Inst3a {
 			return (" arg " + the_Name(op_a));
 		case CALL:
 			if (op_a != null)
-				return (" " + the_Name(op_a) + " =  call " + the_Name(op_b));
+				return (" " + the_Name(op_a) + " = call " + the_Name(op_b));
 			else
 				return (" call " + the_Name(op_b));
 		case RETURN:
