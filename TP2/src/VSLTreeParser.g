@@ -68,6 +68,11 @@ statement [SymbolTable symTab] returns [Code3a code]
     }
   // TODO, array
 
+  | ^(RETURN_KW e=expression[symTab])
+    {
+      code = Code3aGenerator.genRet(e.place);
+    }
+
   | ^(IF_KW {code = new Code3a();
             LabelSymbol tempL1 = SymbDistrib.newLabel();
             LabelSymbol tempL2 = SymbDistrib.newLabel();}

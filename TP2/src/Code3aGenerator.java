@@ -45,6 +45,14 @@ public class Code3aGenerator {
 	}
 
 	/**
+	 * Generates the 3a statement: RETURN a
+	 */
+	public static Code3a genRet(Operand3a a) {
+		Inst3a i = new Inst3a(Inst3a.TAC.RETURN, a, null, null);
+		return new Code3a(i);
+	}
+
+	/**
 	 * Generates the 3a statement: COPY a = b
 	 */
 	public static Code3a genCopy(Operand3a a, ExpAttribute b) {
