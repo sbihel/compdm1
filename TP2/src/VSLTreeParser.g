@@ -11,24 +11,41 @@ options {
   import java.util.LinkedList;
 }
 
-s [SymbolTable symTab] returns [Code3a code]
-  : ^(PROG {code = new Code3a();} (e=unit[symTab] {code.append($e.code);})+)
+/* Begenning of the parsing */
+s returns [Code3a code] // The symbol table is synthetized here and not inherited
+  : ^(PROG {code = new Code3a(); SymbolTable symTab = new SymbolTable(); } (e=unit[symTab] {code.append($e.code);})+)
   ;
 
-unit [SymbolTable symTab] returns [Code3a code]
+/* Base unit of the program : function or prototype */
+unit [SymbolTable symTab] returns [Code3a code] 
   : ^(PROTO_KW type IDENT e=param_list[symTab])
     {
       FunctionType ft = new FunctionType($type.ty, true);
       for(int i = 0; i < $e.lty.size(); i++)
         ft.extend($e.lty.get(i));
-      /*symTab.insert($IDENT.text, new FunctionSymbol(SymbDistrib.newLabel(), ft));*/
       symTab.insert($IDENT.text, new FunctionSymbol(new LabelSymbol($IDENT.text), ft));
     }
+
   | ^(FUNC_KW type IDENT e=param_list[symTab]
     {
-      // TODO, as for everything else we'll have to check the type of arguments
-      // TODO, a function might not have been prototyped
+      // TODO, as for everything else we'll have to check the type of arguments <= But the type of the arguments is not specified, is it always INT or can it be TAB ?
+      // TODO, a function might not have been prototyped <= this is only a problem if it is used before its definition
       code = new Code3a();
+      FunctionType ft = new FunctionType($type.ty, false);
+      LabelSymbol funLabel = new LabelSymbol($IDENT.text);
+
+      // Insert the function into the symTab
+      for(int i = 0; i < $e.lty.size(); i++)
+        ft.extend($e.lty.get(i));
+      symTab.insert($IDENT.text, new FunctionSymbol(funLabel, ft));
+      
+      // Prints the label and the begining of the function
+      code.append(Code3aGenerator.genBeginfunc(funLabel));
+
+      // Create a new scope for the funtion definition
+      symTab.enterScope();
+
+      // Add the parameters to the new scope and prints them
       for(int i = 0; i < $e.lnames.size(); i++) {
         symTab.insert($e.lnames.get(i), new VarSymbol($e.lty.get(i), $e.lnames.get(i), 1));
         code.append(Code3aGenerator.genVar(symTab.lookup($e.lnames.get(i))));
@@ -37,15 +54,20 @@ unit [SymbolTable symTab] returns [Code3a code]
     ^(BODY statement[symTab]))
     {
       code.append($statement.code);
+      //Leave the scope and the function
+      symTab.leaveScope();
+      code.append(Code3aGenerator.genEndfunc());
     }
   ;
 
+/* Statement */
 statement [SymbolTable symTab] returns [Code3a code]
   : ^(ASSIGN_KW e=expression[symTab] IDENT)
     {
       code = Code3aGenerator.genCopy(symTab.lookup($IDENT.text), e);
     }
   // TODO, array
+
   | ^(IF_KW {code = new Code3a();
             LabelSymbol tempL1 = SymbDistrib.newLabel();
             LabelSymbol tempL2 = SymbDistrib.newLabel();}
@@ -55,6 +77,7 @@ statement [SymbolTable symTab] returns [Code3a code]
                           code.append(Code3aGenerator.genLabel(tempL1));}
     (e3=statement[symTab] {code.append(e3);})?  // TODO, use only 1 goto if there's no else
     {code.append(Code3aGenerator.genLabel(tempL2));})
+
   | ^(WHILE_KW {code = new Code3a();
                 LabelSymbol tempL1 = SymbDistrib.newLabel();
                 LabelSymbol tempL2 = SymbDistrib.newLabel();
@@ -63,17 +86,24 @@ statement [SymbolTable symTab] returns [Code3a code]
     e2=statement[symTab] {code.append(e2);
                           code.append(Code3aGenerator.genGoto(tempL1));
                           code.append(Code3aGenerator.genLabel(tempL2));})
+
   | block[symTab] {code = $block.code;}
   ;
 
+
 block [SymbolTable symTab] returns [Code3a code]
-  : ^(BLOCK declaration[symTab] e=inst_list[symTab])
+  : ^(BLOCK declaration[symTab] { symTab.enterScope(); } // Push a new symTable
+    e=inst_list[symTab])
     {
       code = e;
+      symTab.leaveScope(); // Pop the symTable
     }
-  | ^(BLOCK e=inst_list[symTab])
+
+  | ^(BLOCK  { symTab.enterScope(); } // Push a new symTable => We don't really need to do it here since there is no decl ?
+    e=inst_list[symTab])
     {
       code = e;
+      symTab.leaveScope(); // Pop the symTable
     }
   ;
 
@@ -81,6 +111,7 @@ inst_list [SymbolTable symTab] returns [Code3a code]
   : ^(INST {code = new Code3a();} (e=statement[symTab] {code.append(e);})+)
   ;
 
+/* Expressions */
 expression [SymbolTable symTab] returns [ExpAttribute expAtt]
   : ^(PLUS e1=expression[symTab] e2=expression[symTab])
     {
@@ -89,6 +120,7 @@ expression [SymbolTable symTab] returns [ExpAttribute expAtt]
       Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.ADD, temp, e1, e2);
       expAtt = new ExpAttribute(ty, cod, temp);
     }
+
   | ^(MINUS e1=expression[symTab] e2=expression[symTab])
     {
       Type ty = TypeCheck.checkBinOp(e1.type, e2.type);
@@ -96,6 +128,7 @@ expression [SymbolTable symTab] returns [ExpAttribute expAtt]
       Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.SUB, temp, e1, e2);
       expAtt = new ExpAttribute(ty, cod, temp);
     }
+
   | ^(MUL e1=expression[symTab] e2=expression[symTab])
     {
       Type ty = TypeCheck.checkBinOp(e1.type, e2.type);
@@ -103,6 +136,7 @@ expression [SymbolTable symTab] returns [ExpAttribute expAtt]
       Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.MUL, temp, e1, e2);
       expAtt = new ExpAttribute(ty, cod, temp);
     }
+
   | ^(DIV e1=expression[symTab] e2=expression[symTab])
     {
       Type ty = TypeCheck.checkBinOp(e1.type, e2.type);
@@ -110,6 +144,7 @@ expression [SymbolTable symTab] returns [ExpAttribute expAtt]
       Code3a cod = Code3aGenerator.genBinOp(Inst3a.TAC.DIV, temp, e1, e2);
       expAtt = new ExpAttribute(ty, cod, temp);
     }
+
   | pe=primary_exp[symTab]
     { expAtt = pe; }
   ;
@@ -120,24 +155,51 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
       ConstSymbol cs = new ConstSymbol(Integer.parseInt($INTEGER.text));
       expAtt = new ExpAttribute(Type.INT, new Code3a(), cs);
     }
+
   | IDENT
     {
       Operand3a id = symTab.lookup($IDENT.text);
+      if (id == null) {
+        // Error : Undeclared identifier
+      }
       expAtt = new ExpAttribute(id.type, new Code3a(), id);
     }
-  | ^(FCALL IDENT {Code3a code = new Code3a(); Operand3a id = symTab.lookup($IDENT.text);} (e=expression[symTab]
+
+  // TODO check if the function has been declared and if the type of the arguments matches with the declaration
+  | ^(FCALL IDENT
     {
+      Code3a code = new Code3a();
+      Operand3a id = symTab.lookup($IDENT.text);
+      if (id == null) {
+        // Error : Undeclared function
+      }
+      FunctionType ft = new FunctionType(id.type);
+    }
+    (e=expression[symTab]
+    {
+      ft.extend(e.type);
       code.append(Code3aGenerator.genArg(e.place));
     })*)
     {
-      VarSymbol temp = SymbDistrib.newTemp();
-      code.append(Code3aGenerator.genCall(temp, new ExpAttribute(id.type, new Code3a(), id)));
-      expAtt = new ExpAttribute(id.type, code, temp);
+      // Check the args
+      if (!ft.isCompatible(id.type)) {
+        // Error : wrong arg
+      }
+      
+      if(ft.getReturnType() != Type.VOID) {
+        VarSymbol temp = SymbDistrib.newTemp();
+        code.append(Code3aGenerator.genCall(temp, new ExpAttribute(id.type, new Code3a(), id)));
+        expAtt = new ExpAttribute(id.type, code, temp);
+      } else {
+        code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
+        // ExpAtt is null here !
+      }
     }
   ;
 
-param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab?
-  // TODO, that's stupid to use lists right?
+/* Parameters */
+param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab? => If they are, they belong to a different scope
+  // TODO, that's stupid to use lists right? => I don't see other possibilities
   : ^(PARAM {$lty = new LinkedList<Type>(); $lnames = new LinkedList<String>();}
     (e=param[symTab] {$lty.add($e.ty); $lnames.add($e.name);})*)
   ;
@@ -147,11 +209,13 @@ param [SymbolTable symTab] returns [Type ty, String name]
   | ^(ARRAY IDENT) {$ty = Type.POINTER; $name = $IDENT.text;}
   ;
 
+/* Type */
 type returns [Type ty]
   : INT_KW {ty = Type.INT;}
   | VOID_KW {ty = Type.VOID;}
   ;
 
+/* Declarations */
 declaration [SymbolTable symTab] returns [Code3a code]
   : ^(DECL {code = new Code3a();} (decl_item[symTab] {code.append($decl_item.code);})+)
   ;
@@ -159,7 +223,7 @@ declaration [SymbolTable symTab] returns [Code3a code]
 decl_item [SymbolTable symTab] returns [Code3a code]
   : IDENT
     {
-      symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, 0));  // TODO, understand scope
+      symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, symTab.getScope()));  // TODO, understand scope
       code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
     }
   /*| ^(ARDECL IDENT INTEGER) {}  // TODO, array declaration*/

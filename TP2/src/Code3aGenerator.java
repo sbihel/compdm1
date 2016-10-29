@@ -95,4 +95,22 @@ public class Code3aGenerator {
 		return cod;
 	}
 
+	/**
+	 * Generate code to start a function
+	 *
+	 * @param a ist the label of the function
+	 */
+	public static Code3a genBeginfunc(LabelSymbol a) {
+		Code3a cod = new Code3a(new Inst3a(Inst3a.TAC.LABEL, a, null, null));
+		cod.append(new Inst3a(Inst3a.TAC.BEGINFUNC, null, null, null));
+		return cod;
+	}
+
+	/**
+	 * Generate code to end a function
+	 */
+	public static Code3a genEndfunc() {
+		return new Code3a(new Inst3a(Inst3a.TAC.ENDFUNC, null, null, null));
+	}
+
 } // Code3aGenerator ***
