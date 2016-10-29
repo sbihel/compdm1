@@ -11,13 +11,13 @@ options {
   import java.util.LinkedList;
 }
 
-/* Begenning of the parsing */
+/* Beginning of the parsing */
 s returns [Code3a code] // The symbol table is synthetized here and not inherited
   : ^(PROG {code = new Code3a(); SymbolTable symTab = new SymbolTable(); } (e=unit[symTab] {code.append($e.code);})+)
   ;
 
 /* Base unit of the program : function or prototype */
-unit [SymbolTable symTab] returns [Code3a code] 
+unit [SymbolTable symTab] returns [Code3a code]
   : ^(PROTO_KW type IDENT e=param_list[symTab])
     {
       FunctionType ft = new FunctionType($type.ty, true);
@@ -38,7 +38,7 @@ unit [SymbolTable symTab] returns [Code3a code]
       for(int i = 0; i < $e.lty.size(); i++)
         ft.extend($e.lty.get(i));
       symTab.insert($IDENT.text, new FunctionSymbol(funLabel, ft));
-      
+
       // Prints the label and the begining of the function
       code.append(Code3aGenerator.genBeginfunc(funLabel));
 
@@ -73,10 +73,10 @@ statement [SymbolTable symTab] returns [Code3a code]
       code = Code3aGenerator.genRet(e.place);
     }
 
-  | ^(PRINT_KW e=print_list[symTab])
-    {
-      code = e;
-    }
+  /*| ^(PRINT_KW e1=print_list[symTab])*/
+  /*  {                                */
+  /*    code = e1;                     */
+  /*  }                                */
 
   | ^(IF_KW {code = new Code3a();
             LabelSymbol tempL1 = SymbDistrib.newLabel();
@@ -195,7 +195,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
       if (!ft.isCompatible(id.type)) {
         // Error : wrong arg
       }
-      
+
       if(ft.getReturnType() != Type.VOID) {
         VarSymbol temp = SymbDistrib.newTemp();
         code.append(Code3aGenerator.genCall(temp, new ExpAttribute(id.type, new Code3a(), id)));
@@ -207,14 +207,26 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     }
   ;
 
-print_list [SymbolTable symTab] returns [Code3a code]
-    : e1=print_item[symTab] (e2=print_item[symTab])*
-    ;
+/*print_list [SymbolTable symTab] returns [Code3a code]                                     */
+/*    : e1=print_item[symTab] {code = e1;} (e2=print_item[symTab] {code.append(e2);})*      */
+/*    ;                                                                                     */
 
-print_item [SymbolTable symTab] returns [Code3a code]
-    : TEXT
-    | e=expression[symTab]
-    ;
+/*print_item [SymbolTable symTab] returns [Code3a code]                                     */
+/*    : TEXT                                                                                */
+/*      {                                                                                   */
+/*        code = new Code3a();                                                              */
+/*        code.appendData(new Data3a($TEXT.text));                                          */
+/*        Operand3a id = symTab.lookup("prints");                                           */
+/*        code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));*/
+/*      }                                                                                   */
+/*    | e=expression[symTab]                                                                */
+/*      {                                                                                   */
+/*        code = new Code3a();                                                              */
+/*        code.appendData(new Data3a(e.toString()));                                        */
+/*        Operand3a id = symTab.lookup("printn");                                           */
+/*        code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));*/
+/*      }                                                                                   */
+/*    ;                                                                                     */
 
 /* Parameters */
 param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab? => If they are, they belong to a different scope
