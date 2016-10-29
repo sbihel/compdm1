@@ -73,6 +73,11 @@ statement [SymbolTable symTab] returns [Code3a code]
       code = Code3aGenerator.genRet(e.place);
     }
 
+  | ^(PRINT_KW e=print_list[symTab])
+    {
+      code = e;
+    }
+
   | ^(IF_KW {code = new Code3a();
             LabelSymbol tempL1 = SymbDistrib.newLabel();
             LabelSymbol tempL2 = SymbDistrib.newLabel();}
@@ -201,6 +206,15 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
       }
     }
   ;
+
+print_list [SymbolTable symTab] returns [Code3a code]
+    : e1=print_item[symTab] (e2=print_item[symTab])*
+    ;
+
+print_item [SymbolTable symTab] returns [Code3a code]
+    : TEXT
+    | e=expression[symTab]
+    ;
 
 /* Parameters */
 param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab? => If they are, they belong to a different scope
