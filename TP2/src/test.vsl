@@ -4,5 +4,6 @@ FUNC INT fact(a)
     INT a, b
     a := a + 1
     b := a + fact(a)
+    PRINT "CQCQCQ ", b
     RETURN b
 }

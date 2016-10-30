@@ -73,10 +73,7 @@ statement [SymbolTable symTab] returns [Code3a code]
       code = Code3aGenerator.genRet(e.place);
     }
 
-  /*| ^(PRINT_KW e1=print_list[symTab])*/
-  /*  {                                */
-  /*    code = e1;                     */
-  /*  }                                */
+  | ^(PRINT_KW {code = new Code3a();} (p=print_item[symTab] {code.append(p);})+)
 
   | ^(IF_KW {code = new Code3a();
             LabelSymbol tempL1 = SymbDistrib.newLabel();
@@ -207,26 +204,24 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     }
   ;
 
-/*print_list [SymbolTable symTab] returns [Code3a code]                                     */
-/*    : e1=print_item[symTab] {code = e1;} (e2=print_item[symTab] {code.append(e2);})*      */
-/*    ;                                                                                     */
-
-/*print_item [SymbolTable symTab] returns [Code3a code]                                     */
-/*    : TEXT                                                                                */
-/*      {                                                                                   */
-/*        code = new Code3a();                                                              */
-/*        code.appendData(new Data3a($TEXT.text));                                          */
-/*        Operand3a id = symTab.lookup("prints");                                           */
-/*        code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));*/
-/*      }                                                                                   */
-/*    | e=expression[symTab]                                                                */
-/*      {                                                                                   */
-/*        code = new Code3a();                                                              */
-/*        code.appendData(new Data3a(e.toString()));                                        */
-/*        Operand3a id = symTab.lookup("printn");                                           */
-/*        code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));*/
-/*      }                                                                                   */
-/*    ;                                                                                     */
+print_item [SymbolTable symTab] returns [Code3a code]
+  : TEXT
+    {
+      code = new Code3a();
+      Data3a dat = new Data3a($TEXT.text);
+      code.append(Code3aGenerator.genArg(dat.getLabel()));
+      code.appendData(dat);
+      Operand3a id = SymbDistrib.builtinPrintS;
+      code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
+    }
+  | e=expression[symTab]
+    {
+      code = new Code3a();
+      code.append(Code3aGenerator.genArg(e.place));
+      Operand3a id = SymbDistrib.builtinPrintN;
+      code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
+    }
+  ;
 
 /* Parameters */
 param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab? => If they are, they belong to a different scope
