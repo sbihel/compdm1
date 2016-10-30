@@ -101,10 +101,11 @@ statement [SymbolTable symTab] returns [Code3a code]
 
 
 block [SymbolTable symTab] returns [Code3a code]
-  : ^(BLOCK declaration[symTab] { symTab.enterScope(); } // Push a new symTable
+  : ^(BLOCK { symTab.enterScope(); } // Push a new symTable
+    d=declaration[symTab] {code = d;}
     e=inst_list[symTab])
     {
-      code = e;
+      code.append(e);
       symTab.leaveScope(); // Pop the symTable
     }
 
