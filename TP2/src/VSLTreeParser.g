@@ -75,6 +75,8 @@ statement [SymbolTable symTab] returns [Code3a code]
 
   | ^(PRINT_KW {code = new Code3a();} (p=print_item[symTab] {code.append(p);})+)
 
+  | ^(READ_KW {code = new Code3a();} (r=read_item[symTab] {code.append(r);})+)
+
   | ^(IF_KW {code = new Code3a();
             LabelSymbol tempL1 = SymbDistrib.newLabel();
             LabelSymbol tempL2 = SymbDistrib.newLabel();}
@@ -221,6 +223,16 @@ print_item [SymbolTable symTab] returns [Code3a code]
       Operand3a id = SymbDistrib.builtinPrintN;
       code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
     }
+  ;
+
+read_item [SymbolTable symTab] returns [Code3a code]
+  : IDENT
+    {
+      code = Code3aGenerator.genArg(symTab.lookup($IDENT.text));
+      Operand3a id = SymbDistrib.builtinRead;
+      code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
+    }
+  /*| array_elem*/
   ;
 
 /* Parameters */
