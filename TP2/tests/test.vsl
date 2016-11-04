@@ -3,5 +3,5 @@ FUNC INT main() {
     i := 2
     a[i] := 1
     a[1] := a[i]
-    PRINT "Hello World ", a[2]
+    PRINT "Hello World ", a[2], i
 }

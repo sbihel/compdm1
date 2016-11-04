@@ -205,6 +205,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     }
     (e=expression[symTab]
     {
+      code.append(e.code);
       ft.extend(e.type);
       code.append(Code3aGenerator.genArg(e.place));
     })*)
@@ -239,6 +240,7 @@ print_item [SymbolTable symTab] returns [Code3a code]
   | e=expression[symTab]
     {
       code = new Code3a();
+      code.append(e.code);
       code.append(Code3aGenerator.genArg(e.place));
       Operand3a id = SymbDistrib.builtinPrintN;
       code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
@@ -264,7 +266,7 @@ param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  /
 
 param [SymbolTable symTab] returns [Type ty, String name]
   : IDENT {$ty = Type.INT; $name = $IDENT.text;}
-  | ^(ARRAY IDENT) {$ty = Type.POINTER; $name = $IDENT.text;}
+  | ^(ARRAY IDENT) {$ty = Type.POINTER; $name = $IDENT.text;} // TODO, probably not good
   ;
 
 /* Type */
