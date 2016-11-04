@@ -1,6 +1,0 @@
-FUNC INT main() {
-	INT a
-	a := 1
-            PRINT "Hello World ", a
-	}
-
