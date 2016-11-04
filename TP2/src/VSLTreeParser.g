@@ -62,11 +62,10 @@ unit [SymbolTable symTab] returns [Code3a code]
 
 /* Statement */
 statement [SymbolTable symTab] returns [Code3a code]
-  : ^(ASSIGN_KW e=expression[symTab] IDENT)
+  : ^(ASSIGN_KW e=expression[symTab] a=assignp[symTab, e])
     {
-      code = Code3aGenerator.genCopy(symTab.lookup($IDENT.text), e);
+      code = a;
     }
-  // TODO, array
 
   | ^(RETURN_KW e=expression[symTab])
     {
@@ -97,6 +96,17 @@ statement [SymbolTable symTab] returns [Code3a code]
                           code.append(Code3aGenerator.genLabel(tempL2));})
 
   | block[symTab] {code = $block.code;}
+  ;
+
+assignp [SymbolTable symTab, ExpAttribute e1] returns [Code3a code]
+  : IDENT
+    {
+      code = Code3aGenerator.genCopy(symTab.lookup($IDENT.text), e1);
+    }
+  | ^(ARELEM  IDENT e2=expression[symTab])
+    {
+      code = Code3aGenerator.genVartab(symTab.lookup($IDENT.text), e2, e1);
+    }
   ;
 
 
@@ -175,6 +185,14 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
       expAtt = new ExpAttribute(id.type, new Code3a(), id);
     }
 
+  | ^(ARELEM IDENT e=expression[symTab])
+    {
+      VarSymbol temp = SymbDistrib.newTemp();
+      Operand3a id = symTab.lookup($IDENT.text);
+      Code3a cod = Code3aGenerator.genTabvar(temp, id, e);
+      expAtt = new ExpAttribute(id.type, cod, temp);
+    }
+
   // TODO check if the function has been declared and if the type of the arguments matches with the declaration
   | ^(FCALL IDENT
     {
@@ -205,6 +223,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
         // ExpAtt is null here !
       }
     }
+    // TODO, negat & expression
   ;
 
 print_item [SymbolTable symTab] returns [Code3a code]
@@ -256,14 +275,19 @@ type returns [Type ty]
 
 /* Declarations */
 declaration [SymbolTable symTab] returns [Code3a code]
-  : ^(DECL {code = new Code3a();} (decl_item[symTab] {code.append($decl_item.code);})+)
+  : ^(DECL {code = new Code3a();} (e=decl_item[symTab] {code.append(e);})+)
   ;
 
 decl_item [SymbolTable symTab] returns [Code3a code]
   : IDENT
     {
-      symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, symTab.getScope()));  // TODO, understand scope
+      symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, symTab.getScope()));
       code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
     }
-  /*| ^(ARDECL IDENT INTEGER) {}  // TODO, array declaration*/
+  | ^(ARDECL IDENT INTEGER)
+    {
+      symTab.insert($IDENT.text, new VarSymbol(new ArrayType(Type.INT, Integer.parseInt($INTEGER.text)),
+                                               $IDENT.text, symTab.getScope()));
+      code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
+    }
   ;

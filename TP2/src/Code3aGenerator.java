@@ -62,6 +62,22 @@ public class Code3aGenerator {
 	}
 
 	/**
+	 * Generates the 3a statement: TABVAR a = b[c]
+	 */
+	public static Code3a genTabvar(Operand3a a, Operand3a b, ExpAttribute c) {
+		return new Code3a(new Inst3a(Inst3a.TAC.TABVAR, a, b, c.place));
+	}
+
+	/**
+	 * Generates the 3a statement: VARTAB a[b] = c
+	 */
+	public static Code3a genVartab(Operand3a a, ExpAttribute b, ExpAttribute c) {
+		Code3a cod = c.code;
+		cod.append(new Inst3a(Inst3a.TAC.VARTAB, a, b.place, c.place));
+		return cod;
+	}
+
+	/**
 	 * Generates the 3a statement: IFZ ifz a goto b
 	 */
 	public static Code3a genIfz(ExpAttribute a, LabelSymbol b) {

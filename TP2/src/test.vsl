@@ -1,6 +1,6 @@
 FUNC INT main() {
-	INT a
-	a := 1
-            PRINT "Hello World ", a
-	}
-
+    INT i, a[5]
+    i := 2
+    a[i] := 1
+    PRINT "Hello World ", a[2]
+}
