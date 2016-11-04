@@ -6,6 +6,7 @@
 ANTLR_JAR=../antlr-3.5.2-complete.jar
 ANTLR_RUNT=../antlr-3.5.2-runtime.jar
 SRC_DIR=./src
+TEST_FILE=./tests/test.vsl
 
 
 # -----------------------------------------------------------------------------
@@ -44,4 +45,4 @@ clean_test:
 	rm -f tests/testlevel*/*.mips tests/testlevel*/*.mips.o tests/testlevel*/*.mips.s tests/testlevel*/*.vsm.o tests/testlevel*/*.vsm.s tests/testlevel*/*.mips_res tests/testlevel*/*.vsm_res tests/testlevel*/*.comp_res
 
 run: all
-	java -cp $(CLASSPATHRUN) VslComp $(SRC_DIR)/test.vsl -debug
+	java -cp $(CLASSPATHRUN) VslComp $(TEST_FILE) -debug

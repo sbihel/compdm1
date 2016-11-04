@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.*;
 
@@ -41,6 +43,18 @@ public class VslComp {
 			Util.log.log(Level.FINE, "DEBUG on");
 		}
 
+		// Out file for generating assembly code
+	        File outfile = new File("tests/output.s");
+		PrintStream out = null;
+		try {  
+		     out = new PrintStream(outfile);
+		} catch (FileNotFoundException fnf) {
+		     System.err.println("exception: " + fnf);
+		     if (out != null) {
+			  out.close();
+		     }
+		}
+
 		// We encapsulate the code in a generic try block in order to catch any
 		// exception that may be raised.
 		try {
@@ -80,8 +94,10 @@ public class VslComp {
 				code.print();
 				// We prepare the MIPS code generator, which will compile
 				// the three-address code into MIPS assembly.
-				// MIPSCodeGenerator cg = new MIPSCodeGenerator(System.out); // NOT NEEDED AT THE BEGINNING
-					
+				System.out.println("Generating mips assembly code");
+
+				MIPSCodeGenerator cg = new MIPSCodeGenerator(out); // NOT NEEDED AT THE BEGINNING
+		
 				// NOTE: if necessary, uncomment the call to addStubMain
 				// to add the header and footer for the main function.
 				// This allows the program to be run using the NachOS
@@ -90,7 +106,7 @@ public class VslComp {
 					
 				// Generates the actual MIPS code, printing it to the
 				// stream chosen previously (by default, System.out).
-				// cg.genCode(code);  // NOT NEEDED AT THE BEGINNING
+				cg.genCode(code);  // NOT NEEDED AT THE BEGINNING
 				// The rest of the main function are standard error handlers.
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
@@ -103,6 +119,10 @@ public class VslComp {
 			System.err.println("Recognition exception: " + re);
 		} catch (IOException exc) {
 			System.out.println("IO exception");
+		} finally {
+		     if (out != null) {
+			  out.close();
+		     }
 		}
 	}
 
