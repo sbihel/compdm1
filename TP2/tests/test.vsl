@@ -1,7 +1,15 @@
-FUNC INT main() {
-    INT i, a[5]
-    i := 2
-    a[i] := 1
-    a[1] := a[i]
-    PRINT "Hello World ", a[2], i
+PROTO INT incr(k)
+FUNC VOID main()
+{
+  INT i, r
+  i := 11
+  PRINT i, "\n"
+  r := incr(i)
+  PRINT r, "\n"
+}
+
+FUNC INT incr(n)
+{
+  PRINT "incr ",  n, "\n"
+  RETURN  n + n
 }

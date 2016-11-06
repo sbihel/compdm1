@@ -69,7 +69,8 @@ statement [SymbolTable symTab] returns [Code3a code]
 
   | ^(RETURN_KW e=expression[symTab])
     {
-      code = Code3aGenerator.genRet(e.place);
+      code = e.code;
+      code.append(Code3aGenerator.genRet(e.place));
     }
 
   | ^(PRINT_KW {code = new Code3a();} (p=print_item[symTab] {code.append(p);})+)
@@ -118,6 +119,8 @@ statement [SymbolTable symTab] returns [Code3a code]
         code.append(Code3aGenerator.genGoto(tempL1));
         code.append(Code3aGenerator.genLabel(tempL2));
     })
+
+ /* | ^(FCALL_S IDENT argument_list?) TODO */
 
   | block[symTab] {code = $block.code;}
   ;
@@ -231,7 +234,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     {
       code.append(e.code);
       ft.extend(e.type);
-      code.append(Code3aGenerator.genArg(e.place));
+      code.append(Code3aGenerator.genArg(e.place)); // TODO : should be right before the function call
     })*)
     {
       // Check the args
@@ -241,6 +244,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
 
       if(ft.getReturnType() != Type.VOID) {
         VarSymbol temp = SymbDistrib.newTemp();
+        code.append(Code3aGenerator.genVar(temp));
         code.append(Code3aGenerator.genCall(temp, new ExpAttribute(id.type, new Code3a(), id)));
         expAtt = new ExpAttribute(id.type, code, temp);
       } else {
