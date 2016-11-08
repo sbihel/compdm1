@@ -62,6 +62,15 @@ public class Code3aGenerator {
 	}
 
 	/**
+	 * Generates the 3a statement: NEG a = -b
+	 */
+	public static Code3a genNeg(Operand3a a, ExpAttribute b) {
+		Code3a cod = b.code;
+		cod.append(new Inst3a(Inst3a.TAC.NEG, a, b.place, null));
+		return cod;
+	}
+
+	/**
 	 * Generates the 3a statement: TABVAR a = b[c]
 	 */
 	public static Code3a genTabvar(Operand3a a, Operand3a b, ExpAttribute c) {

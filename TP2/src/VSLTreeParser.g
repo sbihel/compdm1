@@ -223,6 +223,12 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
         // ExpAtt is null here !
       }
     }
+  | ^(NEGAT e=primary_exp[symTab])
+    {
+      VarSymbol temp = SymbDistrib.newTemp();
+      Code3a cod = Code3aGenerator.genNeg(temp, e);
+      expAtt = new ExpAttribute(e.type, cod, temp);
+    }
     // TODO, negat & expression
   ;
 
