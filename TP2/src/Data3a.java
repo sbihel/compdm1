@@ -26,7 +26,7 @@ public class Data3a {
 	}
 
 	public String toString() {
-		return label.toString() + ":" + text;
+		return label.toString() + ":\"" + text + "\"";
 	}
 
 	public void print() {

@@ -69,31 +69,56 @@ statement [SymbolTable symTab] returns [Code3a code]
 
   | ^(RETURN_KW e=expression[symTab])
     {
-      code = Code3aGenerator.genRet(e.place);
+      code = e.code;
+      code.append(Code3aGenerator.genRet(e.place));
     }
 
   | ^(PRINT_KW {code = new Code3a();} (p=print_item[symTab] {code.append(p);})+)
 
   | ^(READ_KW {code = new Code3a();} (r=read_item[symTab] {code.append(r);})+)
 
-  | ^(IF_KW {code = new Code3a();
-            LabelSymbol tempL1 = SymbDistrib.newLabel();
-            LabelSymbol tempL2 = SymbDistrib.newLabel();}
-    e1=expression[symTab] {code.append(Code3aGenerator.genIfz(e1, tempL1));}
-    e2=statement[symTab] {code.append(e2);
-                          code.append(Code3aGenerator.genGoto(tempL2));
-                          code.append(Code3aGenerator.genLabel(tempL1));}
-    (e3=statement[symTab] {code.append(e3);})?  // TODO, use only 1 goto if there's no else
-    {code.append(Code3aGenerator.genLabel(tempL2));})
+  | ^(IF_KW
+    {
+      code = new Code3a();
+      LabelSymbol tempL1 = SymbDistrib.newLabel();
+      LabelSymbol tempL2 = SymbDistrib.newLabel();
+    }
+    e1=expression[symTab]
+    {
+      code.append(e1.code);
+      code.append(Code3aGenerator.genIfz(e1, tempL1));
+    }
+    e2=statement[symTab]
+    {
+      code.append(e2);
+      code.append(Code3aGenerator.genGoto(tempL2));
+      code.append(Code3aGenerator.genLabel(tempL1));
+    }
+    (e3=statement[symTab] {
+      code.append(e3);
+    })?  // TODO, use only 1 goto if there's no else
+    {
+      code.append(Code3aGenerator.genLabel(tempL2));
+    })
 
-  | ^(WHILE_KW {code = new Code3a();
-                LabelSymbol tempL1 = SymbDistrib.newLabel();
-                LabelSymbol tempL2 = SymbDistrib.newLabel();
-                code.append(Code3aGenerator.genLabel(tempL1));}
-    e1=expression[symTab] {code.append(Code3aGenerator.genIfz(e1, tempL2));}
-    e2=statement[symTab] {code.append(e2);
-                          code.append(Code3aGenerator.genGoto(tempL1));
-                          code.append(Code3aGenerator.genLabel(tempL2));})
+  | ^(WHILE_KW
+    {
+      code = new Code3a();
+      LabelSymbol tempL1 = SymbDistrib.newLabel();
+      LabelSymbol tempL2 = SymbDistrib.newLabel();
+      code.append(Code3aGenerator.genLabel(tempL1));
+    }
+    e1=expression[symTab]
+    {
+      code.append(e1.code);
+      code.append(Code3aGenerator.genIfz(e1, tempL2));
+    }
+    e2=statement[symTab]
+    {
+      code.append(e2);
+      code.append(Code3aGenerator.genGoto(tempL1));
+      code.append(Code3aGenerator.genLabel(tempL2));
+    })
 
   | ^(FCALL_S IDENT
     {
@@ -233,8 +258,9 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     }
     (e=expression[symTab]
     {
+      code.append(e.code);
       ft.extend(e.type);
-      code.append(Code3aGenerator.genArg(e.place));
+      code.append(Code3aGenerator.genArg(e.place)); // TODO : should be right before the function call
     })*)
     {
       // Check the args
@@ -244,6 +270,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
 
       if(ft.getReturnType() != Type.VOID) {
         VarSymbol temp = SymbDistrib.newTemp();
+        code.append(Code3aGenerator.genVar(temp));
         code.append(Code3aGenerator.genCall(temp, new ExpAttribute(id.type, new Code3a(), id)));
         expAtt = new ExpAttribute(id.type, code, temp);
       } else {
@@ -272,6 +299,7 @@ print_item [SymbolTable symTab] returns [Code3a code]
   | e=expression[symTab]
     {
       code = new Code3a();
+      code.append(e.code);
       code.append(Code3aGenerator.genArg(e.place));
       Operand3a id = SymbDistrib.builtinPrintN;
       code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
@@ -297,7 +325,7 @@ param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  /
 
 param [SymbolTable symTab] returns [Type ty, String name]
   : IDENT {$ty = Type.INT; $name = $IDENT.text;}
-  | ^(ARRAY IDENT) {$ty = Type.POINTER; $name = $IDENT.text;}
+  | ^(ARRAY IDENT) {$ty = Type.POINTER; $name = $IDENT.text;} // TODO, probably not good
   ;
 
 /* Type */

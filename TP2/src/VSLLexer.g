@@ -47,5 +47,8 @@ DIV       : '/'      ;
 // other tokens (no conflict with keywords in VSL)
 
 IDENT   : LETTER (LETTER|DIGIT)*;
-TEXT    : '"' (ASCII)* '"';
+TEXT    : '"' (ASCII)* '"'
+{
+	this.setText(this.getText().substring(1, this.getText().length() - 1)); // Used to remove the quotes
+};
 INTEGER : (DIGIT)+ ;
