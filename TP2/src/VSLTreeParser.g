@@ -95,6 +95,34 @@ statement [SymbolTable symTab] returns [Code3a code]
                           code.append(Code3aGenerator.genGoto(tempL1));
                           code.append(Code3aGenerator.genLabel(tempL2));})
 
+  | ^(FCALL_S IDENT
+    {
+      code = new Code3a();
+      Operand3a id = symTab.lookup($IDENT.text);
+      if (id == null) {
+        // Error : Undeclared function
+      }
+      FunctionType ft = new FunctionType(id.type);
+    }
+    (e=expression[symTab]
+    {
+      ft.extend(e.type);
+      code.append(Code3aGenerator.genArg(e.place));
+    })*)
+    {
+      // Check the args
+      if (!ft.isCompatible(id.type)) {
+        // Error : wrong arg
+      }
+
+      if(ft.getReturnType() != Type.VOID) {
+        // Error : unused return value
+      } else {
+        code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
+        // ExpAtt is null here !
+      }
+    }
+
   | block[symTab] {code = $block.code;}
   ;
 
@@ -219,17 +247,16 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
         code.append(Code3aGenerator.genCall(temp, new ExpAttribute(id.type, new Code3a(), id)));
         expAtt = new ExpAttribute(id.type, code, temp);
       } else {
-        code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
-        // ExpAtt is null here !
+        // Error: void type
       }
     }
+
   | ^(NEGAT e=primary_exp[symTab])
     {
       VarSymbol temp = SymbDistrib.newTemp();
       Code3a cod = Code3aGenerator.genNeg(temp, e);
       expAtt = new ExpAttribute(e.type, cod, temp);
     }
-    // TODO, negat & expression
   ;
 
 print_item [SymbolTable symTab] returns [Code3a code]
