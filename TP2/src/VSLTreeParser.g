@@ -18,15 +18,20 @@ s returns [Code3a code] // The symbol table is synthetized here and not inherite
 
 /* Base unit of the program : function or prototype */
 unit [SymbolTable symTab] returns [Code3a code]
-  : ^(PROTO_KW type IDENT e=param_list[symTab])
+  : ^(PROTO_KW type IDENT
     {
       FunctionType ft = new FunctionType($type.ty, true);
-      for(int i = 0; i < $e.lty.size(); i++)
-        ft.extend($e.lty.get(i));
-      symTab.insert($IDENT.text, new FunctionSymbol(new LabelSymbol($IDENT.text), ft));
     }
+    ^(PARAM (p=param[symTab]
+    {
+       // Add the parameters
+       ft.extend($p.ty);
+    })*)
+    {
+      symTab.insert($IDENT.text, new FunctionSymbol(new LabelSymbol($IDENT.text), ft));
+    })
 
-  | ^(FUNC_KW type IDENT e=param_list[symTab]
+  | ^(FUNC_KW type IDENT 
     {
       // TODO, as for everything else we'll have to check the type of arguments <= But the type of the arguments is not specified, is it always INT or can it be TAB ?
       // TODO, a function might not have been prototyped <= this is only a problem if it is used before its definition
@@ -34,29 +39,28 @@ unit [SymbolTable symTab] returns [Code3a code]
       FunctionType ft = new FunctionType($type.ty, false);
       LabelSymbol funLabel = new LabelSymbol($IDENT.text);
 
-      // Insert the function into the symTab
-      for(int i = 0; i < $e.lty.size(); i++)
-        ft.extend($e.lty.get(i));
-      symTab.insert($IDENT.text, new FunctionSymbol(funLabel, ft));
-
-      // Prints the label and the begining of the function
+      // Print the label and the begining of the function
       code.append(Code3aGenerator.genBeginfunc(funLabel));
-
       // Create a new scope for the funtion definition
       symTab.enterScope();
-
-      // Add the parameters to the new scope and prints them
-      for(int i = 0; i < $e.lnames.size(); i++) {
-        symTab.insert($e.lnames.get(i), new VarSymbol($e.lty.get(i), $e.lnames.get(i), 1));
-        code.append(Code3aGenerator.genVar(symTab.lookup($e.lnames.get(i))));
-      }
     }
+    ^(PARAM (p=param[symTab]
+    {
+       // Add the parameters
+       ft.extend($p.ty);
+       VarSymbol parameter = new VarSymbol($p.ty, $p.name, 1);
+       parameter.setParam();
+       symTab.insert($p.name, parameter);
+       code.append(Code3aGenerator.genVar(symTab.lookup($p.name)));
+    })*)
     ^(BODY statement[symTab]))
     {
       code.append($statement.code);
       //Leave the scope and the function
       symTab.leaveScope();
       code.append(Code3aGenerator.genEndfunc());
+      // Add the function to the symtable
+      symTab.insert($IDENT.text, new FunctionSymbol(funLabel, ft));
     }
   ;
 
@@ -250,29 +254,38 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
   | ^(FCALL IDENT
     {
       Code3a code = new Code3a();
+      VarSymbol temp = SymbDistrib.newTemp();
+      code.append(Code3aGenerator.genVar(temp));
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-        // Error : Undeclared function
+        // Error : Undeclared identifier
       }
-      FunctionType ft = new FunctionType(id.type);
+      if (!(id.type instanceof FunctionType)) {
+      	System.out.println("Error : " + $IDENT.text + " is not a function");
+      }
+      FunctionType ft = (FunctionType) id.type;
+      System.out.println("Call function : " + $IDENT.text + " : " + ft);
+      FunctionType fun = new FunctionType(ft.getReturnType());
+      System.out.println("Intermediate function : " + fun);
     }
     (e=expression[symTab]
     {
       code.append(e.code);
-      ft.extend(e.type);
+      System.out.println("Arg : " + e.place);
+      fun.extend(e.type);
       code.append(Code3aGenerator.genArg(e.place)); // TODO : should be right before the function call
     })*)
     {
       // Check the args
-      if (!ft.isCompatible(id.type)) {
+      System.out.println("Final function : " + fun);
+      if (!fun.isCompatible(ft)) {
+      	System.out.println("Error : Wrong argument type in function: " + $IDENT.text + " : " + ft);
         // Error : wrong arg
       }
 
-      if(ft.getReturnType() != Type.VOID) {
-        VarSymbol temp = SymbDistrib.newTemp();
-        code.append(Code3aGenerator.genVar(temp));
-        code.append(Code3aGenerator.genCall(temp, new ExpAttribute(id.type, new Code3a(), id)));
-        expAtt = new ExpAttribute(id.type, code, temp);
+      if(fun.getReturnType() != Type.VOID) {
+        code.append(Code3aGenerator.genCall(temp, new ExpAttribute(fun.getReturnType(), new Code3a(), id))); // Is error from here?
+        expAtt = new ExpAttribute(fun.getReturnType(), code, temp);
       } else {
         // Error: void type
       }
@@ -317,11 +330,11 @@ read_item [SymbolTable symTab] returns [Code3a code]
   ;
 
 /* Parameters */
-param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab? => If they are, they belong to a different scope
+/*param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab? => If they are, they belong to a different scope
   // TODO, that's stupid to use lists right? => I don't see other possibilities
   : ^(PARAM {$lty = new LinkedList<Type>(); $lnames = new LinkedList<String>();}
     (e=param[symTab] {$lty.add($e.ty); $lnames.add($e.name);})*)
-  ;
+  ;*/
 
 param [SymbolTable symTab] returns [Type ty, String name]
   : IDENT {$ty = Type.INT; $name = $IDENT.text;}
