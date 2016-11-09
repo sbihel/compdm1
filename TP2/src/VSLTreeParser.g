@@ -284,7 +284,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
       }
 
       if(fun.getReturnType() != Type.VOID) {
-        code.append(Code3aGenerator.genCall(temp, new ExpAttribute(fun.getReturnType(), new Code3a(), id))); // Is error from here?
+        code.append(Code3aGenerator.genCall(temp, new ExpAttribute(fun.getReturnType(), new Code3a(), id)));
         expAtt = new ExpAttribute(fun.getReturnType(), code, temp);
       } else {
         // Error: void type
@@ -307,7 +307,7 @@ print_item [SymbolTable symTab] returns [Code3a code]
       code.append(Code3aGenerator.genArg(dat.getLabel()));
       code.appendData(dat);
       Operand3a id = SymbDistrib.builtinPrintS;
-      code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
+      code.append(Code3aGenerator.genCall(new ExpAttribute(Type.VOID, new Code3a(), id)));
     }
   | e=expression[symTab]
     {
@@ -315,16 +315,19 @@ print_item [SymbolTable symTab] returns [Code3a code]
       code.append(e.code);
       code.append(Code3aGenerator.genArg(e.place));
       Operand3a id = SymbDistrib.builtinPrintN;
-      code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
+      code.append(Code3aGenerator.genCall(new ExpAttribute(Type.VOID, new Code3a(), id)));
     }
   ;
 
 read_item [SymbolTable symTab] returns [Code3a code]
   : IDENT
     {
-      code = Code3aGenerator.genArg(symTab.lookup($IDENT.text));
+      code = new Code3a();
+      Operand3a result = symTab.lookup($IDENT.text);
       Operand3a id = SymbDistrib.builtinRead;
-      code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
+      System.out.println("Read type: " + id.type);
+      code.append(Code3aGenerator.genCall(result, new ExpAttribute(result.type, new Code3a(), id)));
+      //code.append(Code3aGenerator.genCall(temp, new ExpAttribute(fun.getReturnType(), new Code3a(), id))); // Is error from here?
     }
   /*| array_elem*/
   ;

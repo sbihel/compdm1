@@ -1,9 +1,27 @@
-Passing :
+#Passing
+
+##Level 1
+hello_world
+level1block
+level1expr
+level1function
+level1if1
+level1if2 [...]
+
+##Level 2
+level2read
+
+##Level 4
 level4t1
 level4testcarre
-
-Failing :
 level4testfact
+level4testfact2
+level4testhanoi
 
-Note : 
-The current test file is not passing : the function is not getting back the parameters.
+#Failing:
+
+##Level 2
+
+##Level 4
+level4testheap
+level4testtri
