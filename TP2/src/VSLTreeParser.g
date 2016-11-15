@@ -129,26 +129,35 @@ statement [SymbolTable symTab] returns [Code3a code]
       code = new Code3a();
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-        // Error : Undeclared function
+        // Error : Undeclared identifier
       }
-      FunctionType ft = new FunctionType(id.type);
+      if (!(id.type instanceof FunctionType)) {
+      	System.out.println("Error : " + $IDENT.text + " is not a function");
+      }
+      FunctionType ft = (FunctionType) id.type;
+      System.out.println("Call function : " + $IDENT.text + " : " + ft);
+      FunctionType fun = new FunctionType(ft.getReturnType());
+      System.out.println("Intermediate function : " + fun);
     }
     (e=expression[symTab]
     {
-      ft.extend(e.type);
-      code.append(Code3aGenerator.genArg(e.place));
+      code.append(e.code);
+      System.out.println("Arg : " + e.place);
+      fun.extend(e.type);
+      code.append(Code3aGenerator.genArg(e.place)); // TODO : should be right before the function call
     })*)
     {
       // Check the args
-      if (!ft.isCompatible(id.type)) {
+      System.out.println("Final function : " + fun);
+      if (!fun.isCompatible(ft)) {
+      	System.out.println("Error : Wrong argument type in function: " + $IDENT.text + " : " + ft);
         // Error : wrong arg
       }
 
-      if(ft.getReturnType() != Type.VOID) {
-        // Error : unused return value
+      if(fun.getReturnType() == Type.VOID) {
+        code.append(Code3aGenerator.genCall(new ExpAttribute(fun.getReturnType(), new Code3a(), id)));
       } else {
-        code.append(Code3aGenerator.genCall(new ExpAttribute(id.type, new Code3a(), id)));
-        // ExpAtt is null here !
+        // Error: not void type
       }
     }
 
