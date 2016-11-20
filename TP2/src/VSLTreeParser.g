@@ -235,7 +235,7 @@ expression [SymbolTable symTab] returns [ExpAttribute expAtt]
     { expAtt = pe; }
   ;
 
-primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
+primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each : check the type
   : INTEGER
     {
       ConstSymbol cs = new ConstSymbol(Integer.parseInt($INTEGER.text));
@@ -255,8 +255,11 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
     {
       VarSymbol temp = SymbDistrib.newTemp();
       Operand3a id = symTab.lookup($IDENT.text);
-      Code3a cod = Code3aGenerator.genTabvar(temp, id, e);
-      expAtt = new ExpAttribute(id.type, cod, temp);
+      Code3a cod = e.code;
+      //System.out.println("E.CODE  : " + e.code);
+      cod.append(Code3aGenerator.genTabvar(temp, id, e)); //FIXME*/
+      expAtt = new ExpAttribute(Type.INT, cod, temp);
+      System.out.println("Tab expatt : " + expAtt.type + " " + expAtt.code + " " + expAtt.place + " ");
     }
 
   // TODO check if the function has been declared and if the type of the arguments matches with the declaration
