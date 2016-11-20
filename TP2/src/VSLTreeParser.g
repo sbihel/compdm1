@@ -338,7 +338,18 @@ read_item [SymbolTable symTab] returns [Code3a code]
       code.append(Code3aGenerator.genCall(result, new ExpAttribute(result.type, new Code3a(), id)));
       //code.append(Code3aGenerator.genCall(temp, new ExpAttribute(fun.getReturnType(), new Code3a(), id))); // Is error from here?
     }
-  /*| array_elem*/
+
+  | ^(ARELEM IDENT e=expression[symTab])
+    {
+      // Use a temp var for READ and then copy the value to the array element
+      VarSymbol temp = SymbDistrib.newTemp();
+      code = new Code3a();
+      Operand3a result = symTab.lookup($IDENT.text);
+      Operand3a id = SymbDistrib.builtinRead;
+      System.out.println("Read type: " + id.type);
+      code.append(Code3aGenerator.genCall(temp, new ExpAttribute(result.type, new Code3a(), id)));
+      code.append(Code3aGenerator.genVartab(result, e, new ExpAttribute(result.type, new Code3a(), temp)));
+    }
   ;
 
 /* Parameters */
