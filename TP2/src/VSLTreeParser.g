@@ -20,6 +20,10 @@ s returns [Code3a code] // The symbol table is synthetized here and not inherite
 unit [SymbolTable symTab] returns [Code3a code]
   : ^(PROTO_KW type IDENT
     {
+      if(symTab.lookup($IDENT.text) != null) {
+      	Errors.redefinedIdentifier(null, $IDENT.text, null);
+      	System.exit(1);
+      }
       FunctionType ft = new FunctionType($type.ty, true);
     }
     ^(PARAM (p=param[symTab]
@@ -33,8 +37,19 @@ unit [SymbolTable symTab] returns [Code3a code]
 
   | ^(FUNC_KW type IDENT 
     {
-      // TODO, as for everything else we'll have to check the type of arguments <= But the type of the arguments is not specified, is it always INT or can it be TAB ?
-      // TODO, a function might not have been prototyped <= this is only a problem if it is used before its definition
+      // TODO check if the function matches its prototype
+      Operand3a fid = symTab.lookup($IDENT.text);
+      if(fid != null && !(fid.type instanceof FunctionType)) {
+      	Errors.redefinedIdentifier(null, $IDENT.text, null);
+      	System.exit(1);
+      }
+      if(fid != null) {
+      	FunctionType ft = (FunctionType) fid.type;
+      	if(!ft.prototype) {
+	      	Errors.redefinedIdentifier(null, $IDENT.text, null);
+	      	System.exit(1);
+      	}
+      }
       code = new Code3a();
       FunctionType ft = new FunctionType($type.ty, false);
       LabelSymbol funLabel = new LabelSymbol($IDENT.text);
@@ -129,7 +144,9 @@ statement [SymbolTable symTab] returns [Code3a code]
       code = new Code3a();
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-        // Error : Undeclared identifier
+      	//System.out.println(statement);
+        Errors.unknownIdentifier(null, $IDENT.text, "");
+        System.out.println("ongoing");
       }
       if (!(id.type instanceof FunctionType)) {
       	System.out.println("Error : " + $IDENT.text + " is not a function");
@@ -167,11 +184,23 @@ statement [SymbolTable symTab] returns [Code3a code]
 assignp [SymbolTable symTab, ExpAttribute e1] returns [Code3a code]
   : IDENT
     {
-      code = Code3aGenerator.genCopy(symTab.lookup($IDENT.text), e1);
+      Operand3a id = symTab.lookup($IDENT.text);
+      if (id == null) {
+      	System.out.println("Error");
+        Errors.unknownIdentifier(null, $IDENT.text, "");
+        System.out.println("Continue");
+      }
+      code = Code3aGenerator.genCopy(id, e1);
     }
   | ^(ARELEM  IDENT e2=expression[symTab])
     {
-      code = Code3aGenerator.genVartab(symTab.lookup($IDENT.text), e2, e1);
+      Operand3a id = symTab.lookup($IDENT.text);
+      if (id == null) {
+        System.out.println("Error");
+        Errors.unknownIdentifier(null, $IDENT.text, "");
+        System.out.println("Continue");
+      }
+      code = Code3aGenerator.genVartab(id, e2, e1);
     }
   ;
 
@@ -246,7 +275,8 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each 
     {
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-        // Error : Undeclared identifier
+      	Errors.unknownIdentifier(null, $IDENT.text, null);
+        System.exit(1);
       }
       expAtt = new ExpAttribute(id.type, new Code3a(), id);
     }
@@ -255,6 +285,11 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each 
     {
       VarSymbol temp = SymbDistrib.newTemp();
       Operand3a id = symTab.lookup($IDENT.text);
+      if (id == null) {
+      	System.out.println("Error");
+        Errors.unknownIdentifier(null, $IDENT.text, "");
+        System.out.println("Continue");
+      }
       Code3a cod = e.code;
       //System.out.println("E.CODE  : " + e.code);
       cod.append(Code3aGenerator.genTabvar(temp, id, e)); //FIXME*/
@@ -270,7 +305,9 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each 
       code.append(Code3aGenerator.genVar(temp));
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-        // Error : Undeclared identifier
+      	System.out.println("Error");
+        Errors.unknownIdentifier(null, $IDENT.text, "");
+        System.out.println("Continue");
       }
       if (!(id.type instanceof FunctionType)) {
       	System.out.println("Error : " + $IDENT.text + " is not a function");
@@ -336,6 +373,11 @@ read_item [SymbolTable symTab] returns [Code3a code]
     {
       code = new Code3a();
       Operand3a result = symTab.lookup($IDENT.text);
+      if (result == null) {
+      	System.out.println("Error");
+        Errors.unknownIdentifier(null, $IDENT.text, "");
+        System.out.println("Continue");
+      }
       Operand3a id = SymbDistrib.builtinRead;
       System.out.println("Read type: " + id.type);
       code.append(Code3aGenerator.genCall(result, new ExpAttribute(result.type, new Code3a(), id)));
@@ -346,8 +388,13 @@ read_item [SymbolTable symTab] returns [Code3a code]
     {
       // Use a temp var for READ and then copy the value to the array element
       VarSymbol temp = SymbDistrib.newTemp();
-      code = new Code3a();
+      //code = new Code3a();
       Operand3a result = symTab.lookup($IDENT.text);
+      if (result == null) {
+      	System.out.println("Error");
+        Errors.unknownIdentifier(null, $IDENT.text, "");
+        System.out.println("Continue");
+      }
       Operand3a id = SymbDistrib.builtinRead;
       System.out.println("Read type: " + id.type);
       code.append(Code3aGenerator.genCall(temp, new ExpAttribute(result.type, new Code3a(), id)));
