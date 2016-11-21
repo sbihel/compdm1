@@ -81,7 +81,8 @@ public class Code3aGenerator {
 	 * Generates the 3a statement: VARTAB a[b] = c
 	 */
 	public static Code3a genVartab(Operand3a a, ExpAttribute b, ExpAttribute c) {
-		Code3a cod = c.code;
+		Code3a cod = b.code;
+		cod.append(c.code);
 		cod.append(new Inst3a(Inst3a.TAC.VARTAB, a, b.place, c.place));
 		return cod;
 	}
