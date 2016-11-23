@@ -23,12 +23,14 @@ level2expr
 level2if1
 level2proto
 
-##Level 3
+##Level 3            <== ALL ok
 level3block
 level3block1
 level3tab2
 level3tab3
 level3tab4
+level3tab1
+level3tab5
 
 ##Level 4
 level4t1
@@ -41,11 +43,6 @@ level4testhanoi
 
 
 #Failing:
-
-##Level 3
-level3tab1
-level3tab5
-
 ##Level 4
 level4testheap
 level4testtri

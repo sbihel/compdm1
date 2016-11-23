@@ -11,8 +11,15 @@ options {
   import java.util.LinkedList;
 }
 
+
+
+/* TODO : fix the function call on arrays : 
+ * incompatible types: expected 'FUNC[POINTER] : VOID',
+ *                          got 'FUNC[ARRAY(INT)] : VOID'
+ */
+
 /* Beginning of the parsing */
-s returns [Code3a code] // The symbol table is synthetized here and not inherited
+s returns [Code3a code]
   : ^(PROG {code = new Code3a(); SymbolTable symTab = new SymbolTable(); } (e=unit[symTab] {code.append($e.code);})+)
   ;
 
@@ -20,9 +27,10 @@ s returns [Code3a code] // The symbol table is synthetized here and not inherite
 unit [SymbolTable symTab] returns [Code3a code]
   : ^(PROTO_KW type IDENT
     {
+      // Check if the function is already defined
       if(symTab.lookup($IDENT.text) != null) {
-      	Errors.redefinedIdentifier(null, $IDENT.text, null);
-      	System.exit(1);
+          Errors.redefinedIdentifier(null, $IDENT.text, null);
+          System.exit(1);
       }
       FunctionType ft = new FunctionType($type.ty, true);
     }
@@ -37,18 +45,22 @@ unit [SymbolTable symTab] returns [Code3a code]
 
   | ^(FUNC_KW type IDENT 
     {
-      // TODO check if the function matches its prototype
+      // Check the definition
       Operand3a fid = symTab.lookup($IDENT.text);
-      if(fid != null && !(fid.type instanceof FunctionType)) {
-      	Errors.redefinedIdentifier(null, $IDENT.text, null);
-      	System.exit(1);
-      }
+      FunctionType proto = null;
       if(fid != null) {
-      	FunctionType ft = (FunctionType) fid.type;
-      	if(!ft.prototype) {
-	      	Errors.redefinedIdentifier(null, $IDENT.text, null);
-	      	System.exit(1);
-      	}
+          // Check if the identifier is already used
+          if(!(fid.type instanceof FunctionType)) {
+              Errors.redefinedIdentifier(null, $IDENT.text, null);
+              System.exit(1);
+          } else {
+              proto = (FunctionType) fid.type;
+              // Check if the previous definition is a prototype
+              if(!proto.prototype) {
+                  Errors.redefinedIdentifier(null, $IDENT.text, null);
+                  System.exit(1);
+              }
+          }
       }
       code = new Code3a();
       FunctionType ft = new FunctionType($type.ty, false);
@@ -68,6 +80,15 @@ unit [SymbolTable symTab] returns [Code3a code]
        symTab.insert($p.name, parameter);
        code.append(Code3aGenerator.genVar(symTab.lookup($p.name)));
     })*)
+    {
+        // Checks if the function matches the prototype
+        if(proto != null) {
+            if (!ft.isCompatible(proto)) {
+                Errors.incompatibleTypes(null, proto, ft, null);
+                System.exit(1);
+            } 
+        }
+    }
     ^(BODY statement[symTab]))
     {
       code.append($statement.code);
@@ -88,6 +109,11 @@ statement [SymbolTable symTab] returns [Code3a code]
 
   | ^(RETURN_KW e=expression[symTab])
     {
+      // Checks the return type => must be INT
+      if (e.type != Type.INT) {
+          Errors.incompatibleTypes(null, Type.INT, e.type, null);
+        System.exit(1);
+      }
       code = e.code;
       code.append(Code3aGenerator.genRet(e.place));
     }
@@ -144,38 +170,30 @@ statement [SymbolTable symTab] returns [Code3a code]
       code = new Code3a();
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-      	//System.out.println(statement);
         Errors.unknownIdentifier(null, $IDENT.text, "");
-        System.out.println("ongoing");
+        System.exit(1);
       }
+      FunctionType fun = new FunctionType(Type.VOID);
       if (!(id.type instanceof FunctionType)) {
-      	System.out.println("Error : " + $IDENT.text + " is not a function");
+      	Errors.incompatibleTypes(null, id.type, fun, null);
+        System.exit(1);
       }
-      FunctionType ft = (FunctionType) id.type;
-      System.out.println("Call function : " + $IDENT.text + " : " + ft);
-      FunctionType fun = new FunctionType(ft.getReturnType());
-      System.out.println("Intermediate function : " + fun);
+      FunctionType proto = (FunctionType) id.type;
     }
     (e=expression[symTab]
     {
       code.append(e.code);
-      System.out.println("Arg : " + e.place);
       fun.extend(e.type);
-      code.append(Code3aGenerator.genArg(e.place)); // TODO : should be right before the function call
+      code.append(Code3aGenerator.genArg(e.place));
     })*)
     {
-      // Check the args
-      System.out.println("Final function : " + fun);
-      if (!fun.isCompatible(ft)) {
-      	System.out.println("Error : Wrong argument type in function: " + $IDENT.text + " : " + ft);
-        // Error : wrong arg
+      // Check the function call
+      if (!fun.isCompatible(proto)) {
+        Errors.incompatibleTypes(null, proto, fun, null);
+        System.exit(1);
       }
-
-      if(fun.getReturnType() == Type.VOID) {
-        code.append(Code3aGenerator.genCall(new ExpAttribute(fun.getReturnType(), new Code3a(), id)));
-      } else {
-        // Error: not void type
-      }
+      // Makes the Call
+      code.append(Code3aGenerator.genCall(new ExpAttribute(fun.getReturnType(), new Code3a(), id)));
     }
 
   | block[symTab] {code = $block.code;}
@@ -184,21 +202,28 @@ statement [SymbolTable symTab] returns [Code3a code]
 assignp [SymbolTable symTab, ExpAttribute e1] returns [Code3a code]
   : IDENT
     {
+      // Check the type of the elements
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-      	System.out.println("Error");
-        Errors.unknownIdentifier(null, $IDENT.text, "");
-        System.out.println("Continue");
+        Errors.unknownIdentifier(null, $IDENT.text, null);
+        System.exit(1);
+      }
+      if (id.type != e1.type) {
+          Errors.incompatibleTypes(null, id.type, e1.type, null);
+          System.exit(1);
       }
       code = Code3aGenerator.genCopy(id, e1);
     }
-  | ^(ARELEM  IDENT e2=expression[symTab])
+  | ^(ARELEM IDENT e2=expression[symTab])
     {
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-        System.out.println("Error");
-        Errors.unknownIdentifier(null, $IDENT.text, "");
-        System.out.println("Continue");
+        Errors.unknownIdentifier(null, $IDENT.text, null);
+        System.exit(1);
+      }
+      if (Type.INT != e2.type) {
+          Errors.incompatibleTypes(null, Type.INT, e2.type, null);
+          System.exit(1);
       }
       code = Code3aGenerator.genVartab(id, e2, e1);
     }
@@ -264,7 +289,7 @@ expression [SymbolTable symTab] returns [ExpAttribute expAtt]
     { expAtt = pe; }
   ;
 
-primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each : check the type
+primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
   : INTEGER
     {
       ConstSymbol cs = new ConstSymbol(Integer.parseInt($INTEGER.text));
@@ -275,7 +300,7 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each 
     {
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-      	Errors.unknownIdentifier(null, $IDENT.text, null);
+          Errors.unknownIdentifier(null, $IDENT.text, null);
         System.exit(1);
       }
       expAtt = new ExpAttribute(id.type, new Code3a(), id);
@@ -286,9 +311,8 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each 
       VarSymbol temp = SymbDistrib.newTemp();
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-      	System.out.println("Error");
         Errors.unknownIdentifier(null, $IDENT.text, "");
-        System.out.println("Continue");
+        System.exit(1);
       }
       Code3a cod = e.code;
       //System.out.println("E.CODE  : " + e.code);
@@ -297,7 +321,6 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each 
       System.out.println("Tab expatt : " + expAtt.type + " " + expAtt.code + " " + expAtt.place + " ");
     }
 
-  // TODO check if the function has been declared and if the type of the arguments matches with the declaration
   | ^(FCALL IDENT
     {
       Code3a code = new Code3a();
@@ -305,39 +328,31 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt] // TODO for each 
       code.append(Code3aGenerator.genVar(temp));
       Operand3a id = symTab.lookup($IDENT.text);
       if (id == null) {
-      	System.out.println("Error");
         Errors.unknownIdentifier(null, $IDENT.text, "");
-        System.out.println("Continue");
+        System.exit(1);
       }
+      FunctionType fun = new FunctionType(Type.INT);
       if (!(id.type instanceof FunctionType)) {
-      	System.out.println("Error : " + $IDENT.text + " is not a function");
+      	Errors.incompatibleTypes(null, id.type, fun, null);
+        System.exit(1);
       }
-      FunctionType ft = (FunctionType) id.type;
-      System.out.println("Call function : " + $IDENT.text + " : " + ft);
-      FunctionType fun = new FunctionType(ft.getReturnType());
-      System.out.println("Intermediate function : " + fun);
+      FunctionType proto = (FunctionType) id.type;
     }
     (e=expression[symTab]
     {
       code.append(e.code);
-      System.out.println("Arg : " + e.place);
       fun.extend(e.type);
-      code.append(Code3aGenerator.genArg(e.place)); // TODO : should be right before the function call
+      code.append(Code3aGenerator.genArg(e.place));
     })*)
     {
-      // Check the args
-      System.out.println("Final function : " + fun);
-      if (!fun.isCompatible(ft)) {
-      	System.out.println("Error : Wrong argument type in function: " + $IDENT.text + " : " + ft);
-        // Error : wrong arg
+      // Check the function call
+      if (!fun.isCompatible(proto)) {
+          Errors.incompatibleTypes(null, proto, fun, null);
+        System.exit(1);
       }
-
-      if(fun.getReturnType() != Type.VOID) {
-        code.append(Code3aGenerator.genCall(temp, new ExpAttribute(fun.getReturnType(), new Code3a(), id)));
-        expAtt = new ExpAttribute(fun.getReturnType(), code, temp);
-      } else {
-        // Error: void type
-      }
+      // Makes the call
+      code.append(Code3aGenerator.genCall(temp, new ExpAttribute(fun.getReturnType(), new Code3a(), id)));
+      expAtt = new ExpAttribute(fun.getReturnType(), code, temp);
     }
 
   | ^(NEGAT e=primary_exp[symTab])
@@ -374,7 +389,7 @@ read_item [SymbolTable symTab] returns [Code3a code]
       code = new Code3a();
       Operand3a result = symTab.lookup($IDENT.text);
       if (result == null) {
-      	System.out.println("Error");
+          System.out.println("Error");
         Errors.unknownIdentifier(null, $IDENT.text, "");
         System.out.println("Continue");
       }
@@ -391,7 +406,7 @@ read_item [SymbolTable symTab] returns [Code3a code]
       //code = new Code3a();
       Operand3a result = symTab.lookup($IDENT.text);
       if (result == null) {
-      	System.out.println("Error");
+        System.out.println("Error");
         Errors.unknownIdentifier(null, $IDENT.text, "");
         System.out.println("Continue");
       }
@@ -401,13 +416,6 @@ read_item [SymbolTable symTab] returns [Code3a code]
       code.append(Code3aGenerator.genVartab(result, e, new ExpAttribute(result.type, new Code3a(), temp)));
     }
   ;
-
-/* Parameters */
-/*param_list [SymbolTable symTab] returns [List<Type> lty, List<String> lnames]  // TODO, check that params aren't in symTab? => If they are, they belong to a different scope
-  // TODO, that's stupid to use lists right? => I don't see other possibilities
-  : ^(PARAM {$lty = new LinkedList<Type>(); $lnames = new LinkedList<String>();}
-    (e=param[symTab] {$lty.add($e.ty); $lnames.add($e.name);})*)
-  ;*/
 
 param [SymbolTable symTab] returns [Type ty, String name]
   : IDENT {$ty = Type.INT; $name = $IDENT.text;}
@@ -428,13 +436,25 @@ declaration [SymbolTable symTab] returns [Code3a code]
 decl_item [SymbolTable symTab] returns [Code3a code]
   : IDENT
     {
-      symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, symTab.getScope()));
-      code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
+        // Check if the identifier has already been defined in this scope
+        Operand3a id = symTab.lookup($IDENT.text);
+        if (id != null && id.getScope() == symTab.getScope()) {
+            Errors.redefinedIdentifier(null, $IDENT.text, null);
+            System.exit(1);
+        }
+        symTab.insert($IDENT.text, new VarSymbol(Type.INT, $IDENT.text, symTab.getScope()));
+        code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
     }
   | ^(ARDECL IDENT INTEGER)
     {
-      symTab.insert($IDENT.text, new VarSymbol(new ArrayType(Type.INT, Integer.parseInt($INTEGER.text)),
+        // Check if the identifier has already been defined in this scope
+        Operand3a id = symTab.lookup($IDENT.text);
+        if (id != null && id.getScope() == symTab.getScope()) {
+            Errors.redefinedIdentifier(null, $IDENT.text, null);
+            System.exit(1);
+        }
+        symTab.insert($IDENT.text, new VarSymbol(new ArrayType(Type.INT, Integer.parseInt($INTEGER.text)),
                                                $IDENT.text, symTab.getScope()));
-      code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
+        code = Code3aGenerator.genVar(symTab.lookup($IDENT.text));
     }
   ;
