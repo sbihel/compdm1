@@ -16,6 +16,7 @@ options {
 /* TODO : fix the function call on arrays : 
  * incompatible types: expected 'FUNC[POINTER] : VOID',
  *                          got 'FUNC[ARRAY(INT)] : VOID'
+ * Use TypeCheck and typeCompatible to check types
  */
 
 /* Beginning of the parsing */
@@ -84,7 +85,7 @@ unit [SymbolTable symTab] returns [Code3a code]
         // Checks if the function matches the prototype
         if(proto != null) {
             if (!ft.isCompatible(proto)) {
-                Errors.incompatibleTypes($IDENT, proto, ft, null);
+                Errors.incompatibleTypes($PARAM, proto, ft, null);
                 System.exit(1);
             } 
         }
@@ -175,7 +176,7 @@ statement [SymbolTable symTab] returns [Code3a code]
       }
       FunctionType fun = new FunctionType(Type.VOID);
       if (!(id.type instanceof FunctionType)) {
-      	Errors.incompatibleTypes($IDENT, id.type, fun, null);
+      	Errors.incompatibleTypes($FCALL_S, id.type, fun, null);
         System.exit(1);
       }
       FunctionType proto = (FunctionType) id.type;
@@ -189,7 +190,7 @@ statement [SymbolTable symTab] returns [Code3a code]
     {
       // Check the function call
       if (!fun.isCompatible(proto)) {
-        Errors.incompatibleTypes($IDENT, proto, fun, null);
+        Errors.incompatibleTypes($FCALL_S, proto, fun, null);
         System.exit(1);
       }
       // Makes the Call
@@ -392,11 +393,10 @@ read_item [SymbolTable symTab] returns [Code3a code]
         System.exit(1);
       }
       if (result.type != Type.INT) {
-      	Errors.incompatibleTypes($IDENT, $IDENT.text, "");
+      	Errors.incompatibleTypes($IDENT, Type.INT, $IDENT.type, "");
         System.exit(1);
       }
       Operand3a id = SymbDistrib.builtinRead;
-      System.out.println("Read type: " + id.type);
       code.append(Code3aGenerator.genCall(result, new ExpAttribute(result.type, new Code3a(), id)));
     }
 
@@ -410,8 +410,11 @@ read_item [SymbolTable symTab] returns [Code3a code]
         Errors.unknownIdentifier($IDENT, $IDENT.text, "");
         System.exit(1);
       }
+      /*if (result.type != Type.INT) { //TODO
+      	Errors.incompatibleTypes($IDENT, Type.INT, result.type, "");
+        System.exit(1);
+      }*/
       Operand3a id = SymbDistrib.builtinRead;
-      System.out.println("Read type: " + id.type);
       code.append(Code3aGenerator.genCall(temp, new ExpAttribute(result.type, new Code3a(), id)));
       code.append(Code3aGenerator.genVartab(result, e, new ExpAttribute(result.type, new Code3a(), temp)));
     }
@@ -419,7 +422,7 @@ read_item [SymbolTable symTab] returns [Code3a code]
 
 param [SymbolTable symTab] returns [Type ty, String name]
   : IDENT {$ty = Type.INT; $name = $IDENT.text;}
-  | ^(ARRAY IDENT) {$ty = Type.POINTER; $name = $IDENT.text;} // TODO, probably not good
+  | ^(ARRAY IDENT) {$ty = Type.POINTER; $name = $IDENT.text;}
   ;
 
 /* Type */
