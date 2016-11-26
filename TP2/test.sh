@@ -12,6 +12,7 @@ SRC_DIR="./src"
 
 VSL=".vsl"
 OUT=".mips_out"
+COMPOUT=".comp_out"
 IN=".test_in"
 TEST_DIR="./tests/"
 
@@ -53,7 +54,7 @@ do
     echo "$TEST"
 
     java -cp $CLASSPATHRUN VslComp $TEST$VSL > $OUTPUT3a
-    if [ 0 -eq $? ]
+    if [ 0 -eq $? ] && [ $TEST != "tests/testlevel4/level4diverge" ]
     then 
 	cd nachos
 	./asm2bin.sh output
@@ -68,5 +69,17 @@ do
 	echo "DIFF : "
 	diff -Bb $OUTPUTexe $TEST$OUT
     fi
+    echo
+done
+for TEST in $(find tests/testlevelerror -type f -name '*.vsl')
+do
+    TEST=${TEST%.*}
+    echo "$TEST"
+
+    java -cp $CLASSPATHRUN VslComp $TEST$VSL 2> $OUTPUT3a
+    echo "DIFF: "
+    diff -BbZ <(awk '{print $3;}' $OUTPUT3a | sed 's/:.*//') <(sed -e '$a\' $TEST$COMPOUT)
+    # only get name of error | add newline at EOF
+    echo
 done
 fi
