@@ -1,0 +1,52 @@
+PROTO INT minimum(t[5])
+PROTO INT plusgrandstrict(n, m)
+FUNC VOID main()
+{
+  INT t[5], i
+  i := 0
+  WHILE 5 - i
+  DO
+  {
+    PRINT "t[", i, "] = "
+    READ t[i]
+    PRINT "\n"
+    i := i + 1
+  }
+  DONE
+  i := minimum(t)
+  PRINT "The minimum is ", t[i], " at index ", i, "\n"
+}
+
+FUNC INT minimum(t[5])
+{
+  INT i, min
+  i   := 0
+  min := 0
+  WHILE 5 - i
+  DO
+  {
+    IF plusgrandstrict(t[min], t[i]) THEN
+      min := i
+    FI
+    i := i + 1
+  }
+  DONE
+  RETURN min
+}
+
+FUNC INT plusgrandstrict(n, m)
+{
+  INT continue, nn, mm
+  continue := n*m
+  nn := n
+  mm := m
+  WHILE continue
+  DO
+  {
+    mm := mm-1
+    nn := nn-1
+    continue := nn*mm
+  }
+  DONE
+  IF nn THEN RETURN 1 ELSE RETURN 0 FI
+}
