@@ -32,16 +32,14 @@ public class Code3aGenerator {
 	 * Generates the 3a statement: CALL a = call b
 	 */
 	public static Code3a genCall(Operand3a a, ExpAttribute b) {
-		Inst3a i = new Inst3a(Inst3a.TAC.CALL, a, b.place, null);
-		return new Code3a(i);
+		return new Code3a(new Inst3a(Inst3a.TAC.CALL, a, b.place, null));
 	}
 
 	/**
 	 * Generates the 3a statement: CALL b
 	 */
 	public static Code3a genCall(ExpAttribute b) {
-		Inst3a i = new Inst3a(Inst3a.TAC.CALL, null, b.place, null);
-		return new Code3a(i);
+		return new Code3a(new Inst3a(Inst3a.TAC.CALL, null, b.place, null));
 	}
 
 	/**
@@ -74,7 +72,9 @@ public class Code3aGenerator {
 	 * Generates the 3a statement: TABVAR a = b[c]
 	 */
 	public static Code3a genTabvar(Operand3a a, Operand3a b, ExpAttribute c) {
-		return new Code3a(new Inst3a(Inst3a.TAC.TABVAR, a, b, c.place));
+		Code3a cod = c.code;
+		cod.append(new Inst3a(Inst3a.TAC.TABVAR, a, b, c.place));
+		return cod;
 	}
 
 	/**
