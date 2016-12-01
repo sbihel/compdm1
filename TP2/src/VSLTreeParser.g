@@ -233,15 +233,17 @@ assignp [SymbolTable symTab, ExpAttribute e1] returns [Code3a code]
 
 block [SymbolTable symTab] returns [Code3a code]
   : ^(BLOCK { symTab.enterScope(); } // Push a new symTable
-    d=declaration[symTab] {code = d;}
-    e=inst_list[symTab])
+    b=blockP[symTab]) { code = b; }
+  ;
+
+blockP [SymbolTable symTab] returns [Code3a code]
+  : d=declaration[symTab] {code = d;}
+    e=inst_list[symTab]
     {
       code.append(e);
       symTab.leaveScope(); // Pop the symTable
     }
-
-  | ^(BLOCK  { symTab.enterScope(); } // Push a new symTable => We don't really need to do it here since there is no decl ?
-    e=inst_list[symTab])
+  | e=inst_list[symTab]
     {
       code = e;
       symTab.leaveScope(); // Pop the symTable
