@@ -24,19 +24,33 @@
 \section{Introduction}
 \textit{Objectives described with our own words}
 
+The goal of the project was to write a code generator.
+It takes a tree built by an already existing parser.
+The compiler takes a VSL+ program and returns a MIPS program.
+
 \section{Work Organization}
 \textit{work splitting, code organization, tests}
+The tree parser contains 3 files, one main tree parser, one that contains functions to generate three-address code instructions and one file for error detection and handling.
+For the development phase, each feature was tested incrementally.
+At the beginning we would change the starting rule to test newly added instructions because blocks or functions were not supported yet.
 
 \section{Work Done}
 \textit{what has been done}
 
 \section{Tests}
 \textit{tests done}
+We wrote a bash script that executes our compiler on tests and compares the text output to what is expected.
 
 \section{Possible Optimizations}
 \textit{what we've talked about with luc}
+During a TD class we discussed optimizations that could be implemented in this project by adding an optimization phase in the tree parser.
+First there is the decreasing ordering of variables declarations.
+Then there is the loop unfolding that would allow to cut out some variables re-declarations.
 
 \section{Conclusion}
 \textit{difficulties encountered, what we've learned, ...}
+There was proposed tests for array pointer parameters.
+While we were told that we did not have to pass them, interesting questions emerged.
+From available types of objects, it does not seem feasible.
 
 \end{document}
