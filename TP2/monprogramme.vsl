@@ -1,9 +1,9 @@
-PROTO INT minimum(t[5])
 PROTO INT plusgrandstrict(n, m)
 FUNC VOID main()
 {
-  INT t[5], i
+  INT t[5], i, min
   i := 0
+  
   WHILE 5 - i
   DO
   {
@@ -13,40 +13,42 @@ FUNC VOID main()
     i := i + 1
   }
   DONE
-  i := minimum(t)
-  PRINT "The minimum is ", t[i], " at index ", i, "\n"
-}
-
-FUNC INT minimum(t[5])
-{
-  INT i, min
-  i   := 0
+  
+  i := 0
   min := 0
+  
   WHILE 5 - i
   DO
   {
-    IF plusgrandstrict(t[min], t[i]) THEN
+    PRINT t[min], " > ", t[i], "?\n"
+    IF plusgrandstrict(t[min], t[i]) THEN {
+      PRINT t[min], " > ", t[i], "\n"
       min := i
-    FI
+    } FI
     i := i + 1
   }
   DONE
-  RETURN min
+  
+  PRINT "The minimum is ", t[min], " at index ", min, "\n"
 }
 
 FUNC INT plusgrandstrict(n, m)
 {
   INT continue, nn, mm
+  PRINT "Min ", n, " ", m, "\n"
   continue := n*m
   nn := n
   mm := m
   WHILE continue
   DO
   {
+    PRINT nn, "\n"
+    PRINT mm, "\n"
     mm := mm-1
     nn := nn-1
     continue := nn*mm
   }
   DONE
+  PRINT nn, "\n"
   IF nn THEN RETURN 1 ELSE RETURN 0 FI
 }

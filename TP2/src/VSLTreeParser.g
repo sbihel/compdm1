@@ -16,7 +16,6 @@ options {
 /* TODO : fix the function call on arrays : 
  * incompatible types: expected 'FUNC[POINTER] : VOID',
  *                          got 'FUNC[ARRAY(INT)] : VOID'
- * Use TypeCheck and typeCompatible to check types
  */
 
 /* Beginning of the parsing */
@@ -64,7 +63,7 @@ unit [SymbolTable symTab] returns [Code3a code]
     {
       code.append($statement.code);
       //Leave the scope and the function
-      symTab.leaveScope();
+      //symTab.leaveScope();
       code.append(Code3aGenerator.genEndfunc());
       // Check if the fucntion is alredy declared or if it fits its proto
       TypeCheck.checkFuncDecl($FUNC_KW, $IDENT.text, ft, symTab);
