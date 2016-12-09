@@ -35,7 +35,7 @@ unit [SymbolTable symTab] returns [Code3a code]
       ft.extend($p.ty);
     })*)
     {
-      // Check if the fucntion is alredy declared
+      // Check if the function is alredy declared
       TypeCheck.checkProtoDecl($PROTO_KW, $IDENT.text, ft, symTab);
       // Add the function to the symTab
       TypeCheck.reserveFunctionName($PROTO_KW, $IDENT.text, ft, symTab);
@@ -63,9 +63,9 @@ unit [SymbolTable symTab] returns [Code3a code]
     {
       code.append($statement.code);
       //Leave the scope and the function
-      //symTab.leaveScope();
+      symTab.leaveScope();
       code.append(Code3aGenerator.genEndfunc());
-      // Check if the fucntion is alredy declared or if it fits its proto
+      // Check if the function is alredy declared or if it fits its proto
       TypeCheck.checkFuncDecl($FUNC_KW, $IDENT.text, ft, symTab);
       // Add the function to the symtable
       TypeCheck.reserveFunctionName($FUNC_KW, $IDENT.text, ft, symTab);
@@ -138,15 +138,19 @@ statement [SymbolTable symTab] returns [Code3a code]
     {
       code = new Code3a();
       // Creates the function type to check the type
-      FunctionType ft = new FunctionType(Type.VOID); 
+      FunctionType ft = new FunctionType(Type.VOID);
+      ArrayList<ExpAttribute> args = new ArrayList<>(); 
     }
     (e=expression[symTab]
     {
       code.append(e.code);
       ft.extend(e.type);
-      code.append(Code3aGenerator.genArg(e.place));
+      args.add(e);
     })*)
     {
+      for (ExpAttribute elem : args) {
+        code.append(Code3aGenerator.genArg(elem.place));
+      }
       // Check the function call
       Operand3a fun = TypeCheck.checkFuncCall($FCALL_S, $IDENT.text, ft, symTab);
       // Makes the Call
@@ -242,7 +246,6 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
 
   | IDENT
     {
-
       Operand3a id = TypeCheck.checkIdent($IDENT, $IDENT.text, symTab);
       expAtt = new ExpAttribute(id.type, new Code3a(), id);
     }
@@ -261,14 +264,18 @@ primary_exp [SymbolTable symTab] returns [ExpAttribute expAtt]
       VarSymbol temp = SymbDistrib.newTemp();
       code.append(Code3aGenerator.genVar(temp));
       FunctionType ft = new FunctionType(Type.INT);
+      ArrayList<ExpAttribute> args = new ArrayList<>();
     }
     (e=expression[symTab]
     {
       code.append(e.code);
       ft.extend(e.type);
-      code.append(Code3aGenerator.genArg(e.place));
+      args.add(e);
     })*)
     {
+      for (ExpAttribute elem : args) {
+        code.append(Code3aGenerator.genArg(elem.place));
+      }
       // Check the function call
       Operand3a fun = TypeCheck.checkFuncCall($FCALL, $IDENT.text, ft, symTab);
       // Makes the Call

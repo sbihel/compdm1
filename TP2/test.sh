@@ -38,7 +38,7 @@ then
 	then
 	    cat ../$TEST$IN | ./exec.sh output | head -n -3 > ../$OUTPUTexe
 	else
-	    ./exec.sh output | head -n -3 > ../$OUTPUTexe
+	    ./exec.sh output
 	fi
 	cd ..
 	if [ -e $TEST$OUT ]

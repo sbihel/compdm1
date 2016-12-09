@@ -36,7 +36,7 @@ public class TypeCheck {
 	}
 
 	public static VarSymbol checkAndDeclParm(org.antlr.runtime.tree.CommonTree token, java.lang.String name, Type type, SymbolTable symTab) {
-		VarSymbol parameter = new VarSymbol(type, name, symTab.getScope());
+    VarSymbol parameter = new VarSymbol(type, name, symTab.getScope());
     	parameter.setParam();
     	symTab.insert(name, parameter);
     	return parameter;

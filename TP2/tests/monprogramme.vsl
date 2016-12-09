@@ -1,7 +1,7 @@
 PROTO INT plusgrandstrict(n, m)
 FUNC VOID main()
 {
-  INT t[5], i, min
+  INT t[5], i, min, a, b
   i := 0
   
   WHILE 5 - i
@@ -20,11 +20,12 @@ FUNC VOID main()
   WHILE 5 - i
   DO
   {
-    PRINT t[min], " > ", t[i], "?\n"
-    IF plusgrandstrict(t[min], t[i]) THEN {
-      PRINT t[min], " > ", t[i], "\n"
+    a := t[min]
+    b := t[i]
+    PRINT a, " > ", b, "?\n"
+    IF plusgrandstrict(a, b) THEN
       min := i
-    } FI
+    FI
     i := i + 1
   }
   DONE
@@ -42,13 +43,10 @@ FUNC INT plusgrandstrict(n, m)
   WHILE continue
   DO
   {
-    PRINT nn, "\n"
-    PRINT mm, "\n"
     mm := mm-1
     nn := nn-1
     continue := nn*mm
   }
   DONE
-  PRINT nn, "\n"
   IF nn THEN RETURN 1 ELSE RETURN 0 FI
 }
